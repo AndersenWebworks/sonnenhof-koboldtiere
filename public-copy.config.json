@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "project": "sonnenhof-koboldtiere",
+  "audience": "Menschen, die den Sonnenhof der Koboldtiere kennenlernen oder seine Tiere unterstützen möchten",
+  "purpose": "Die Website stellt den Lebenshof, seine Tiere, den Pflegealltag und Möglichkeiten zur Unterstützung vor.",
+  "surface": ".clautz/public-copy-surface.json",
+  "attestation": ".clautz/public-copy-review.json"
+}

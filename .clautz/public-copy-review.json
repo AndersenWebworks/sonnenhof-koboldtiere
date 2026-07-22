@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "status": "approved",
+  "project": "sonnenhof-koboldtiere",
+  "surfaceHash": "b0f18c36ce17e20262cd3a1b724509769431292068f664de0d0c88d4c03998b8",
+  "briefHash": "272376b6b38443622686642c05560827216585b136adaece1452de81bbb1502b",
+  "pageCount": 1,
+  "reviewedAt": "2026-07-22T18:14:49.272Z",
+  "reviewer": {
+    "source": "codex_cli",
+    "model": "default",
+    "independentContext": true,
+    "batchCount": 1
+  }
+}
