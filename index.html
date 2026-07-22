@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Der Sonnenhof der Koboldtiere in Heusweiler ist ein Lebenshof für gelähmte und schwer verletzte Hunde und Katzen. Unterstützen Sie Pflege, Therapie und medizinische Versorgung.">
+  <meta name="theme-color" content="#173f38">
+  <title>Sonnenhof der Koboldtiere</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #16312d;
+      --ink-soft: #46605b;
+      --forest: #173f38;
+      --forest-light: #d9e8df;
+      --paper: #fffdf8;
+      --white: #ffffff;
+      --sun: #f5c441;
+      --coral: #d9553f;
+      --sky: #b9dfe6;
+      --line: rgba(22, 49, 45, 0.16);
+      --shadow: 0 18px 50px rgba(19, 53, 47, 0.16);
+      --content: 1180px;
+      --radius: 6px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 78px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    body.menu-open { overflow: hidden; }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a { color: inherit; }
+
+    button,
+    a { -webkit-tap-highlight-color: transparent; }
+
+    button { font: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--sun);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: -9999px;
+      z-index: 100;
+      padding: 10px 14px;
+      background: var(--white);
+      color: var(--ink);
+    }
+
+    .skip-link:focus { left: 12px; }
+
+    .draft-notice {
+      position: relative;
+      z-index: 40;
+      padding: 9px 16px;
+      background: #fff0b8;
+      color: #493d12;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .review-panel {
+      position: relative;
+      z-index: 40;
+      padding: 26px 20px 28px;
+      background: #f6efe1;
+      color: #3c3022;
+      border-bottom: 1px solid rgba(60, 48, 34, 0.18);
+    }
+
+    .review-panel-inner {
+      width: min(calc(100% - 16px), var(--content));
+      margin: 0 auto;
+    }
+
+    .review-panel h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27px;
+      line-height: 1.15;
+    }
+
+    .review-panel p {
+      max-width: 820px;
+      margin: 10px 0 18px;
+    }
+
+    .review-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 28px;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .review-list li { padding-left: 4px; }
+
+    .review-list strong { color: #7e3227; }
+
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 20;
+      color: var(--white);
+    }
+
+    .nav-wrap {
+      width: min(calc(100% - 48px), var(--content));
+      min-height: 78px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .sun-mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      border-radius: 50%;
+      background: var(--sun);
+      box-shadow: inset 0 0 0 7px rgba(255, 255, 255, 0.18);
+    }
+
+    .sun-mark::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      bottom: 5px;
+      width: 20px;
+      height: 8px;
+      border-radius: 50%;
+      border-bottom: 3px solid var(--forest);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover { color: var(--sun); }
+
+    .nav-donate {
+      padding: 10px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius);
+    }
+
+    .menu-button {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      background: transparent;
+      color: var(--white);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-icon,
+    .menu-icon::before,
+    .menu-icon::after {
+      width: 23px;
+      height: 2px;
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .menu-icon { position: relative; }
+    .menu-icon::before,
+    .menu-icon::after { content: ""; position: absolute; left: 0; }
+    .menu-icon::before { top: -7px; }
+    .menu-icon::after { top: 7px; }
+
+    .menu-open .menu-icon { background: transparent; }
+    .menu-open .menu-icon::before { top: 0; transform: rotate(45deg); }
+    .menu-open .menu-icon::after { top: 0; transform: rotate(-45deg); }
+
+    .hero {
+      position: relative;
+      min-height: 620px;
+      height: calc(100svh - 48px);
+      max-height: 780px;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      color: var(--white);
+      background: var(--forest);
+    }
+
+    .hero-media,
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-media.image-fallback { position: absolute; }
+
+    .hero-media img { object-position: center 48%; }
+
+    .hero-shade {
+      background: rgba(8, 34, 29, 0.5);
+      box-shadow: inset 0 -180px 160px rgba(4, 29, 24, 0.4);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(calc(100% - 48px), var(--content));
+      margin: 0 auto;
+      padding: 142px 0 66px;
+    }
+
+    .hero h1 {
+      max-width: 820px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 74px;
+      line-height: 0.98;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+
+    .hero-copy {
+      max-width: 660px;
+      margin: 24px 0 0;
+      font-size: 21px;
+      line-height: 1.45;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--sun); color: #182a27; }
+    .button-secondary { border-color: rgba(255, 255, 255, 0.75); color: var(--white); background: rgba(9, 39, 33, 0.35); }
+    .button-forest { background: var(--forest); color: var(--white); }
+
+    .hero-credit {
+      position: absolute;
+      right: 24px;
+      bottom: 18px;
+      z-index: 2;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 11px;
+    }
+
+    .hero-credit a { text-underline-offset: 3px; }
+
+    .fact-ribbon {
+      background: var(--sun);
+      color: #1b302c;
+    }
+
+    .facts {
+      width: min(calc(100% - 48px), var(--content));
+      min-height: 118px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+    }
+
+    .fact {
+      min-height: 58px;
+      padding: 0 26px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      border-left: 1px solid rgba(22, 49, 45, 0.28);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .fact:first-child { border-left: 0; padding-left: 0; }
+
+    .fact-number {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1;
+      color: var(--coral);
+    }
+
+    .section {
+      padding: 112px 0;
+    }
+
+    .section-compact { padding: 86px 0; }
+    .section-forest { background: var(--forest); color: var(--white); }
+    .section-sky { background: var(--sky); }
+    .section-white { background: var(--white); }
+
+    .container {
+      width: min(calc(100% - 48px), var(--content));
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      max-width: 850px;
+      margin-bottom: 54px;
+    }
+
+    .section-heading h2,
+    .story-copy h2,
+    .donation-copy h2,
+    .visit-copy h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 50px;
+      line-height: 1.08;
+      text-wrap: balance;
+    }
+
+    .section-heading p,
+    .story-copy > p,
+    .visit-copy > p {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--ink-soft);
+      font-size: 18px;
+    }
+
+    .section-forest .section-heading p,
+    .section-forest .story-copy > p { color: rgba(255, 255, 255, 0.76); }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 8%;
+      align-items: center;
+    }
+
+    .story-figure {
+      margin: 0;
+      position: relative;
+      min-height: 620px;
+    }
+
+    .story-figure img { min-height: 620px; border-radius: var(--radius); }
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--ink-soft);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .section-forest figcaption { color: rgba(255, 255, 255, 0.65); }
+    figcaption a { text-underline-offset: 3px; }
+
+    .story-copy blockquote {
+      margin: 34px 0;
+      padding: 22px 0 22px 24px;
+      border-left: 5px solid var(--sun);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1.35;
+    }
+
+    .story-points {
+      display: grid;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .story-point {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .story-point strong { display: block; margin-bottom: 2px; }
+    .story-point span:last-child { color: var(--ink-soft); }
+
+    .point-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--coral);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+    }
+
+    .animal-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .animal-card {
+      grid-column: span 4;
+      min-width: 0;
+      background: var(--white);
+      color: var(--ink);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .animal-card:nth-child(2) { margin-top: 42px; }
+
+    .animal-image {
+      height: 300px;
+      background: var(--forest-light);
+      overflow: hidden;
+    }
+
+    .animal-card:nth-child(1) .animal-image img { object-position: center 42%; }
+    .animal-card:nth-child(2) .animal-image img { object-position: center 35%; }
+    .animal-card:nth-child(3) .animal-image img { object-position: center 43%; }
+
+    .animal-body { padding: 28px; }
+
+    .animal-body h3 {
+      margin: 0 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
+    .animal-body p { margin: 0; color: var(--ink-soft); }
+
+    .animal-body .source {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-size: 11px;
+    }
+
+    .animal-note {
+      max-width: 760px;
+      margin: 34px 0 0;
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+
+    .daily-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 8%;
+      align-items: start;
+    }
+
+    .daily-intro {
+      position: sticky;
+      top: 108px;
+    }
+
+    .daily-intro h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 50px;
+      line-height: 1.08;
+    }
+
+    .daily-intro p { color: rgba(255, 255, 255, 0.72); font-size: 18px; }
+
+    .care-list { border-top: 1px solid rgba(255, 255, 255, 0.25); }
+
+    .care-item {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 18px;
+      padding: 30px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .care-item span:first-child {
+      color: var(--sun);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27px;
+    }
+
+    .care-item h3 { margin: 0 0 6px; font-size: 19px; }
+    .care-item p { margin: 0; color: rgba(255, 255, 255, 0.72); }
+
+    .donation-wrap {
+      display: grid;
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: 8%;
+      align-items: center;
+    }
+
+    .donation-copy p { color: var(--ink-soft); font-size: 18px; }
+
+    .donation-copy ul {
+      margin: 28px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+    }
+
+    .donation-copy li {
+      padding-left: 18px;
+      position: relative;
+      font-weight: 700;
+    }
+
+    .donation-copy li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--coral);
+    }
+
+    .bank-panel {
+      padding: 38px;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .bank-panel h3 {
+      margin: 0 0 26px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .bank-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      padding: 15px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .bank-row dt { color: var(--ink-soft); }
+    .bank-row dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+
+    .copy-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 26px;
+      min-height: 50px;
+    }
+
+    .copy-feedback {
+      min-width: 130px;
+      color: var(--forest);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7%;
+      align-items: center;
+    }
+
+    .visit-photo {
+      height: 540px;
+      margin: 0;
+    }
+
+    .visit-photo img { border-radius: var(--radius); }
+
+    .visit-copy .button { margin-top: 26px; }
+
+    .press-links {
+      margin-top: 34px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 10px;
+    }
+
+    .press-links a {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      text-underline-offset: 4px;
+      font-weight: 700;
+    }
+
+    .site-footer {
+      background: #102f2a;
+      color: var(--white);
+      padding: 66px 0 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.7fr 0.7fr;
+      gap: 8%;
+    }
+
+    .footer-brand h2 {
+      margin: 18px 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1.1;
+    }
+
+    .footer-brand p { max-width: 430px; color: rgba(255, 255, 255, 0.7); }
+    .footer-col h3 { margin: 0 0 14px; font-size: 15px; }
+    .footer-col a { display: block; margin: 8px 0; color: rgba(255, 255, 255, 0.78); text-underline-offset: 4px; }
+
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 12px;
+    }
+
+    .image-fallback {
+      position: relative;
+      background: var(--forest-light);
+    }
+
+    .image-fallback::after {
+      content: "Vorschau-Bild";
+      position: absolute;
+      inset: 0;
+      display: none;
+      place-items: center;
+      color: var(--forest);
+      font-weight: 700;
+    }
+
+    .image-fallback.failed img { opacity: 0; }
+    .image-fallback.failed::after { display: grid; }
+
+    @media (max-width: 960px) {
+      .hero h1 { font-size: 58px; }
+      .facts { grid-template-columns: 1fr 1fr; padding: 24px 0; }
+      .fact { padding: 14px 24px; }
+      .fact:nth-child(3) { border-left: 0; padding-left: 0; }
+      .story-grid,
+      .donation-wrap,
+      .visit-grid { gap: 5%; }
+      .animal-card { grid-column: span 6; }
+      .animal-card:last-child { grid-column: 4 / span 6; }
+      .daily-grid { grid-template-columns: 1fr; }
+      .daily-intro { position: static; margin-bottom: 45px; }
+    }
+
+    @media (max-width: 760px) {
+      html { scroll-padding-top: 68px; }
+      .nav-wrap,
+      .hero-content,
+      .facts,
+      .container { width: min(calc(100% - 32px), var(--content)); }
+      .draft-notice { font-size: 12px; line-height: 1.35; }
+      .review-panel { padding: 22px 16px 24px; }
+      .review-panel-inner { width: 100%; }
+      .review-list { grid-template-columns: 1fr; gap: 8px; }
+      .nav-wrap { min-height: 68px; }
+      .wordmark { font-size: 16px; }
+      .wordmark,
+      .menu-button { position: relative; z-index: 31; }
+      .sun-mark { width: 30px; height: 30px; flex-basis: 30px; }
+      .sun-mark::after { left: 6px; width: 18px; }
+      .menu-button { display: inline-flex; }
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        z-index: 30;
+        padding: 110px 28px 40px;
+        background: var(--forest);
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 180ms ease;
+      }
+      .menu-open .nav-links { opacity: 1; pointer-events: auto; }
+      .nav-links a {
+        padding: 17px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 25px;
+      }
+      .nav-donate { margin-top: 18px; padding: 13px 15px !important; border: 1px solid rgba(255, 255, 255, 0.75) !important; text-align: center; font-family: Arial, Helvetica, sans-serif !important; font-size: 16px !important; }
+      .hero {
+        min-height: 570px;
+        height: 79svh;
+        max-height: 680px;
+      }
+      .hero-media img { object-position: 58% center; }
+      .hero-shade { background: rgba(8, 34, 29, 0.58); box-shadow: inset 0 -150px 140px rgba(4, 29, 24, 0.36); }
+      .hero-content { padding: 118px 0 52px; }
+      .hero h1 { font-size: 46px; line-height: 1; }
+      .hero-copy { margin-top: 18px; font-size: 18px; }
+      .hero-actions { margin-top: 24px; }
+      .hero-actions .button { flex: 1 1 180px; }
+      .hero-credit { right: 16px; bottom: 10px; max-width: 80%; text-align: right; }
+      .facts { grid-template-columns: 1fr; padding: 12px 0; }
+      .fact,
+      .fact:first-child,
+      .fact:nth-child(3) { min-height: 58px; padding: 12px 0; border-left: 0; border-top: 1px solid rgba(22, 49, 45, 0.24); }
+      .fact:first-child { border-top: 0; }
+      .fact-number { width: 34px; font-size: 29px; }
+      .section { padding: 78px 0; }
+      .section-compact { padding: 64px 0; }
+      .section-heading { margin-bottom: 34px; }
+      .section-heading h2,
+      .story-copy h2,
+      .donation-copy h2,
+      .visit-copy h2,
+      .daily-intro h2 { font-size: 38px; }
+      .section-heading p,
+      .story-copy > p,
+      .visit-copy > p,
+      .donation-copy p,
+      .daily-intro p { font-size: 17px; }
+      .story-grid,
+      .donation-wrap,
+      .visit-grid { grid-template-columns: 1fr; gap: 44px; }
+      .story-figure,
+      .story-figure img { min-height: 440px; }
+      .story-copy blockquote { font-size: 22px; }
+      .animal-grid { grid-template-columns: 1fr; gap: 18px; }
+      .animal-card,
+      .animal-card:last-child { grid-column: auto; }
+      .animal-card:nth-child(2) { margin-top: 0; }
+      .animal-image { height: 260px; }
+      .care-item { grid-template-columns: 50px 1fr; }
+      .bank-panel { padding: 28px 22px; }
+      .bank-row { grid-template-columns: 1fr; gap: 3px; }
+      .copy-row { align-items: flex-start; flex-direction: column; }
+      .donation-copy ul { grid-template-columns: 1fr; }
+      .visit-photo { height: 400px; }
+      .press-links a { display: block; }
+      .press-links a span { display: block; }
+      .press-links a span + span { margin-top: 2px; font-weight: 400; }
+      .footer-grid { grid-template-columns: 1fr; gap: 34px; }
+    }
+
+    @media (max-width: 380px) {
+      .wordmark span:last-child { max-width: 210px; }
+      .hero h1 { font-size: 40px; }
+      .hero-copy { font-size: 16px; }
+      .button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="wordmark" href="#top" aria-label="Sonnenhof der Koboldtiere, Startseite">
+        <span class="sun-mark" aria-hidden="true"></span>
+        <span>Sonnenhof der Koboldtiere</span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+      <nav class="nav-links" id="site-nav" aria-label="Hauptnavigation">
+        <a href="#geschichte">Der Sonnenhof</a>
+        <a href="#koboldtiere">Die Koboldtiere</a>
+        <a href="#alltag">Pflegealltag</a>
+        <a href="#verein">Verein</a>
+        <a class="nav-donate" href="#spenden">Spenden</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-media image-fallback">
+          <img src="https://www.sueddeutsche.de/2025/08/16/8434efe9-9fc6-4189-bc9c-0eda548231fd.jpg?q=80&amp;fm=jpeg&amp;width=1800&amp;rect=0,0,2048,1365" alt="Vorschauaufnahme für den späteren Hero-Bereich" referrerpolicy="no-referrer">
+      </div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1 id="hero-title">Sonnenhof der Koboldtiere</h1>
+        <p class="hero-copy">Ein Lebenshof in Heusweiler für Hunde und Katzen, deren Körper besondere Hilfe brauchen und deren Lebensfreude jeden Tag ihren eigenen Weg findet.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#koboldtiere">Koboldtiere kennenlernen</a>
+          <a class="button button-secondary" href="#spenden">Den Sonnenhof unterstützen</a>
+        </div>
+      </div>
+      <div class="hero-credit">Sonnenhof der Koboldtiere</div>
+    </section>
+
+    <section class="fact-ribbon" aria-label="Der Sonnenhof auf einen Blick">
+      <div class="facts">
+        <div class="fact"><span class="fact-number">01</span><span>Lebenshof in Heusweiler im Saarland</span></div>
+        <div class="fact"><span class="fact-number">02</span><span>15 Tiere im Sommer 2025</span></div>
+        <div class="fact"><span class="fact-number">03</span><span>Tägliche Pflege, Physiotherapie und Mobilitätshilfen</span></div>
+        <div class="fact"><span class="fact-number">04</span><span>Getragen von Verein, Patenschaften und Spenden</span></div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="geschichte">
+      <div class="container story-grid">
+        <figure class="story-figure image-fallback">
+          <img src="https://www.magazin-forum.de/sites/default/files/inline-images/51_2023_Leben___SL_Menschen_Lara_Sohn_001.jpg" alt="Vorschauaufnahme für den Bereich zur Hofgeschichte" loading="lazy" referrerpolicy="no-referrer">
+        </figure>
+        <div class="story-copy">
+          <h2>Von Njuvra und Murron zum Lebenshof</h2>
+          <p>Lara Sohns Weg begann mit Straßenkatzen in Kroatien. Njuvra war der erste Kater, den sie mit nach Hause nahm. Mit Murron, ihrem ersten querschnittgelähmten Tier, begann ein Alltag, in dem Fürsorge, Wissen und Vertrauen untrennbar zusammengehören.</p>
+          <blockquote>„Unsere kleine Insel, unser Paradies, wo alle zur Ruhe kommen dürfen.“</blockquote>
+          <p>Heute finden auf dem Sonnenhof Hunde und Katzen Schutz, die schwer verletzt wurden, mit einer Lähmung geboren sind oder aus Kriegs- und Krisengebieten kommen. Der Hof ist ein Ort des Bewahrens, für die Tiere ebenso wie für ihre Menschen.</p>
+          <div class="story-points">
+            <div class="story-point"><span class="point-mark">L</span><span><strong>Lebenshof statt Gnadenhof</strong><span>Die Tiere bleiben, werden versorgt und gehören zur Hofgemeinschaft.</span></span></div>
+            <div class="story-point"><span class="point-mark">W</span><span><strong>Wissen aus täglicher Erfahrung</strong><span>Pflege, Physio und Handfütterung gehören zum Alltag.</span></span></div>
+            <div class="story-point"><span class="point-mark">N</span><span><strong>Nähe, die weiterwirkt</strong><span>Besuche in Kitas, Schulen und Altenheimen bringen Menschen und Tiere zusammen.</span></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-sky" id="koboldtiere">
+      <div class="container">
+        <header class="section-heading">
+          <h2>Die Tiere des Sonnenhofs</h2>
+          <p>Hinter jedem Rolli und jedem Rutschsack steckt eine eigene Geschichte. Was die Koboldtiere verbindet, ist nicht ihre Behinderung, sondern ihr sicherer Platz im Leben.</p>
+        </header>
+        <div class="animal-grid">
+          <article class="animal-card">
+            <div class="animal-image image-fallback">
+                <img src="https://www.sueddeutsche.de/2025/08/16/333d41bc-69a6-4092-91da-08330f5d2c8a.jpg?q=80&amp;fm=jpeg&amp;width=1200&amp;rect=0,0,2048,1365" alt="Vorschauaufnahme für eine Tiergeschichte" loading="lazy" referrerpolicy="no-referrer">
+            </div>
+            <div class="animal-body">
+              <h3>Little Bee</h3>
+              <p>Little Bee wurde ausgesetzt. Auf dem Sonnenhof bekommt sie die Pflege und Sicherheit, die ihr Alltag verlangt.</p>
+              <p class="source">Little Bee · Hund mit besonderem Pflegebedarf</p>
+            </div>
+          </article>
+          <article class="animal-card">
+            <div class="animal-image image-fallback">
+                <img src="https://www.magazin-forum.de/sites/default/files/2023-12/51_2023_Leben___SL_Menschen_Lara_Sohn_000.jpg" alt="Vorschauaufnahme für eine Tiergeschichte" loading="lazy" referrerpolicy="no-referrer">
+            </div>
+            <div class="animal-body">
+              <h3>Pepe</h3>
+              <p>Pepe rollt im Rollstuhl durch Garten und Wald. Sein Alltag zeigt, wie viel Mobilitätshilfen für ein Tier mit Handicap verändern können.</p>
+              <p class="source">Pepe · Hund mit Rollstuhl</p>
+            </div>
+          </article>
+          <article class="animal-card">
+            <div class="animal-image image-fallback">
+                <img src="https://www.saarbruecker-zeitung.de/imgs/03/2/3/5/1/8/8/8/4/3/tok_0232ea49aacad9a43902b2bba4f81d24/w2100_h1313_x670_y1158_katzenstimme-1-80cd19c05f543864.jpg" alt="Vorschauaufnahme für die Hofgemeinschaft" loading="lazy" referrerpolicy="no-referrer">
+            </div>
+            <div class="animal-body">
+              <h3>Die Hofgemeinschaft</h3>
+              <p>Hunde und Katzen in Rollstühlen, andere mit Einschränkungen, finden hier ihren Platz. Sie sind nicht nur versorgt, sondern Teil einer Gemeinschaft.</p>
+              <p class="source">Hunde und Katzen des Sonnenhofs</p>
+            </div>
+          </article>
+        </div>
+        <p class="animal-note">Zum Sonnenhof gehören außerdem Hedda, Tyra, Liesel, Snow, Lemon, My und Mercy.</p>
+      </div>
+    </section>
+
+    <section class="section section-forest" id="alltag">
+      <div class="container daily-grid">
+        <div class="daily-intro">
+          <h2>Pflege, Bewegung und medizinische Versorgung</h2>
+          <p>Ein gelähmtes Tier braucht mehr als ein warmes Körbchen. Der Tag folgt einem verlässlichen Rhythmus, abgestimmt auf jedes einzelne Tier.</p>
+        </div>
+        <div class="care-list">
+            <article class="care-item"><span>01</span><div><h3>Pflege und Hygiene</h3><p>Blase und Darm müssen bei vielen Tieren mehrfach täglich manuell entleert werden. Dazu kommen Windeln, Hautpflege und saubere Rücksäcke.</p></div></article>
+            <article class="care-item"><span>02</span><div><h3>Bewegung und Physiotherapie</h3><p>Rollis, Übungen und Physiotherapie erhalten Beweglichkeit, stärken den Körper und schaffen selbstständige Wege.</p></div></article>
+            <article class="care-item"><span>03</span><div><h3>Tierärztliche Versorgung</h3><p>Kontrollen, Medikamente und Behandlungen gehören ebenso dazu wie schnelle Hilfe, wenn sich der Zustand eines Tieres verändert.</p></div></article>
+            <article class="care-item"><span>04</span><div><h3>Zeit, Ruhe und Zugehörigkeit</h3><p>Zwischen allen Handgriffen bleibt das Wichtigste: spielen, schlafen, Nähe suchen und einfach Teil der Gemeinschaft sein.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spenden">
+      <div class="container donation-wrap">
+        <div class="donation-copy">
+          <h2>Spenden finanzieren Pflege und Behandlung</h2>
+          <p>Spenden und Patenschaften tragen den laufenden Aufwand für Pflege und Behandlung. Sie helfen dort, wo kleine Hilfsmittel entscheidend und große Tierarztrechnungen unvermeidbar sind.</p>
+          <ul>
+            <li>Pflege und Hilfsmittel</li>
+            <li>Tierärztliche Versorgung</li>
+            <li>Medikamente und Futter</li>
+            <li>Therapie und Bewegung</li>
+            <li>Patenschaften</li>
+            <li>Weitere Bedarfe nach aktueller Hofsituation</li>
+          </ul>
+        </div>
+        <div class="bank-panel" aria-labelledby="bank-title">
+           <h3 id="bank-title">Spendenkonto des Vereins</h3>
+          <dl>
+            <div class="bank-row"><dt>Empfänger</dt><dd>Katzenstimme grenzenlos e. V.</dd></div>
+            <div class="bank-row"><dt>IBAN</dt><dd id="iban-value">DE09 5919 0000 0118 0940 00</dd></div>
+            <div class="bank-row"><dt>BIC</dt><dd>SABADE5SXXX</dd></div>
+            <div class="bank-row"><dt>Bank</dt><dd>Bank 1 Saar eG</dd></div>
+          </dl>
+          <div class="copy-row">
+             <button class="copy-button" type="button" data-copy-iban>IBAN kopieren</button>
+             <span class="copy-feedback" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="verein">
+      <div class="container visit-grid">
+        <figure class="visit-photo image-fallback">
+          <img src="https://www.magazin-forum.de/sites/default/files/inline-images/51_2023_Leben___SL_Menschen_Lara_Sohn_002.jpg" alt="Vorschauaufnahme für den Vereinsbereich" loading="lazy" referrerpolicy="no-referrer">
+        </figure>
+        <div class="visit-copy">
+          <h2>Katzenstimme grenzenlos e. V.</h2>
+          <p>Der eingetragene Verein trägt den Sonnenhof gemeinsam mit Lara Sohn. Vereinsmitglieder helfen praktisch, Patinnen und Paten begleiten einzelne Tiere, und Spenden finanzieren Pflege und medizinische Versorgung.</p>
+          <p>Mit Hofaktionen sowie Besuchen in Kitas, Schulen und Altenheimen zeigt das Team, wie viel Lebensfreude Tiere mit Handicap haben können.</p>
+          <a class="button button-forest" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noreferrer">Zum Instagram-Auftritt</a>
+          <div class="press-links" aria-label="Berichte über den Sonnenhof">
+             <a href="https://www.sueddeutsche.de/wissen/tierschutz-im-saarland-lebenshof-neues-zuhause-fuer-kriegsverletzte-tiere-dpa.urn-newsml-dpa-com-20090101-250816-930-918370" target="_blank" rel="noreferrer"><span>Süddeutsche Zeitung</span></a>
+             <a href="https://www.magazin-forum.de/de/die-cover-story-des-jahres" target="_blank" rel="noreferrer"><span>FORUM Magazin</span></a>
+             <span>Lebenshof für querschnittgelähmte Tiere</span>
+             <span>Pepe und Lara Sohn</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="sun-mark" aria-hidden="true"></span>
+          <h2>Sonnenhof der Koboldtiere</h2>
+          <p>Lebenshof für querschnittgelähmte Hunde und Katzen.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Entdecken</h3>
+          <a href="#geschichte">Der Sonnenhof</a>
+          <a href="#koboldtiere">Die Koboldtiere</a>
+          <a href="#alltag">Pflegealltag</a>
+        </div>
+        <div class="footer-col">
+          <h3>Verbunden bleiben</h3>
+          <a href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noreferrer">Instagram Sonnenhof</a>
+          <a href="https://www.instagram.com/katzenstimme_grenzenlos/" target="_blank" rel="noreferrer">Instagram Verein</a>
+          <a href="#spenden">Spendenkonto</a>
+        </div>
+      </div>
+      <div class="footer-bottom">Katzenstimme grenzenlos e. V. · Vereinsregister VR 5799 · Amtsgericht Saarbrücken</div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const body = document.body;
+      const menuButton = document.querySelector('.menu-button');
+      const nav = document.getElementById('site-nav');
+
+      function setMenu(open) {
+        body.classList.toggle('menu-open', open);
+        menuButton.setAttribute('aria-expanded', String(open));
+        menuButton.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+      }
+
+      menuButton.addEventListener('click', () => setMenu(!body.classList.contains('menu-open')));
+      nav.addEventListener('click', event => {
+        if (event.target.closest('a')) setMenu(false);
+      });
+      window.addEventListener('keydown', event => {
+        if (event.key === 'Escape') setMenu(false);
+      });
+
+      document.querySelectorAll('.image-fallback img').forEach(image => {
+        image.addEventListener('error', () => image.parentElement.classList.add('failed'));
+      });
+
+      const copyButton = document.querySelector('[data-copy-iban]');
+      const ibanValue = document.getElementById('iban-value');
+      const copyFeedback = document.querySelector('.copy-feedback');
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(ibanValue.textContent.trim());
+          copyFeedback.textContent = 'IBAN kopiert';
+        } catch {
+          copyFeedback.textContent = 'Bitte die IBAN direkt markieren und kopieren.';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
