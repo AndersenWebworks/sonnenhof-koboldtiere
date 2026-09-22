@@ -168,6 +168,38 @@
     .donation-actions .button-quiet:hover { background: rgba(255,255,255,.12); }
     .copy-status { min-height: 1.45em; margin: 15px 0 0; color: #dce8d7; font-size: .88rem; }
 
+    .trust-tag { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 7px 12px; color: #fff; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); border-radius: 4px; font-size: .82rem; font-weight: 700; letter-spacing: .01em; }
+    .trust-tag svg { width: 16px; height: 16px; color: var(--sun); }
+
+    .quick-spend { margin: 18px 0 6px; }
+    .quick-spend-label { margin: 0 0 9px; color: #dce8d7; font-size: .86rem; font-weight: 700; letter-spacing: .02em; }
+    .quick-spend-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+    .quick-spend-buttons .amount { flex: 1 1 auto; min-height: 44px; min-width: 78px; padding: 9px 14px; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.32); border-radius: 4px; font-weight: 800; cursor: pointer; transition: background .15s, border-color .15s; }
+    .quick-spend-buttons .amount:hover, .quick-spend-buttons .amount:focus-visible { color: var(--forest-deep); background: #fff; border-color: #fff; }
+    .quick-spend-custom { display: flex; align-items: stretch; gap: 6px; margin-top: 10px; }
+    .quick-spend-custom input { flex: 1 1 auto; min-height: 44px; padding: 9px 13px; color: #fff; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.32); border-radius: 4px; font: inherit; font-weight: 700; }
+    .quick-spend-custom input::placeholder { color: rgba(255,255,255,.55); }
+    .quick-spend-custom input:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+    .quick-spend-custom button { padding: 9px 16px; color: var(--forest-deep); background: var(--sun); border: 1px solid var(--sun); border-radius: 4px; font-weight: 800; cursor: pointer; }
+    .quick-spend-custom button:hover { background: #d6a946; border-color: #d6a946; }
+    .quick-spend-status { min-height: 1.3em; margin: 8px 0 0; color: var(--sun); font-size: .84rem; }
+
+    .qr-block { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: center; margin: 22px 0 8px; padding: 14px; background: var(--cream); border-radius: 4px; color: var(--ink); }
+    .qr-block img { width: 96px; height: 96px; }
+    .qr-block-text strong { display: block; margin-bottom: 3px; color: var(--forest-deep); font-size: .95rem; }
+    .qr-block-text p { margin: 0; color: var(--muted); font-size: .83rem; line-height: 1.45; }
+
+    .impact-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 22px 0 6px; }
+    .impact-card { padding: 13px 14px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18); border-radius: 4px; }
+    .impact-amount { display: block; margin-bottom: 4px; color: var(--sun); font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; font-weight: 700; }
+    .impact-text { margin: 0; color: #fff; font-size: .85rem; line-height: 1.45; }
+
+    .story--placeholder { background: var(--forest-deep); color: #fff; border-top-color: var(--sun); }
+    .story--placeholder .story-kicker { color: var(--sun); }
+    .story--placeholder p { color: #c9d3c1; }
+    .story--placeholder h3 { color: #fff; }
+    .story--placeholder .story-footer { color: var(--sun); }
+
     .stay { background: var(--paper); }
     .stay-grid { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; }
     .stay h2 { max-width: 16ch; }
@@ -186,6 +218,10 @@
     footer a:hover { color: var(--sun); }
     .footer-bottom { display: flex; justify-content: space-between; gap: 18px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.17); color: #b9cbbb; font-size: .83rem; }
 
+    @media (max-width: 980px) {
+      .impact-row { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 780px) {
       .wrap { width: min(calc(100% - 32px), var(--content)); }
       .header-inner { min-height: 68px; }
@@ -214,6 +250,9 @@
       .donation-actions, .hero-actions, .strip-actions { display: grid; grid-template-columns: 1fr; }
       .button { width: 100%; }
       .bank-details div { grid-template-columns: 1fr; gap: 2px; }
+      .qr-block { grid-template-columns: 72px 1fr; }
+      .qr-block img { width: 72px; height: 72px; }
+      .quick-spend-buttons .amount { flex: 1 1 calc(50% - 8px); }
       .footer-grid, .footer-bottom { grid-template-columns: 1fr; display: grid; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -299,6 +338,8 @@
         <div class="story-grid" id="tiere">
           <article class="story"><div><p class="story-kicker">Seit 2015 auf dem Hof</p><h3>Njuvra</h3><p>Njuvra kam aus Kroatien auf den Sonnenhof. Nach einem Unfall als Kitten blieb sein Hinterbein verdreht. Seitdem gehört er zum Familienverbund und lebt seinen Alltag in seinem eigenen Tempo.</p></div><p class="story-footer">Ein Kater mit Geschichte und eigenem Platz.</p></article>
           <article class="story story--murron"><div><p class="story-kicker">Seit 2017 auf dem Hof</p><h3>Murron</h3><p>Murron kam querschnittsgelähmt von einem Müllplatz auf den Sonnenhof. Sie war die erste querschnittsgelähmte Katze auf dem Hof und ist heute die Oberbossin der Gemeinschaft.</p></div><p class="story-footer">Klarer Blick, großer Charakter.</p></article>
+          <article class="story story--placeholder"><div><p class="story-kicker">Teil der Hofgemeinschaft</p><h3>Pavel</h3><p>Pavel ist eine schwarz‑weiße Katze mit eigenem Kopf. Auf dem Sonnenhof gehört er zum Alltag der Hofgemeinschaft und teilt Garten, Ruhe und Nähe mit den anderen Tieren.</p></div><p class="story-footer">Ein Koboldtier mit Charakter.</p></article>
+          <article class="story story--placeholder"><div><p class="story-kicker">Kleinster Kobold im Haus</p><h3>Hunter</h3><p>Hunter ist ein kleiner schwarzer Russischer Toy Terrier. Er ist der aufmerksame Begleiter im Haus, neugierig bei jedem Besuch und mittendrin statt nur dabei.</p></div><p class="story-footer">Ein wachsamer kleiner Hund.</p></article>
           <article class="story story--community"><div><p class="story-kicker">Der Hof als Zuhause</p><h3>Viele Persönlichkeiten</h3><p>Der Sonnenhof ist kein Ort, an dem Tiere auf ihre Einschränkung reduziert werden. Hunde, Katzen und gerettete Kaninchen leben zusammen, finden ihren Rhythmus und gehören zur Familie.</p></div><p class="story-footer">Jedes Tier mit eigenem Platz.</p></article>
         </div>
       </div>
@@ -314,7 +355,7 @@
     <section class="section help" id="helfen" aria-labelledby="helfen-title">
       <div class="wrap help-grid">
         <div><p class="eyebrow">Unterstützen</p><h2 id="helfen-title">Drei Wege, den Sonnenhof zu unterstützen.</h2><p class="lead">Spenden finanzieren Pflege und medizinische Versorgung. Patinnen und Paten begleiten einzelne Tiere. Ehrenamtliche Helferinnen und Helfer unterstützen praktisch.</p><div class="help-ways"><article class="help-way"><h3>Einmalig spenden</h3><p>Eine Überweisung oder PayPal-Spende hilft bei Futter, Medikamenten, Windeln, Hilfsmitteln und Tierarztkosten.</p><a class="contact-link" href="#spenden">Zum Spendenkonto</a></article><article class="help-way"><h3>Patenschaft anfragen</h3><p>Eine regelmäßige Unterstützung gibt dem Hof mehr Planungssicherheit. Die Anfrage läuft direkt über den Sonnenhof.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Patenschaft über Instagram anfragen</a></article><article class="help-way"><h3>Praktisch helfen</h3><p>Wer Zeit, Erfahrung oder praktische Hilfe mitbringen möchte, kann sich direkt beim Sonnenhof melden.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Hilfe über Instagram anbieten</a></article></div></div>
-        <aside class="donation-box" id="spenden" aria-labelledby="spenden-title"><p class="eyebrow">Direkt unterstützen</p><h2 id="spenden-title">Spendenkonto</h2><p>Deine Spende geht an Katzenstimme grenzenlos e. V., den mit dem Sonnenhof verbundenen Verein.</p><p class="donation-reassurance">Du kannst den Betrag frei wählen. Für eine Überweisung brauchst du kein Formular.</p><dl class="bank-details"><div><dt>Empfänger</dt><dd>Katzenstimme grenzenlos e. V.</dd></div><div><dt>IBAN</dt><dd class="iban">DE09 5919 0000 0118 0940 00</dd></div><div><dt>BIC</dt><dd>SABADE5SXXX</dd></div><div><dt>Bank</dt><dd>Bank 1 Saar eG</dd></div></dl><ul class="donation-list"><li>Futter und Medikamente</li><li>Windeln und Hilfsmittel</li><li>Tierarztkosten und Pflege</li></ul><div class="donation-actions"><button class="button button-quiet" type="button" data-copy="DE09591900000118094000">IBAN kopieren</button><a class="button button-primary" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">Mit PayPal spenden</a></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></aside>
+        <aside class="donation-box" id="spenden" aria-labelledby="spenden-title"><p class="eyebrow">Direkt unterstützen</p><h2 id="spenden-title">Spendenkonto</h2><p>Deine Spende geht an Katzenstimme grenzenlos e. V., den mit dem Sonnenhof verbundenen Verein.</p><p class="donation-reassurance">Du kannst den Betrag frei wählen. Für eine Überweisung brauchst du kein Formular.</p><dl class="bank-details"><div><dt>Empfänger</dt><dd>Katzenstimme grenzenlos e. V.</dd></div><div><dt>IBAN</dt><dd class="iban">DE09 5919 0000 0118 0940 00</dd></div><div><dt>BIC</dt><dd>SABADE5SXXX</dd></div><div><dt>Bank</dt><dd>Bank 1 Saar eG</dd></div></dl><p class="trust-tag" aria-label="Vertrauensanker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.5-8 9-4.6-.5-8-4.5-8-9V6l8-3Z"/><path d="m8.5 12 2.5 2.5L16 9.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Gemeinnützig anerkannt · Spenden steuerlich absetzbar</p><div class="quick-spend" aria-label="Schnell spenden"><p class="quick-spend-label" id="quick-spend-label">Wähle einen Betrag:</p><div class="quick-spend-buttons" role="group" aria-labelledby="quick-spend-label"><button class="amount" type="button" data-amount="10">10 €</button><button class="amount" type="button" data-amount="25">25 €</button><button class="amount" type="button" data-amount="50">50 €</button><button class="amount" type="button" data-amount="100">100 €</button></div><div class="quick-spend-custom"><label class="sr-only" for="custom-amount">Eigener Betrag in Euro</label><input id="custom-amount" type="number" inputmode="decimal" min="1" step="1" placeholder="Anderer Betrag in €"><button type="button" data-amount="custom">Übernehmen</button></div><p class="quick-spend-status" id="quick-spend-status" role="status" aria-live="polite"></p></div><div class="qr-block" aria-label="QR-Code für mobile Überweisung"><img src="assets/img/sonnenhof/qr-spende.png" alt="QR-Code für SEPA-Überweisung an Katzenstimme grenzenlos e. V., DE09 5919 0000 0118 0940 00." width="280" height="280"><div class="qr-block-text"><strong>Mit dem Handy spenden</strong><p>Scannt den Code mit der Kamera oder einer Banking-App. Empfänger, IBAN und Verwendungszweck sind schon eingetragen, ihr ergänzt nur den Betrag.</p></div></div><div class="impact-row" aria-label="Was eure Spende auf dem Hof bewirkt"><div class="impact-card"><span class="impact-amount">10 €</span><p class="impact-text">Eine Woche Spezialfutter für eine querschnittsgelähmte Katze.</p></div><div class="impact-card"><span class="impact-amount">25 €</span><p class="impact-text">Windeln, Unterlagen und Pflegebedarf für ein Hundemädchen im Alltag.</p></div><div class="impact-card"><span class="impact-amount">50 €</span><p class="impact-text">Ein Tierarztbesuch mit Kontrolle, Medikamenten oder Impfung.</p></div></div><ul class="donation-list"><li>Futter und Medikamente</li><li>Windeln und Hilfsmittel</li><li>Tierarztkosten und Pflege</li></ul><div class="donation-actions"><button class="button button-quiet" type="button" data-copy="DE09591900000118094000">IBAN kopieren</button><a class="button button-primary" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">Mit PayPal spenden</a></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></aside>
       </div>
     </section>
 
@@ -345,6 +386,57 @@
         copyStatus.textContent = 'IBAN kopiert.';
       } catch {
         copyStatus.textContent = 'Bitte die IBAN direkt aus dem Spendenkonto übernehmen.';
+      }
+    });
+
+    const iban = 'DE09591900000118094000';
+    const quickStatus = document.querySelector('#quick-spend-status');
+    const customInput = document.querySelector('#custom-amount');
+    const setStatus = (text) => {
+      quickStatus.textContent = text;
+      copyStatus.textContent = text;
+    };
+    const formatEuro = (value) => {
+      const num = Number(String(value).replace(',', '.'));
+      if (!Number.isFinite(num) || num <= 0) return null;
+      return `${num.toFixed(2).replace('.', ',')} €`;
+    };
+    const prepareDonation = async (amount) => {
+      const formatted = formatEuro(amount);
+      if (!formatted) {
+        setStatus('Bitte einen Betrag größer als 0 € eingeben.');
+        return;
+      }
+      const note = `Spende ${formatted} – Sonnenhof der Koboldtiere`;
+      const lines = [
+        'Empfänger: Katzenstimme grenzenlos e. V.',
+        `IBAN: ${iban}`,
+        `BIC: SABADE5SXXX`,
+        `Betrag: ${formatted}`,
+        `Verwendungszweck: ${note}`,
+      ].join('\n');
+      let copied = false;
+      try {
+        await navigator.clipboard.writeText(lines);
+        copied = true;
+      } catch {
+        copied = false;
+      }
+      setStatus(
+        copied
+          ? `${formatted}-Spende vorbereitet: Empfänger, IBAN, Betrag und Verwendungszweck sind in der Zwischenablage. Jetzt nur noch in der Banking-App einfügen und abschicken.`
+          : `${formatted}-Spende gew\u00e4hlt. \u00d6ffnet eure Banking-App, übernehmt die Angaben aus der IBAN-Box und ergänzt den Betrag.`
+      );
+    };
+    document.querySelectorAll('.quick-spend-buttons .amount').forEach((btn) => {
+      btn.addEventListener('click', () => prepareDonation(btn.dataset.amount));
+    });
+    const customButton = document.querySelector('.quick-spend-custom button');
+    customButton.addEventListener('click', () => prepareDonation(customInput.value));
+    customInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        prepareDonation(customInput.value);
       }
     });
   </script>
