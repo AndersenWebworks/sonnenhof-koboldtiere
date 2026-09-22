@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sonnenhof der Koboldtiere in Heusweiler: Lebenshof für querschnittsgelähmte Tiere im Saarland, verbunden mit Katzenstimme grenzenlos e. V.">
+  <meta name="theme-color" content="#1c4938">
+  <meta name="robots" content="index, follow">
+  <title>Sonnenhof der Koboldtiere | Zuhause für immer</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NonprofitOrganization",
+    "name": "Katzenstimme grenzenlos e. V.",
+    "alternateName": "Sonnenhof der Koboldtiere",
+    "description": "Der Sonnenhof der Koboldtiere in Heusweiler ist ein Lebenshof für querschnittsgelähmte Tiere im Saarland.",
+    "areaServed": { "@type": "Place", "name": "Heusweiler, Saarland" },
+    "sameAs": [
+      "https://www.instagram.com/sonnenhof_der_koboldtiere/",
+      "https://www.instagram.com/katzenstimme_grenzenlos/",
+      "https://www.paypal.me/katzenstimme"
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --forest: #173d30;
+      --forest-deep: #102c23;
+      --leaf: #477654;
+      --sage: #bfd0b5;
+      --mist: #e8efe2;
+      --cream: #faf8f1;
+      --paper: #ffffff;
+      --sun: #e4bd63;
+      --clay: #b95e45;
+      --ink: #1b2a23;
+      --muted: #53645a;
+      --line: #d6dfd4;
+      --content: 1160px;
+      --shadow: 0 16px 42px rgba(16, 44, 35, .11);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font: 17px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-underline-offset: 3px; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid var(--sun); outline-offset: 4px; }
+    .wrap { width: min(calc(100% - 40px), var(--content)); margin: 0 auto; }
+    .skip-link { position: fixed; left: -10000px; top: 12px; z-index: 100; padding: 10px 14px; color: var(--forest-deep); background: #fff; }
+    .skip-link:focus { left: 12px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .eyebrow { margin: 0 0 12px; color: var(--leaf); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { color: var(--forest-deep); line-height: 1.12; }
+    h1 { max-width: 12ch; margin-bottom: 18px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.65rem, 6vw, 5rem); font-weight: 500; }
+    h2 { max-width: 18ch; margin-bottom: 16px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 500; }
+    h3 { margin-bottom: 9px; font-size: 1.2rem; }
+    .lead { max-width: 58ch; color: var(--muted); font-size: 1.11rem; }
+    .section { padding: clamp(64px, 9vw, 116px) 0; }
+    .button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; padding: 10px 17px; border: 1px solid transparent; border-radius: 5px; font-weight: 800; line-height: 1.2; text-align: center; text-decoration: none; cursor: pointer; }
+    .button-primary { color: #fff; background: var(--clay); border-color: var(--clay); }
+    .button-primary:hover { background: #994832; border-color: #994832; }
+    .button-quiet { color: var(--forest); background: transparent; border-color: currentColor; }
+    .button-quiet:hover { background: var(--mist); }
+
+    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(250, 248, 241, .96); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); }
+    .header-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; min-width: 0; color: var(--forest-deep); text-decoration: none; }
+    .brand-mark { width: 39px; height: 39px; flex: 0 0 39px; }
+    .brand-name { display: grid; font-family: Georgia, "Times New Roman", serif; font-size: 1.1rem; line-height: 1.03; }
+    .brand-name small { margin-top: 4px; color: var(--muted); font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: .7rem; letter-spacing: .02em; }
+    .menu-button { display: none; width: 44px; height: 44px; color: var(--forest); background: transparent; border: 1px solid var(--line); border-radius: 4px; font-size: 1.25rem; cursor: pointer; }
+    .main-nav { display: flex; align-items: center; gap: 22px; }
+    .main-nav a { color: var(--forest); font-size: .9rem; font-weight: 800; text-decoration: none; }
+    .main-nav a:not(.button):hover { color: var(--clay); }
+    .main-nav .button { color: #fff; }
+
+    .hero { background: var(--mist); }
+    .hero-grid { min-height: min(720px, calc(100vh - 76px)); display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(360px, .96fr); align-items: stretch; }
+    .hero-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(58px, 9vw, 114px) clamp(24px, 6vw, 88px) clamp(58px, 9vw, 114px) 0; }
+    .hero-copy .lead { margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+    .hero-note { max-width: 48ch; margin: 0; color: var(--muted); font-size: .94rem; }
+    .hero-figure { position: relative; min-height: 420px; overflow: hidden; background: var(--forest); }
+    .hero-figure img { width: 100%; height: 100%; object-fit: cover; object-position: 62% center; }
+    .image-credit { position: absolute; right: 14px; bottom: 12px; padding: 4px 7px; color: #fff; background: rgba(16, 44, 35, .75); font-size: .72rem; }
+    .donation-strip { background: var(--forest); color: #fff; }
+    .donation-strip-inner { display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: center; padding: 28px 0; }
+    .donation-strip .eyebrow { margin-bottom: 8px; color: var(--sun); }
+    .donation-strip h2 { max-width: none; margin: 0 0 4px; color: #fff; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 1.15rem; font-weight: 800; }
+    .donation-strip p { margin: 0; color: #dce8d7; }
+    .strip-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; }
+    .strip-actions .button-quiet { color: #fff; border-color: rgba(255,255,255,.72); }
+    .strip-actions .button-quiet:hover { background: rgba(255,255,255,.12); }
+
+    .quick-facts { background: var(--paper); border-bottom: 1px solid var(--line); }
+    .facts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+    .fact { display: grid; grid-template-columns: 38px 1fr; gap: 13px; align-items: start; padding: 26px 24px 26px 0; border-right: 1px solid var(--line); }
+    .fact + .fact { padding-left: 24px; }
+    .fact:last-child { border-right: 0; }
+    .fact-mark { color: var(--leaf); font-size: 1.7rem; line-height: 1; }
+    .fact h3 { margin-bottom: 3px; font-size: 1rem; }
+    .fact p { margin: 0; color: var(--muted); font-size: .94rem; }
+
+    .home { background: var(--paper); }
+    .home-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(40px, 8vw, 112px); align-items: start; }
+    .home-statement { padding-top: 8px; }
+    .home-statement h2 { margin-bottom: 20px; }
+    .home-statement p:last-child { margin-bottom: 0; }
+    .home-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .home-list article { display: grid; grid-template-columns: 45px 1fr; gap: 16px; padding: 23px 0; border-bottom: 1px solid var(--line); }
+    .home-list svg { width: 34px; height: 34px; color: var(--leaf); }
+    .home-list p { margin: 0; color: var(--muted); }
+
+    .stories { background: #f0f3ea; }
+    .section-heading { max-width: 720px; margin-bottom: 42px; }
+    .history-copy { max-width: 760px; margin: -16px 0 36px; color: var(--muted); }
+    .history-copy p { margin-bottom: 14px; }
+    .history-quote { margin: 24px 0 0; padding: 17px 0 17px 20px; color: var(--forest); border-left: 3px solid var(--sun); font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; }
+    .history-quote cite { display: block; margin-top: 7px; color: var(--muted); font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: .83rem; font-style: normal; }
+    .story-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .story { min-height: 360px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(28px, 4vw, 48px); background: var(--paper); border-top: 5px solid var(--leaf); box-shadow: var(--shadow); }
+    .story--murron { border-color: var(--clay); }
+    .story p { max-width: 47ch; margin: 0; color: var(--muted); }
+    .story-kicker { margin-bottom: 18px; color: var(--leaf); font-size: .82rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .story--murron .story-kicker { color: var(--clay); }
+    .story--community { border-color: var(--sun); }
+    .story h3 { margin-bottom: 16px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 3vw, 2.55rem); font-weight: 500; }
+    .story-footer { margin-top: 32px; color: var(--forest); font-size: .93rem; font-weight: 800; }
+
+    .together { background: var(--forest-deep); color: #fff; }
+    .together h2 { color: #fff; }
+    .together .eyebrow { color: var(--sun); }
+    .together .lead { color: #d5e2d0; }
+    .together-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(36px, 7vw, 92px); align-items: center; }
+    .together-photo { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+    .together-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+    .together-copy p { color: #d5e2d0; }
+    .together-list { display: grid; gap: 17px; margin: 28px 0 0; padding: 0; list-style: none; }
+    .together-list li { display: grid; grid-template-columns: 12px 1fr; gap: 12px; align-items: baseline; }
+    .together-list li::before { width: 8px; height: 8px; content: ""; background: var(--sun); border-radius: 50%; }
+
+    .help { background: var(--cream); }
+    .help-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(350px, 1.15fr); gap: clamp(40px, 8vw, 108px); align-items: start; }
+    .help-ways { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .help-way { padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .help-way h3 { margin-bottom: 6px; }
+    .help-way p { margin: 0; color: var(--muted); }
+    .contact-link { display: inline-flex; margin-top: 12px; color: var(--forest); font-weight: 800; }
+    .donation-box { padding: clamp(27px, 4vw, 44px); color: #fff; background: var(--forest); box-shadow: var(--shadow); }
+    .donation-box h2, .donation-box h3 { color: #fff; }
+    .donation-box h2 { max-width: none; margin-bottom: 10px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: clamp(1.55rem, 3vw, 2.15rem); font-weight: 800; }
+    .donation-box > p { color: #dce8d7; }
+    .donation-box .donation-reassurance { margin-top: 10px; color: #fff; font-size: .94rem; }
+    .donation-list { margin: 22px 0 0; padding: 0; color: #dce8d7; list-style: none; }
+    .donation-list li { position: relative; padding-left: 18px; }
+    .donation-list li + li { margin-top: 5px; }
+    .donation-list li::before { position: absolute; top: .65em; left: 0; width: 6px; height: 6px; content: ""; background: var(--sun); border-radius: 50%; }
+    .bank-details { margin: 24px 0; }
+    .bank-details div { display: grid; grid-template-columns: 102px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+    .bank-details dt { color: #dce8d7; font-size: .83rem; }
+    .bank-details dd { margin: 0; color: #fff; font-weight: 750; overflow-wrap: anywhere; }
+    .bank-details .iban { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .02em; }
+    .donation-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .donation-actions .button-quiet { color: #fff; border-color: rgba(255,255,255,.72); }
+    .donation-actions .button-quiet:hover { background: rgba(255,255,255,.12); }
+    .copy-status { min-height: 1.45em; margin: 15px 0 0; color: #dce8d7; font-size: .88rem; }
+
+    .trust-tag { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 7px 12px; color: #fff; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); border-radius: 4px; font-size: .82rem; font-weight: 700; letter-spacing: .01em; }
+    .trust-tag svg { width: 16px; height: 16px; color: var(--sun); }
+
+    .quick-spend { margin: 18px 0 6px; }
+    .quick-spend-label { margin: 0 0 9px; color: #dce8d7; font-size: .86rem; font-weight: 700; letter-spacing: .02em; }
+    .quick-spend-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+    .quick-spend-buttons .amount { flex: 1 1 auto; min-height: 44px; min-width: 78px; padding: 9px 14px; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.32); border-radius: 4px; font-weight: 800; cursor: pointer; transition: background .15s, border-color .15s; }
+    .quick-spend-buttons .amount:hover, .quick-spend-buttons .amount:focus-visible { color: var(--forest-deep); background: #fff; border-color: #fff; }
+    .quick-spend-custom { display: flex; align-items: stretch; gap: 6px; margin-top: 10px; }
+    .quick-spend-custom input { flex: 1 1 auto; min-height: 44px; padding: 9px 13px; color: #fff; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.32); border-radius: 4px; font: inherit; font-weight: 700; }
+    .quick-spend-custom input::placeholder { color: rgba(255,255,255,.55); }
+    .quick-spend-custom input:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+    .quick-spend-custom button { padding: 9px 16px; color: var(--forest-deep); background: var(--sun); border: 1px solid var(--sun); border-radius: 4px; font-weight: 800; cursor: pointer; }
+    .quick-spend-custom button:hover { background: #d6a946; border-color: #d6a946; }
+    .quick-spend-status { min-height: 1.3em; margin: 8px 0 0; color: var(--sun); font-size: .84rem; }
+
+    .qr-block { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: center; margin: 22px 0 8px; padding: 14px; background: var(--cream); border-radius: 4px; color: var(--ink); }
+    .qr-block img { width: 96px; height: 96px; }
+    .qr-block-text strong { display: block; margin-bottom: 3px; color: var(--forest-deep); font-size: .95rem; }
+    .qr-block-text p { margin: 0; color: var(--muted); font-size: .83rem; line-height: 1.45; }
+
+    .impact-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 22px 0 6px; }
+    .impact-card { padding: 13px 14px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18); border-radius: 4px; }
+    .impact-amount { display: block; margin-bottom: 4px; color: var(--sun); font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; font-weight: 700; }
+    .impact-text { margin: 0; color: #fff; font-size: .85rem; line-height: 1.45; }
+
+    .story--placeholder { background: var(--forest-deep); color: #fff; border-top-color: var(--sun); }
+    .story--placeholder .story-kicker { color: var(--sun); }
+    .story--placeholder p { color: #c9d3c1; }
+    .story--placeholder h3 { color: #fff; }
+    .story--placeholder .story-footer { color: var(--sun); }
+
+    .stay { background: var(--paper); }
+    .stay-grid { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; }
+    .stay h2 { max-width: 16ch; }
+    .stay p { max-width: 60ch; margin-bottom: 0; color: var(--muted); }
+    .instagram-link { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 10px 17px; color: var(--forest); border: 1px solid var(--forest); border-radius: 5px; font-weight: 800; text-decoration: none; }
+    .instagram-link:hover { color: #fff; background: var(--forest); }
+
+    footer { padding: 54px 0 24px; color: #d5e2d0; background: var(--forest-deep); }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 38px; padding-bottom: 42px; }
+    .footer-title { margin-bottom: 9px; color: #fff; font-family: Georgia, "Times New Roman", serif; font-size: 1.35rem; }
+    footer p { max-width: 37ch; margin-bottom: 0; }
+    footer h3 { margin-bottom: 12px; color: #fff; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; }
+    footer ul { margin: 0; padding: 0; list-style: none; }
+    footer li { margin-bottom: 8px; }
+    footer a { color: #fff; }
+    footer a:hover { color: var(--sun); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 18px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.17); color: #b9cbbb; font-size: .83rem; }
+
+    @media (max-width: 980px) {
+      .impact-row { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 780px) {
+      .wrap { width: min(calc(100% - 32px), var(--content)); }
+      .header-inner { min-height: 68px; }
+      .menu-button { display: inline-block; }
+      .main-nav { position: absolute; top: calc(100% + 1px); right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 10px 16px 16px; background: var(--cream); border-bottom: 1px solid var(--line); box-shadow: 0 10px 22px rgba(16,44,35,.08); }
+      .main-nav.is-open { display: grid; }
+      .main-nav a { padding: 12px 0; }
+      .main-nav .button { margin-top: 5px; }
+      .hero-grid, .home-grid, .together-grid, .help-grid { grid-template-columns: 1fr; }
+      .hero-copy { padding: 64px 0 42px; }
+      .hero-figure { min-height: min(480px, 112vw); }
+      .donation-strip-inner, .stay-grid { grid-template-columns: 1fr; }
+      .strip-actions { justify-content: flex-start; }
+      .facts-grid { grid-template-columns: 1fr; }
+      .fact, .fact + .fact { padding: 18px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+      .fact:last-child { border-bottom: 0; }
+      .story-grid { grid-template-columns: 1fr; }
+      .together-photo { max-width: 560px; aspect-ratio: 5 / 4; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > :first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 480px) {
+      body { font-size: 16px; }
+      .brand-name small { display: none; }
+      h1 { font-size: 2.5rem; }
+      .donation-actions, .hero-actions, .strip-actions { display: grid; grid-template-columns: 1fr; }
+      .button { width: 100%; }
+      .bank-details div { grid-template-columns: 1fr; gap: 2px; }
+      .qr-block { grid-template-columns: 72px 1fr; }
+      .qr-block img { width: 72px; height: 72px; }
+      .quick-spend-buttons .amount { flex: 1 1 calc(50% - 8px); }
+      .footer-grid, .footer-bottom { grid-template-columns: 1fr; display: grid; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#start" aria-label="Sonnenhof der Koboldtiere: zum Anfang">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="#e4bd63"/><path d="M14 31c3-10 6-12 10-12s7 2 10 12" fill="none" stroke="#173d30" stroke-linecap="round" stroke-width="3"/><circle cx="20" cy="24" r="1.7" fill="#173d30"/><circle cx="28" cy="24" r="1.7" fill="#173d30"/><path d="M22 28h4" stroke="#173d30" stroke-linecap="round" stroke-width="2"/></svg>
+        <span class="brand-name">Sonnenhof der Koboldtiere<small>Heusweiler · Saarland</small></span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="hauptnavigation"><span aria-hidden="true">≡</span><span class="sr-only">Menü öffnen</span></button>
+      <nav class="main-nav" id="hauptnavigation" aria-label="Hauptnavigation">
+        <a href="#geschichten">Geschichte</a>
+        <a href="#zuhause">Familienverbund</a>
+        <a href="#tiere">Tiere</a>
+        <a href="#helfen">Jetzt helfen</a>
+        <a class="button button-primary" href="#spenden">Spenden</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhalt">
+    <section class="hero" id="start" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Lebenshof für querschnittsgelähmte Tiere im Saarland</p>
+          <h1 id="hero-title">Ein Zuhause, das bleibt.</h1>
+          <p class="lead">Auf dem Sonnenhof leben Hunde und Katzen mit Handicap im Familienverbund. Nicht am Rand. Nicht auf Zeit. Sondern mitten im Alltag.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#spenden">Jetzt spenden</a>
+            <a class="button button-quiet" href="#geschichten">Die Koboldtiere kennenlernen</a>
+          </div>
+          <p class="hero-note">Der Sonnenhof ist mit Katzenstimme grenzenlos e. V. verbunden. Deine Spende geht an den Verein und hilft bei Pflege und medizinischer Versorgung.</p>
+        </div>
+        <figure class="hero-figure">
+          <img src="assets/img/sonnenhof/njuvra-portraet.jpg" alt="Njuvra, der älteste Lebenshofbewohner des Sonnenhofs." width="1366" height="2048">
+          <figcaption class="image-credit">Njuvra</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="donation-strip" aria-label="Sonnenhof unterstützen">
+      <div class="wrap donation-strip-inner">
+        <div><p class="eyebrow">Heute helfen</p><h2>Der einfachste Weg zu helfen: direkt spenden.</h2><p>Überweisung oder PayPal. Wenn du lieber regelmäßig oder praktisch unterstützen möchtest, findest du weiter unten den passenden Weg.</p></div>
+        <div class="strip-actions"><a class="button button-primary" href="#spenden">Spendenkonto ansehen</a><a class="button button-quiet" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">PayPal</a></div>
+      </div>
+    </section>
+
+    <section class="quick-facts" aria-label="Der Sonnenhof auf einen Blick">
+      <div class="wrap facts-grid">
+        <article class="fact"><span class="fact-mark" aria-hidden="true">⌂</span><div><h3>Lebenshof statt Durchgangsstation</h3><p>Ein Zuhause für immer.</p></div></article>
+        <article class="fact"><span class="fact-mark" aria-hidden="true">♡</span><div><h3>Familienverbund im Alltag</h3><p>Spielen, Gassi, kuscheln, dazugehören.</p></div></article>
+        <article class="fact"><span class="fact-mark" aria-hidden="true">↗</span><div><h3>Hilfe über Katzenstimme grenzenlos e. V.</h3><p>Spenden, Patenschaften und praktische Hilfe.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section home" id="zuhause" aria-labelledby="zuhause-title">
+      <div class="wrap home-grid">
+        <div class="home-statement">
+          <p class="eyebrow">Die Hofgemeinschaft als Familienverbund</p>
+          <h2 id="zuhause-title">Hier wird nicht nur gepflegt. Hier wird zusammen gelebt.</h2>
+          <p class="lead">Der Alltag besteht aus vielen kleinen Handgriffen. Und aus all den Dingen, die ein Zuhause ausmachen.</p>
+        </div>
+        <div class="home-list">
+          <article><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M24 41s-15-8.7-15-20a8 8 0 0 1 15-4.7A8 8 0 0 1 39 21c0 11.3-15 20-15 20Z"/></svg><div><h3>Pflege</h3><p>Manche Tiere brauchen Hilfe bei Blase und Darm, Windeln, Hautpflege, Medikamenten oder einen besonders sorgfältigen Tagesrhythmus.</p></div></article>
+          <article><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><circle cx="16" cy="33" r="6"/><circle cx="34" cy="33" r="6"/><path d="M16 27V14h10l5 13M26 14l5 8h7" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Bewegung</h3><p>Rollis, Rutschsäcke, gemeinsame Gartenzeit und Gassi machen Bewegung im eigenen Tempo möglich.</p></div></article>
+          <article><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M11 39V20l13-11 13 11v19M19 39V28h10v11" stroke-linejoin="round"/></svg><div><h3>Zugehörigkeit</h3><p>Spielen, schlafen, kuscheln, Nähe genießen und Teil der Familie sein: Das gehört hier genauso dazu wie die Versorgung.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section stories" id="geschichten" aria-labelledby="geschichten-title">
+      <div class="wrap">
+        <div class="section-heading"><p class="eyebrow">Die Geschichte</p><h2 id="geschichten-title">Aus einzelnen Rettungen wurde ein sicherer Ort.</h2><p class="lead">Lara Sohn begann ihre Tierschutzarbeit mit Straßenkatzen in Südkroatien. Mit jedem Tier, das besondere Pflege brauchte, wuchs auch die Verantwortung.</p></div>
+        <div class="history-copy">
+          <p>Njuvra kam 2015 aus Kroatien zu Lara. Nach einem Unfall als Kitten blieb sein Hinterbein verdreht. Zwei Jahre später kam Murron dazu, die erste querschnittsgelähmte Katze. Sie wurde auf einer Mülldeponie gefunden und ist heute die Oberbossin des Vereins.</p>
+          <p>Aus diesen ersten Tieren entstand der Sonnenhof der Koboldtiere. Ein Ort, an dem Hunde und Katzen in Rollis und Rutschsäcken, Tiere mit anderen Einschränkungen und gerettete Kaninchen als Familie zusammenleben.</p>
+          <blockquote class="history-quote">„Die Tiere leben hier im Familienverbund, integriert wie in einem normalen Zuhause.“<cite>Lara Sohn</cite></blockquote>
+        </div>
+        <div class="story-grid" id="tiere">
+          <article class="story"><div><p class="story-kicker">Seit 2015 auf dem Hof</p><h3>Njuvra</h3><p>Njuvra kam aus Kroatien auf den Sonnenhof. Nach einem Unfall als Kitten blieb sein Hinterbein verdreht. Seitdem gehört er zum Familienverbund und lebt seinen Alltag in seinem eigenen Tempo.</p></div><p class="story-footer">Ein Kater mit Geschichte und eigenem Platz.</p></article>
+          <article class="story story--murron"><div><p class="story-kicker">Seit 2017 auf dem Hof</p><h3>Murron</h3><p>Murron kam querschnittsgelähmt von einem Müllplatz auf den Sonnenhof. Sie war die erste querschnittsgelähmte Katze auf dem Hof und ist heute die Oberbossin der Gemeinschaft.</p></div><p class="story-footer">Klarer Blick, großer Charakter.</p></article>
+          <article class="story story--placeholder"><div><p class="story-kicker">Teil der Hofgemeinschaft</p><h3>Pavel</h3><p>Pavel ist eine schwarz‑weiße Katze mit eigenem Kopf. Auf dem Sonnenhof gehört er zum Alltag der Hofgemeinschaft und teilt Garten, Ruhe und Nähe mit den anderen Tieren.</p></div><p class="story-footer">Ein Koboldtier mit Charakter.</p></article>
+          <article class="story story--placeholder"><div><p class="story-kicker">Kleinster Kobold im Haus</p><h3>Hunter</h3><p>Hunter ist ein kleiner schwarzer Russischer Toy Terrier. Er ist der aufmerksame Begleiter im Haus, neugierig bei jedem Besuch und mittendrin statt nur dabei.</p></div><p class="story-footer">Ein wachsamer kleiner Hund.</p></article>
+          <article class="story story--community"><div><p class="story-kicker">Der Hof als Zuhause</p><h3>Viele Persönlichkeiten</h3><p>Der Sonnenhof ist kein Ort, an dem Tiere auf ihre Einschränkung reduziert werden. Hunde, Katzen und gerettete Kaninchen leben zusammen, finden ihren Rhythmus und gehören zur Familie.</p></div><p class="story-footer">Jedes Tier mit eigenem Platz.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section together" aria-labelledby="miteinander-title">
+      <div class="wrap together-grid">
+        <figure class="together-photo"><img src="assets/img/sonnenhof/murron-am-meer.jpg" alt="Murron im Rollstuhl am Meer." width="1366" height="2048"><figcaption class="image-credit">Murron</figcaption></figure>
+        <div class="together-copy"><p class="eyebrow">Miteinander leben</p><h2 id="miteinander-title">Pflege ist Teil des Alltags. Nähe genauso.</h2><p>Auf dem Sonnenhof wird nicht nur versorgt. Tiere teilen Räume, Ruhe, Bewegung und die kleinen Momente eines gemeinsamen Tages.</p><ul class="together-list"><li>Rollis und Rutschsäcke unterstützen dort, wo sie gebraucht werden.</li><li>Gerettete Kaninchen, Katzen und Hunde gehören zur Hofgemeinschaft.</li><li>Helferinnen und Helfer bringen praktische Unterstützung in den Alltag.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="section help" id="helfen" aria-labelledby="helfen-title">
+      <div class="wrap help-grid">
+        <div><p class="eyebrow">Unterstützen</p><h2 id="helfen-title">Drei Wege, den Sonnenhof zu unterstützen.</h2><p class="lead">Spenden finanzieren Pflege und medizinische Versorgung. Patinnen und Paten begleiten einzelne Tiere. Ehrenamtliche Helferinnen und Helfer unterstützen praktisch.</p><div class="help-ways"><article class="help-way"><h3>Einmalig spenden</h3><p>Eine Überweisung oder PayPal-Spende hilft bei Futter, Medikamenten, Windeln, Hilfsmitteln und Tierarztkosten.</p><a class="contact-link" href="#spenden">Zum Spendenkonto</a></article><article class="help-way"><h3>Patenschaft anfragen</h3><p>Eine regelmäßige Unterstützung gibt dem Hof mehr Planungssicherheit. Die Anfrage läuft direkt über den Sonnenhof.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Patenschaft über Instagram anfragen</a></article><article class="help-way"><h3>Praktisch helfen</h3><p>Wer Zeit, Erfahrung oder praktische Hilfe mitbringen möchte, kann sich direkt beim Sonnenhof melden.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Hilfe über Instagram anbieten</a></article></div></div>
+        <aside class="donation-box" id="spenden" aria-labelledby="spenden-title"><p class="eyebrow">Direkt unterstützen</p><h2 id="spenden-title">Spendenkonto</h2><p>Deine Spende geht an Katzenstimme grenzenlos e. V., den mit dem Sonnenhof verbundenen Verein.</p><p class="donation-reassurance">Du kannst den Betrag frei wählen. Für eine Überweisung brauchst du kein Formular.</p><dl class="bank-details"><div><dt>Empfänger</dt><dd>Katzenstimme grenzenlos e. V.</dd></div><div><dt>IBAN</dt><dd class="iban">DE09 5919 0000 0118 0940 00</dd></div><div><dt>BIC</dt><dd>SABADE5SXXX</dd></div><div><dt>Bank</dt><dd>Bank 1 Saar eG</dd></div></dl><p class="trust-tag" aria-label="Vertrauensanker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.5-8 9-4.6-.5-8-4.5-8-9V6l8-3Z"/><path d="m8.5 12 2.5 2.5L16 9.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Gemeinnützig anerkannt · Spenden steuerlich absetzbar</p><div class="quick-spend" aria-label="Schnell spenden"><p class="quick-spend-label" id="quick-spend-label">Wähle einen Betrag:</p><div class="quick-spend-buttons" role="group" aria-labelledby="quick-spend-label"><button class="amount" type="button" data-amount="10">10 €</button><button class="amount" type="button" data-amount="25">25 €</button><button class="amount" type="button" data-amount="50">50 €</button><button class="amount" type="button" data-amount="100">100 €</button></div><div class="quick-spend-custom"><label class="sr-only" for="custom-amount">Eigener Betrag in Euro</label><input id="custom-amount" type="number" inputmode="decimal" min="1" step="1" placeholder="Anderer Betrag in €"><button type="button" data-amount="custom">Übernehmen</button></div><p class="quick-spend-status" id="quick-spend-status" role="status" aria-live="polite"></p></div><div class="qr-block" aria-label="QR-Code für mobile Überweisung"><img src="assets/img/sonnenhof/qr-spende.png" alt="QR-Code für SEPA-Überweisung an Katzenstimme grenzenlos e. V., DE09 5919 0000 0118 0940 00." width="280" height="280"><div class="qr-block-text"><strong>Mit dem Handy spenden</strong><p>Scannt den Code mit der Kamera oder einer Banking-App. Empfänger, IBAN und Verwendungszweck sind schon eingetragen, ihr ergänzt nur den Betrag.</p></div></div><div class="impact-row" aria-label="Was eure Spende auf dem Hof bewirkt"><div class="impact-card"><span class="impact-amount">10 €</span><p class="impact-text">Eine Woche Spezialfutter für eine querschnittsgelähmte Katze.</p></div><div class="impact-card"><span class="impact-amount">25 €</span><p class="impact-text">Windeln, Unterlagen und Pflegebedarf für ein Hundemädchen im Alltag.</p></div><div class="impact-card"><span class="impact-amount">50 €</span><p class="impact-text">Ein Tierarztbesuch mit Kontrolle, Medikamenten oder Impfung.</p></div></div><ul class="donation-list"><li>Futter und Medikamente</li><li>Windeln und Hilfsmittel</li><li>Tierarztkosten und Pflege</li></ul><div class="donation-actions"><button class="button button-quiet" type="button" data-copy="DE09591900000118094000">IBAN kopieren</button><a class="button button-primary" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">Mit PayPal spenden</a></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></aside>
+      </div>
+    </section>
+
+    <section class="section stay" aria-labelledby="instagram-title"><div class="wrap stay-grid"><div><p class="eyebrow">Verbunden bleiben</p><h2 id="instagram-title">Der Alltag ist auf Instagram zu Hause.</h2><p>Der Sonnenhof teilt dort aktuelle Einblicke aus dem Familienverbund. Diese Seite ist der ruhige Ort für die Geschichte dahinter und für Unterstützung.</p></div><a class="instagram-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">@sonnenhof_der_koboldtiere</a></div></section>
+  </main>
+
+  <footer><div class="wrap footer-grid"><div><div class="footer-title">Sonnenhof der Koboldtiere</div><p>Lebenshof in Heusweiler für Hunde und Katzen mit Handicap, verbunden mit Katzenstimme grenzenlos e. V.</p></div><div><h3>Entdecken</h3><ul><li><a href="#geschichten">Geschichte</a></li><li><a href="#zuhause">Familienverbund</a></li><li><a href="#tiere">Die Koboldtiere</a></li></ul></div><div><h3>Unterstützen</h3><ul><li><a href="#spenden">Spendenkonto</a></li><li><a href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">PayPal</a></li><li><a href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div></div><div class="wrap footer-bottom"><span>Katzenstimme grenzenlos e. V. · Vereinsregister VR 5799 · Amtsgericht Saarbrücken</span><span><a href="sonnenhof-impressum.html">Impressum</a> · <a href="sonnenhof-datenschutz.html">Datenschutz</a></span></div></footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const navigation = document.querySelector('.main-nav');
+    const menuLabel = menuButton.querySelector('.sr-only');
+    menuButton.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuLabel.textContent = isOpen ? 'Menü schließen' : 'Menü öffnen';
+    });
+    navigation.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      navigation.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuLabel.textContent = 'Menü öffnen';
+    }));
+    const copyButton = document.querySelector('[data-copy]');
+    const copyStatus = document.querySelector('#copy-status');
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyButton.dataset.copy);
+        copyStatus.textContent = 'IBAN kopiert.';
+      } catch {
+        copyStatus.textContent = 'Bitte die IBAN direkt aus dem Spendenkonto übernehmen.';
+      }
+    });
+
+    const iban = 'DE09591900000118094000';
+    const quickStatus = document.querySelector('#quick-spend-status');
+    const customInput = document.querySelector('#custom-amount');
+    const setStatus = (text) => {
+      quickStatus.textContent = text;
+      copyStatus.textContent = text;
+    };
+    const formatEuro = (value) => {
+      const num = Number(String(value).replace(',', '.'));
+      if (!Number.isFinite(num) || num <= 0) return null;
+      return `${num.toFixed(2).replace('.', ',')} €`;
+    };
+    const prepareDonation = async (amount) => {
+      const formatted = formatEuro(amount);
+      if (!formatted) {
+        setStatus('Bitte einen Betrag größer als 0 € eingeben.');
+        return;
+      }
+      const note = `Spende ${formatted} – Sonnenhof der Koboldtiere`;
+      const lines = [
+        'Empfänger: Katzenstimme grenzenlos e. V.',
+        `IBAN: ${iban}`,
+        `BIC: SABADE5SXXX`,
+        `Betrag: ${formatted}`,
+        `Verwendungszweck: ${note}`,
+      ].join('\n');
+      let copied = false;
+      try {
+        await navigator.clipboard.writeText(lines);
+        copied = true;
+      } catch {
+        copied = false;
+      }
+      setStatus(
+        copied
+          ? `${formatted}-Spende vorbereitet: Empfänger, IBAN, Betrag und Verwendungszweck sind in der Zwischenablage. Jetzt nur noch in der Banking-App einfügen und abschicken.`
+          : `${formatted}-Spende gew\u00e4hlt. \u00d6ffnet eure Banking-App, übernehmt die Angaben aus der IBAN-Box und ergänzt den Betrag.`
+      );
+    };
+    document.querySelectorAll('.quick-spend-buttons .amount').forEach((btn) => {
+      btn.addEventListener('click', () => prepareDonation(btn.dataset.amount));
+    });
+    const customButton = document.querySelector('.quick-spend-custom button');
+    customButton.addEventListener('click', () => prepareDonation(customInput.value));
+    customInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        prepareDonation(customInput.value);
+      }
+    });
+  </script>
+</body>
+</html>

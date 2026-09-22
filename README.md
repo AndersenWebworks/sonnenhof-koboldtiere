@@ -2,7 +2,9 @@
 
 Standalone-Website für den Sonnenhof der Koboldtiere.
 
-`index.html` ist die aktuelle Arbeits- und Veröffentlichungsfassung. Die erste Standalone-Version bleibt unverändert als Backup unter `backup/initial-version/index.html` erhalten.
+`index.html` ist die aktuelle Arbeits- und Veröffentlichungsfassung. Sie entspricht dem bisherigen Tailscale-Stand.
+
+Die ältere, an Lara geschickte Fassung bleibt unverändert unter `backup/initial-version/index.html` erhalten. Die bisherige GitHub-Fassung liegt vollständig unter `backup/github-edited-version/` als weiteres Backup.
 
 ## Lokal öffnen
 
