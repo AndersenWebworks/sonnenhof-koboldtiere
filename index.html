@@ -88,6 +88,7 @@
     .image-credit { position: absolute; right: 14px; bottom: 12px; padding: 4px 7px; color: #fff; background: rgba(16, 44, 35, .75); font-size: .72rem; }
     .donation-strip { background: var(--forest); color: #fff; }
     .donation-strip-inner { display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: center; padding: 28px 0; }
+    .donation-strip .eyebrow { margin-bottom: 8px; color: var(--sun); }
     .donation-strip h2 { max-width: none; margin: 0 0 4px; color: #fff; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 1.15rem; font-weight: 800; }
     .donation-strip p { margin: 0; color: #dce8d7; }
     .strip-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; }
@@ -152,6 +153,7 @@
     .donation-box h2, .donation-box h3 { color: #fff; }
     .donation-box h2 { max-width: none; margin-bottom: 10px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: clamp(1.55rem, 3vw, 2.15rem); font-weight: 800; }
     .donation-box > p { color: #dce8d7; }
+    .donation-box .donation-reassurance { margin-top: 10px; color: #fff; font-size: .94rem; }
     .donation-list { margin: 22px 0 0; padding: 0; color: #dce8d7; list-style: none; }
     .donation-list li { position: relative; padding-left: 18px; }
     .donation-list li + li { margin-top: 5px; }
@@ -247,7 +249,7 @@
             <a class="button button-primary" href="#spenden">Jetzt spenden</a>
             <a class="button button-quiet" href="#geschichten">Die Koboldtiere kennenlernen</a>
           </div>
-          <p class="hero-note">Der Sonnenhof ist mit Katzenstimme grenzenlos e. V. verbunden. Spenden helfen, Pflege und medizinische Versorgung zu tragen.</p>
+          <p class="hero-note">Der Sonnenhof ist mit Katzenstimme grenzenlos e. V. verbunden. Deine Spende geht an den Verein und hilft bei Pflege und medizinischer Versorgung.</p>
         </div>
         <figure class="hero-figure">
           <img src="assets/img/sonnenhof/njuvra-portraet.jpg" alt="Njuvra, der älteste Lebenshofbewohner des Sonnenhofs." width="1366" height="2048">
@@ -258,7 +260,7 @@
 
     <section class="donation-strip" aria-label="Sonnenhof unterstützen">
       <div class="wrap donation-strip-inner">
-        <div><h2>Der Sonnenhof braucht Menschen, die ihn mittragen.</h2><p>Überweisung, PayPal, Patenschaft oder praktische Hilfe: Jede Unterstützung zählt im Alltag.</p></div>
+        <div><p class="eyebrow">Heute helfen</p><h2>Der einfachste Weg zu helfen: direkt spenden.</h2><p>Überweisung oder PayPal. Wenn du lieber regelmäßig oder praktisch unterstützen möchtest, findest du weiter unten den passenden Weg.</p></div>
         <div class="strip-actions"><a class="button button-primary" href="#spenden">Spendenkonto ansehen</a><a class="button button-quiet" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">PayPal</a></div>
       </div>
     </section>
@@ -312,14 +314,14 @@
     <section class="section help" id="helfen" aria-labelledby="helfen-title">
       <div class="wrap help-grid">
         <div><p class="eyebrow">Unterstützen</p><h2 id="helfen-title">Was den Alltag möglich macht, kannst du mittragen.</h2><p class="lead">Spenden finanzieren Pflege und medizinische Versorgung. Patinnen und Paten begleiten einzelne Tiere. Ehrenamtliche Helferinnen und Helfer unterstützen praktisch.</p><div class="help-ways"><article class="help-way"><h3>Einmalig spenden</h3><p>Eine Überweisung oder PayPal-Spende hilft bei Futter, Medikamenten, Windeln, Hilfsmitteln und Tierarztkosten.</p></article><article class="help-way"><h3>Patenschaft anfragen</h3><p>Eine regelmäßige Unterstützung gibt dem Hof mehr Planungssicherheit. Die Anfrage läuft direkt über den Sonnenhof.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Patenschaft über Instagram anfragen</a></article><article class="help-way"><h3>Praktisch helfen</h3><p>Wer Zeit, Erfahrung oder praktische Hilfe mitbringen möchte, kann sich direkt beim Sonnenhof melden.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Hilfe über Instagram anbieten</a></article></div></div>
-        <aside class="donation-box" id="spenden" aria-labelledby="spenden-title"><p class="eyebrow">Direkt unterstützen</p><h2 id="spenden-title">Spendenkonto</h2><p>Deine Spende geht an den Verein, der den Sonnenhof trägt.</p><dl class="bank-details"><div><dt>Empfänger</dt><dd>Katzenstimme grenzenlos e. V.</dd></div><div><dt>IBAN</dt><dd class="iban">DE09 5919 0000 0118 0940 00</dd></div><div><dt>BIC</dt><dd>SABADE5SXXX</dd></div><div><dt>Bank</dt><dd>Bank 1 Saar eG</dd></div></dl><ul class="donation-list"><li>Futter und Medikamente</li><li>Windeln und Hilfsmittel</li><li>Tierarztkosten und Pflege</li></ul><div class="donation-actions"><button class="button button-quiet" type="button" data-copy="DE09591900000118094000">IBAN kopieren</button><a class="button button-primary" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">Mit PayPal spenden</a></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></aside>
+        <aside class="donation-box" id="spenden" aria-labelledby="spenden-title"><p class="eyebrow">Direkt unterstützen</p><h2 id="spenden-title">Spendenkonto</h2><p>Deine Spende geht an Katzenstimme grenzenlos e. V., den mit dem Sonnenhof verbundenen Verein.</p><p class="donation-reassurance">Du kannst den Betrag frei wählen. Für eine Überweisung brauchst du kein Formular.</p><dl class="bank-details"><div><dt>Empfänger</dt><dd>Katzenstimme grenzenlos e. V.</dd></div><div><dt>IBAN</dt><dd class="iban">DE09 5919 0000 0118 0940 00</dd></div><div><dt>BIC</dt><dd>SABADE5SXXX</dd></div><div><dt>Bank</dt><dd>Bank 1 Saar eG</dd></div></dl><ul class="donation-list"><li>Futter und Medikamente</li><li>Windeln und Hilfsmittel</li><li>Tierarztkosten und Pflege</li></ul><div class="donation-actions"><button class="button button-quiet" type="button" data-copy="DE09591900000118094000">IBAN kopieren</button><a class="button button-primary" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">Mit PayPal spenden</a></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></aside>
       </div>
     </section>
 
     <section class="section stay" aria-labelledby="instagram-title"><div class="wrap stay-grid"><div><p class="eyebrow">Verbunden bleiben</p><h2 id="instagram-title">Der Alltag ist auf Instagram zu Hause.</h2><p>Der Sonnenhof teilt dort aktuelle Einblicke aus dem Familienverbund. Diese Seite ist der ruhige Ort für die Geschichte dahinter und für Unterstützung.</p></div><a class="instagram-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">@sonnenhof_der_koboldtiere</a></div></section>
   </main>
 
-  <footer><div class="wrap footer-grid"><div><div class="footer-title">Sonnenhof der Koboldtiere</div><p>Lebenshof in Heusweiler für Hunde und Katzen mit Handicap, getragen von Katzenstimme grenzenlos e. V.</p></div><div><h3>Entdecken</h3><ul><li><a href="#geschichten">Geschichte</a></li><li><a href="#zuhause">Familienverbund</a></li><li><a href="#tiere">Die Koboldtiere</a></li></ul></div><div><h3>Unterstützen</h3><ul><li><a href="#spenden">Spendenkonto</a></li><li><a href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">PayPal</a></li><li><a href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div></div><div class="wrap footer-bottom"><span>Katzenstimme grenzenlos e. V. · Vereinsregister VR 5799 · Amtsgericht Saarbrücken</span><span><a href="sonnenhof-impressum.html">Impressum</a> · <a href="sonnenhof-datenschutz.html">Datenschutz</a></span></div></footer>
+  <footer><div class="wrap footer-grid"><div><div class="footer-title">Sonnenhof der Koboldtiere</div><p>Lebenshof in Heusweiler für Hunde und Katzen mit Handicap, verbunden mit Katzenstimme grenzenlos e. V.</p></div><div><h3>Entdecken</h3><ul><li><a href="#geschichten">Geschichte</a></li><li><a href="#zuhause">Familienverbund</a></li><li><a href="#tiere">Die Koboldtiere</a></li></ul></div><div><h3>Unterstützen</h3><ul><li><a href="#spenden">Spendenkonto</a></li><li><a href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">PayPal</a></li><li><a href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div></div><div class="wrap footer-bottom"><span>Katzenstimme grenzenlos e. V. · Vereinsregister VR 5799 · Amtsgericht Saarbrücken</span><span><a href="sonnenhof-impressum.html">Impressum</a> · <a href="sonnenhof-datenschutz.html">Datenschutz</a></span></div></footer>
 
   <script>
     const menuButton = document.querySelector('.menu-button');
