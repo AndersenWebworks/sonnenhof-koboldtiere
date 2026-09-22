@@ -94,6 +94,15 @@
     .strip-actions .button-quiet { color: #fff; border-color: rgba(255,255,255,.72); }
     .strip-actions .button-quiet:hover { background: rgba(255,255,255,.12); }
 
+    .quick-facts { background: var(--paper); border-bottom: 1px solid var(--line); }
+    .facts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+    .fact { display: grid; grid-template-columns: 38px 1fr; gap: 13px; align-items: start; padding: 26px 24px 26px 0; border-right: 1px solid var(--line); }
+    .fact + .fact { padding-left: 24px; }
+    .fact:last-child { border-right: 0; }
+    .fact-mark { color: var(--leaf); font-size: 1.7rem; line-height: 1; }
+    .fact h3 { margin-bottom: 3px; font-size: 1rem; }
+    .fact p { margin: 0; color: var(--muted); font-size: .94rem; }
+
     .home { background: var(--paper); }
     .home-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(40px, 8vw, 112px); align-items: start; }
     .home-statement { padding-top: 8px; }
@@ -106,12 +115,17 @@
 
     .stories { background: #f0f3ea; }
     .section-heading { max-width: 720px; margin-bottom: 42px; }
-    .story-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+    .history-copy { max-width: 760px; margin: -16px 0 36px; color: var(--muted); }
+    .history-copy p { margin-bottom: 14px; }
+    .history-quote { margin: 24px 0 0; padding: 17px 0 17px 20px; color: var(--forest); border-left: 3px solid var(--sun); font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; }
+    .history-quote cite { display: block; margin-top: 7px; color: var(--muted); font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: .83rem; font-style: normal; }
+    .story-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
     .story { min-height: 360px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(28px, 4vw, 48px); background: var(--paper); border-top: 5px solid var(--leaf); box-shadow: var(--shadow); }
     .story--murron { border-color: var(--clay); }
     .story p { max-width: 47ch; margin: 0; color: var(--muted); }
     .story-kicker { margin-bottom: 18px; color: var(--leaf); font-size: .82rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
     .story--murron .story-kicker { color: var(--clay); }
+    .story--community { border-color: var(--sun); }
     .story h3 { margin-bottom: 16px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 3vw, 2.55rem); font-weight: 500; }
     .story-footer { margin-top: 32px; color: var(--forest); font-size: .93rem; font-weight: 800; }
 
@@ -138,6 +152,10 @@
     .donation-box h2, .donation-box h3 { color: #fff; }
     .donation-box h2 { max-width: none; margin-bottom: 10px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: clamp(1.55rem, 3vw, 2.15rem); font-weight: 800; }
     .donation-box > p { color: #dce8d7; }
+    .donation-list { margin: 22px 0 0; padding: 0; color: #dce8d7; list-style: none; }
+    .donation-list li { position: relative; padding-left: 18px; }
+    .donation-list li + li { margin-top: 5px; }
+    .donation-list li::before { position: absolute; top: .65em; left: 0; width: 6px; height: 6px; content: ""; background: var(--sun); border-radius: 50%; }
     .bank-details { margin: 24px 0; }
     .bank-details div { display: grid; grid-template-columns: 102px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
     .bank-details dt { color: #dce8d7; font-size: .83rem; }
@@ -179,6 +197,9 @@
       .hero-figure { min-height: min(480px, 112vw); }
       .donation-strip-inner, .stay-grid { grid-template-columns: 1fr; }
       .strip-actions { justify-content: flex-start; }
+      .facts-grid { grid-template-columns: 1fr; }
+      .fact, .fact + .fact { padding: 18px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+      .fact:last-child { border-bottom: 0; }
       .story-grid { grid-template-columns: 1fr; }
       .together-photo { max-width: 560px; aspect-ratio: 5 / 4; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -206,9 +227,10 @@
       </a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="hauptnavigation"><span aria-hidden="true">≡</span><span class="sr-only">Menü öffnen</span></button>
       <nav class="main-nav" id="hauptnavigation" aria-label="Hauptnavigation">
-        <a href="#zuhause">Zuhause</a>
-        <a href="#geschichten">Geschichten</a>
-        <a href="#helfen">Helfen</a>
+        <a href="#geschichten">Geschichte</a>
+        <a href="#zuhause">Familienverbund</a>
+        <a href="#tiere">Tiere</a>
+        <a href="#helfen">Jetzt helfen</a>
         <a class="button button-primary" href="#spenden">Spenden</a>
       </nav>
     </div>
@@ -220,7 +242,7 @@
         <div class="hero-copy">
           <p class="eyebrow">Lebenshof für querschnittsgelähmte Tiere im Saarland</p>
           <h1 id="hero-title">Ein Zuhause, das bleibt.</h1>
-          <p class="lead">Der Sonnenhof der Koboldtiere in Heusweiler ist ein Zuhause für Tiere mit besonderen Bedürfnissen. Im Familienverbund wird gespielt, gekuschelt, geruht und das Leben miteinander geteilt.</p>
+          <p class="lead">Auf dem Sonnenhof leben Hunde und Katzen mit Handicap im Familienverbund. Nicht am Rand. Nicht auf Zeit. Sondern mitten im Alltag.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#spenden">Jetzt spenden</a>
             <a class="button button-quiet" href="#geschichten">Die Koboldtiere kennenlernen</a>
@@ -228,8 +250,8 @@
           <p class="hero-note">Der Sonnenhof ist mit Katzenstimme grenzenlos e. V. verbunden. Spenden helfen, Pflege und medizinische Versorgung zu tragen.</p>
         </div>
         <figure class="hero-figure">
-          <img src="assets/img/sonnenhof/seelenheil-rollstuhl-im-schnee.jpg" alt="Ein Hund des Sonnenhofs im Rollstuhl im Schnee." width="2048" height="1365">
-          <figcaption class="image-credit">Foto: Seelenheil Photographie</figcaption>
+          <img src="assets/img/sonnenhof/njuvra-portraet.jpg" alt="Njuvra, der älteste Lebenshofbewohner des Sonnenhofs." width="1366" height="2048">
+          <figcaption class="image-credit">Njuvra</figcaption>
         </figure>
       </div>
     </section>
@@ -241,49 +263,63 @@
       </div>
     </section>
 
+    <section class="quick-facts" aria-label="Der Sonnenhof auf einen Blick">
+      <div class="wrap facts-grid">
+        <article class="fact"><span class="fact-mark" aria-hidden="true">⌂</span><div><h3>Lebenshof statt Durchgangsstation</h3><p>Ein Zuhause für immer.</p></div></article>
+        <article class="fact"><span class="fact-mark" aria-hidden="true">♡</span><div><h3>Familienverbund im Alltag</h3><p>Spielen, Gassi, kuscheln, dazugehören.</p></div></article>
+        <article class="fact"><span class="fact-mark" aria-hidden="true">↗</span><div><h3>Hilfe über Katzenstimme grenzenlos e. V.</h3><p>Spenden, Patenschaften und praktische Hilfe.</p></div></article>
+      </div>
+    </section>
+
     <section class="section home" id="zuhause" aria-labelledby="zuhause-title">
       <div class="wrap home-grid">
         <div class="home-statement">
-          <p class="eyebrow">Die Hofgemeinschaft</p>
-          <h2 id="zuhause-title">Familie ist mehr als Versorgung.</h2>
-          <p class="lead">Querschnittsgelähmte Hunde und Katzen in Rollis und Rutschsäcken leben hier mit Tieren mit anderen Einschränkungen und geretteten Kaninchen zusammen. Der Sonnenhof ist ihr Zuhause für immer.</p>
+          <p class="eyebrow">Die Hofgemeinschaft als Familienverbund</p>
+          <h2 id="zuhause-title">Hier wird nicht nur gepflegt. Hier wird zusammen gelebt.</h2>
+          <p class="lead">Der Alltag besteht aus vielen kleinen Handgriffen. Und aus all den Dingen, die ein Zuhause ausmachen.</p>
         </div>
         <div class="home-list">
-          <article><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M24 41s-15-8.7-15-20a8 8 0 0 1 15-4.7A8 8 0 0 1 39 21c0 11.3-15 20-15 20Z"/></svg><div><h3>Mittendrin im Alltag</h3><p>Gartenzeit, Gassi, schlafen, kuscheln, Nähe genießen und Teil der Familie sein: Das gehört auf dem Sonnenhof zusammen.</p></div></article>
-          <article><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><circle cx="16" cy="33" r="6"/><circle cx="34" cy="33" r="6"/><path d="M16 27V14h10l5 13M26 14l5 8h7" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Eigener Rhythmus</h3><p>Hilfsmittel und sorgfältige Pflege gehören dazu, ohne die Tiere auf ihre Einschränkung zu reduzieren.</p></div></article>
-          <article><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M11 39V20l13-11 13 11v19M19 39V28h10v11" stroke-linejoin="round"/></svg><div><h3>Ein Ort zum Ankommen</h3><p>Aus Rettungen ist eine harmonische Gemeinschaft entstanden, in der jedes Tier seinen festen Platz hat.</p></div></article>
+          <article><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M24 41s-15-8.7-15-20a8 8 0 0 1 15-4.7A8 8 0 0 1 39 21c0 11.3-15 20-15 20Z"/></svg><div><h3>Pflege</h3><p>Manche Tiere brauchen Hilfe bei Blase und Darm, Windeln, Hautpflege, Medikamenten oder einen besonders sorgfältigen Tagesrhythmus.</p></div></article>
+          <article><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><circle cx="16" cy="33" r="6"/><circle cx="34" cy="33" r="6"/><path d="M16 27V14h10l5 13M26 14l5 8h7" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Bewegung</h3><p>Rollis, Rutschsäcke, gemeinsame Gartenzeit und Gassi machen Bewegung im eigenen Tempo möglich.</p></div></article>
+          <article><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M11 39V20l13-11 13 11v19M19 39V28h10v11" stroke-linejoin="round"/></svg><div><h3>Zugehörigkeit</h3><p>Spielen, schlafen, kuscheln, Nähe genießen und Teil der Familie sein: Das gehört hier genauso dazu wie die Versorgung.</p></div></article>
         </div>
       </div>
     </section>
 
     <section class="section stories" id="geschichten" aria-labelledby="geschichten-title">
       <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">Die Koboldtiere</p><h2 id="geschichten-title">Zwei Geschichten vom Ankommen.</h2><p class="lead">Njuvra und Murron sind von Anfang an Teil der Geschichte des Sonnenhofs. Sie stehen für Charakter, Nähe und einen festen Platz in der Familie.</p></div>
-        <div class="story-grid">
+        <div class="section-heading"><p class="eyebrow">Die Geschichte</p><h2 id="geschichten-title">Aus einzelnen Rettungen wurde ein sicherer Ort.</h2><p class="lead">Lara Sohn begann ihre Tierschutzarbeit mit Straßenkatzen in Südkroatien. Mit jedem Tier, das besondere Pflege brauchte, wuchs auch die Verantwortung.</p></div>
+        <div class="history-copy">
+          <p>Njuvra kam 2015 aus Kroatien zu Lara. Nach einem Unfall als Kitten blieb sein Hinterbein verdreht. Zwei Jahre später kam Murron dazu, die erste querschnittsgelähmte Katze. Sie wurde auf einer Mülldeponie gefunden und ist heute die Oberbossin des Vereins.</p>
+          <p>Aus diesen ersten Tieren entstand der Sonnenhof der Koboldtiere. Ein Ort, an dem Hunde und Katzen in Rollis und Rutschsäcken, Tiere mit anderen Einschränkungen und gerettete Kaninchen als Familie zusammenleben.</p>
+          <blockquote class="history-quote">„Die Tiere leben hier im Familienverbund, integriert wie in einem normalen Zuhause.“<cite>Lara Sohn</cite></blockquote>
+        </div>
+        <div class="story-grid" id="tiere">
           <article class="story"><div><p class="story-kicker">Seit 2015 auf dem Hof</p><h3>Njuvra</h3><p>Njuvra kam aus Kroatien auf den Sonnenhof. Nach einem Unfall als Kitten blieb sein Hinterbein verdreht. Seitdem gehört er zum Familienverbund und lebt seinen Alltag in seinem eigenen Tempo.</p></div><p class="story-footer">Ein Kater mit Geschichte und eigenem Platz.</p></article>
           <article class="story story--murron"><div><p class="story-kicker">Seit 2017 auf dem Hof</p><h3>Murron</h3><p>Murron kam querschnittsgelähmt von einem Müllplatz auf den Sonnenhof. Sie war die erste querschnittsgelähmte Katze auf dem Hof und ist heute die Oberbossin der Gemeinschaft.</p></div><p class="story-footer">Klarer Blick, großer Charakter.</p></article>
+          <article class="story story--community"><div><p class="story-kicker">Der Hof als Zuhause</p><h3>Viele Persönlichkeiten</h3><p>Der Sonnenhof ist kein Ort, an dem Tiere auf ihre Einschränkung reduziert werden. Hunde, Katzen und gerettete Kaninchen leben zusammen, finden ihren Rhythmus und gehören zur Familie.</p></div><p class="story-footer">Jedes Tier mit eigenem Platz.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section together" aria-labelledby="miteinander-title">
       <div class="wrap together-grid">
-        <figure class="together-photo"><img src="assets/img/sonnenhof/seelenheil-hund-im-schnee.jpg" alt="Ein Hund des Sonnenhofs im Schnee." width="1366" height="2048"><figcaption class="image-credit">Foto: Seelenheil Photographie</figcaption></figure>
+        <figure class="together-photo"><img src="assets/img/sonnenhof/murron-am-meer.jpg" alt="Murron im Rollstuhl am Meer." width="1366" height="2048"><figcaption class="image-credit">Murron</figcaption></figure>
         <div class="together-copy"><p class="eyebrow">Miteinander leben</p><h2 id="miteinander-title">Pflege ist Teil des Alltags. Nähe genauso.</h2><p>Auf dem Sonnenhof wird nicht nur versorgt. Tiere teilen Räume, Ruhe, Bewegung und die kleinen Momente eines gemeinsamen Tages.</p><ul class="together-list"><li>Rollis und Rutschsäcke unterstützen dort, wo sie gebraucht werden.</li><li>Gerettete Kaninchen, Katzen und Hunde gehören zur Hofgemeinschaft.</li><li>Helferinnen und Helfer bringen praktische Unterstützung in den Alltag.</li></ul></div>
       </div>
     </section>
 
     <section class="section help" id="helfen" aria-labelledby="helfen-title">
       <div class="wrap help-grid">
-        <div><p class="eyebrow">Unterstützen</p><h2 id="helfen-title">Gemeinsam für den Sonnenhof da sein.</h2><p class="lead">Patinnen und Paten begleiten einzelne Tiere. Ehrenamtliche Helferinnen und Helfer unterstützen praktisch. Spenden tragen Pflege und medizinische Versorgung.</p><div class="help-ways"><article class="help-way"><h3>Patenschaft anfragen</h3><p>Eine Patenschaft ist eine persönliche Art, den Sonnenhof und seine Tiere zu begleiten.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Über Instagram Kontakt aufnehmen</a></article><article class="help-way"><h3>Praktisch helfen</h3><p>Wer Zeit oder praktische Unterstützung einbringen möchte, kann sich direkt beim Sonnenhof melden.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Hilfe über Instagram anbieten</a></article></div></div>
-        <aside class="donation-box" id="spenden" aria-labelledby="spenden-title"><p class="eyebrow">Direkt unterstützen</p><h2 id="spenden-title">Spendenkonto</h2><p>Ihre Spende geht an Katzenstimme grenzenlos e. V., den verbundenen Verein des Sonnenhofs.</p><dl class="bank-details"><div><dt>Empfänger</dt><dd>Katzenstimme grenzenlos e. V.</dd></div><div><dt>IBAN</dt><dd class="iban">DE09 5919 0000 0118 0940 00</dd></div><div><dt>BIC</dt><dd>SABADE5SXXX</dd></div><div><dt>Bank</dt><dd>Bank 1 Saar eG</dd></div></dl><div class="donation-actions"><button class="button button-quiet" type="button" data-copy="DE09591900000118094000">IBAN kopieren</button><a class="button button-primary" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">Mit PayPal spenden</a></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></aside>
+        <div><p class="eyebrow">Unterstützen</p><h2 id="helfen-title">Was den Alltag möglich macht, kannst du mittragen.</h2><p class="lead">Spenden finanzieren Pflege und medizinische Versorgung. Patinnen und Paten begleiten einzelne Tiere. Ehrenamtliche Helferinnen und Helfer unterstützen praktisch.</p><div class="help-ways"><article class="help-way"><h3>Einmalig spenden</h3><p>Eine Überweisung oder PayPal-Spende hilft bei Futter, Medikamenten, Windeln, Hilfsmitteln und Tierarztkosten.</p></article><article class="help-way"><h3>Patenschaft anfragen</h3><p>Eine regelmäßige Unterstützung gibt dem Hof mehr Planungssicherheit. Die Anfrage läuft direkt über den Sonnenhof.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Patenschaft über Instagram anfragen</a></article><article class="help-way"><h3>Praktisch helfen</h3><p>Wer Zeit, Erfahrung oder praktische Hilfe mitbringen möchte, kann sich direkt beim Sonnenhof melden.</p><a class="contact-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Hilfe über Instagram anbieten</a></article></div></div>
+        <aside class="donation-box" id="spenden" aria-labelledby="spenden-title"><p class="eyebrow">Direkt unterstützen</p><h2 id="spenden-title">Spendenkonto</h2><p>Deine Spende geht an den Verein, der den Sonnenhof trägt.</p><dl class="bank-details"><div><dt>Empfänger</dt><dd>Katzenstimme grenzenlos e. V.</dd></div><div><dt>IBAN</dt><dd class="iban">DE09 5919 0000 0118 0940 00</dd></div><div><dt>BIC</dt><dd>SABADE5SXXX</dd></div><div><dt>Bank</dt><dd>Bank 1 Saar eG</dd></div></dl><ul class="donation-list"><li>Futter und Medikamente</li><li>Windeln und Hilfsmittel</li><li>Tierarztkosten und Pflege</li></ul><div class="donation-actions"><button class="button button-quiet" type="button" data-copy="DE09591900000118094000">IBAN kopieren</button><a class="button button-primary" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">Mit PayPal spenden</a></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></aside>
       </div>
     </section>
 
     <section class="section stay" aria-labelledby="instagram-title"><div class="wrap stay-grid"><div><p class="eyebrow">Verbunden bleiben</p><h2 id="instagram-title">Der Alltag ist auf Instagram zu Hause.</h2><p>Der Sonnenhof teilt dort aktuelle Einblicke aus dem Familienverbund. Diese Seite ist der ruhige Ort für die Geschichte dahinter und für Unterstützung.</p></div><a class="instagram-link" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">@sonnenhof_der_koboldtiere</a></div></section>
   </main>
 
-  <footer><div class="wrap footer-grid"><div><div class="footer-title">Sonnenhof der Koboldtiere</div><p>Lebenshof in Heusweiler, verbunden mit Katzenstimme grenzenlos e. V.</p></div><div><h3>Entdecken</h3><ul><li><a href="#zuhause">Zuhause</a></li><li><a href="#geschichten">Geschichten</a></li><li><a href="#helfen">Helfen</a></li></ul></div><div><h3>Kontakt</h3><ul><li><a href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Instagram Sonnenhof</a></li><li><a href="https://www.instagram.com/katzenstimme_grenzenlos/" target="_blank" rel="noopener noreferrer">Instagram Katzenstimme</a></li><li><a href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">PayPal</a></li></ul></div></div><div class="wrap footer-bottom"><span>Katzenstimme grenzenlos e. V.</span><span><a href="sonnenhof-impressum.html">Impressum</a> · <a href="sonnenhof-datenschutz.html">Datenschutz</a></span></div></footer>
+  <footer><div class="wrap footer-grid"><div><div class="footer-title">Sonnenhof der Koboldtiere</div><p>Lebenshof in Heusweiler für Hunde und Katzen mit Handicap, getragen von Katzenstimme grenzenlos e. V.</p></div><div><h3>Entdecken</h3><ul><li><a href="#geschichten">Geschichte</a></li><li><a href="#zuhause">Familienverbund</a></li><li><a href="#tiere">Die Koboldtiere</a></li></ul></div><div><h3>Unterstützen</h3><ul><li><a href="#spenden">Spendenkonto</a></li><li><a href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">PayPal</a></li><li><a href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div></div><div class="wrap footer-bottom"><span>Katzenstimme grenzenlos e. V. · Vereinsregister VR 5799 · Amtsgericht Saarbrücken</span><span><a href="sonnenhof-impressum.html">Impressum</a> · <a href="sonnenhof-datenschutz.html">Datenschutz</a></span></div></footer>
 
   <script>
     const menuButton = document.querySelector('.menu-button');
