@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Sonnenhof der Koboldtiere in Heusweiler: ein Lebenshof für Hunde und Katzen mit Handicap, getragen von Katzenstimme grenzenlos e. V.">
+  <meta name="description" content="Sonnenhof der Koboldtiere in Heusweiler: Lebenshof für 5 Hunde, 10 Katzen und seit Mitte 2026 auch Hasen mit Handicap. Getragen von Katzenstimme grenzenlos e. V.">
   <meta name="theme-color" content="#173f32">
   <meta name="robots" content="index, follow">
-  <title>Sonnenhof der Koboldtiere | Ein Zuhause für immer</title>
+  <title>Sonnenhof der Koboldtiere | Ein Zuhause, das bleibt</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "NonprofitOrganization",
     "name": "Katzenstimme grenzenlos e. V.",
     "alternateName": "Sonnenhof der Koboldtiere",
-    "description": "Lebenshof in Heusweiler für Hunde und Katzen mit Handicap.",
-    "areaServed": {
-      "@type": "Place",
-      "name": "Heusweiler, Saarland"
-    },
+    "description": "Lebenshof in Heusweiler für 5 Hunde, 10 Katzen und seit Mitte 2026 auch Hasen mit Handicap.",
+    "areaServed": { "@type": "Place", "name": "Heusweiler, Saarland" },
     "sameAs": [
       "https://www.instagram.com/sonnenhof_der_koboldtiere/",
       "https://www.instagram.com/katzenstimme_grenzenlos/",
@@ -29,7 +26,9 @@
     :root {
       --pine: #173f32;
       --pine-dark: #0d2c24;
+      --moss: #234a3c;
       --leaf: #4d8056;
+      --fern: #6ea379;
       --sage: #a9c69a;
       --mint: #e4eee4;
       --sun: #f5c95b;
@@ -92,7 +91,7 @@
       min-width: 0;
       text-decoration: none;
     }
-    .brand-mark { width: 44px; height: 44px; flex: 0 0 44px; }
+    .brand-mark { width: 46px; height: 46px; flex: 0 0 46px; }
     .brand-name {
       display: grid;
       color: #fff;
@@ -131,6 +130,42 @@
       color: #fff;
       background: transparent;
       cursor: pointer;
+    }
+
+    /* Sticky spenden button */
+    .sticky-help {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 30;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      color: var(--pine-dark);
+      background: var(--sun);
+      font-weight: 900;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: 0 18px 40px rgba(13, 44, 36, .35);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+    }
+    .sticky-help.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .sticky-help:hover { background: #ffdb79; }
+    .sticky-help-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--coral);
     }
 
     .hero {
@@ -208,10 +243,7 @@
     .button:hover { transform: translateY(-2px); }
     .button-primary { color: var(--pine-dark); background: var(--sun); }
     .button-primary:hover { background: #ffdb79; }
-    .button-light {
-      color: var(--pine-dark);
-      background: #fff;
-    }
+    .button-light { color: var(--pine-dark); background: #fff; }
     .button-outline {
       border-color: rgba(255,255,255,.72);
       color: #fff;
@@ -235,28 +267,36 @@
     }
     .quick-facts-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
     .quick-fact {
       display: flex;
-      min-height: 120px;
+      min-height: 132px;
       align-items: center;
       gap: 15px;
-      padding: 23px 28px;
+      padding: 23px 24px;
       border-right: 1px solid rgba(23,63,50,.2);
     }
     .quick-fact:last-child { border-right: 0; }
     .fact-icon {
       display: grid;
-      width: 38px;
-      height: 38px;
-      flex: 0 0 38px;
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
       place-items: center;
       border: 2px solid var(--pine);
       border-radius: 50%;
       font-family: Georgia, "Times New Roman", serif;
       font-size: 22px;
       font-weight: 700;
+    }
+    .fact-number {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--pine);
     }
     .quick-fact strong {
       display: block;
@@ -381,6 +421,26 @@
       align-items: start;
     }
     .animal-layout .intro { margin-top: 22px; }
+    .animal-count {
+      margin: 26px 0 0;
+      padding: 22px 24px;
+      border-left: 4px solid var(--leaf);
+      background: var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      line-height: 1.32;
+      color: var(--pine-dark);
+    }
+    .animal-count strong {
+      display: inline-block;
+      margin-right: 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      color: var(--leaf);
+      font-weight: 700;
+      line-height: 1;
+      vertical-align: -2px;
+    }
     .animal-notes {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -409,6 +469,27 @@
     .animal-note p {
       margin: 12px 0 0;
       color: var(--muted);
+    }
+    .animal-note-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 100%;
+      color: var(--muted);
+      background:
+        repeating-linear-gradient(45deg, rgba(77,128,86,.06) 0 12px, transparent 12px 24px),
+        var(--paper);
+      text-align: center;
+    }
+    .animal-note-placeholder strong {
+      display: block;
+      color: var(--pine);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+    }
+    .animal-note-placeholder span {
+      display: block;
+      margin-top: 8px;
+      font-size: 13px;
     }
     .animal-note-wide { grid-column: 1 / -1; }
 
@@ -456,6 +537,8 @@
       margin: 7px 0 0;
       color: #d8e8da;
     }
+
+    /* Spendenblock */
     .donation-box {
       padding: 31px;
       color: var(--ink);
@@ -467,6 +550,70 @@
       font-size: 33px;
     }
     .donation-box > p { color: var(--muted); }
+    .donation-impact {
+      margin: 18px 0 0;
+      padding: 14px 16px;
+      background: var(--mint);
+      border-left: 3px solid var(--leaf);
+      color: var(--pine-dark);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .donation-impact strong { color: var(--pine); }
+
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 22px 0 0;
+    }
+    .amount-button {
+      display: grid;
+      gap: 4px;
+      padding: 14px 10px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      cursor: pointer;
+      transition: border-color .15s ease, background .15s ease, transform .15s ease;
+    }
+    .amount-button:hover { border-color: var(--leaf); background: var(--mint); }
+    .amount-button[aria-pressed="true"] {
+      border-color: var(--leaf);
+      background: var(--mint);
+      box-shadow: inset 0 0 0 2px var(--leaf);
+    }
+    .amount-button-amount {
+      color: var(--pine);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .amount-button-label {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .04em;
+    }
+    .amount-custom {
+      margin-top: 12px;
+    }
+    .amount-custom label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .amount-custom input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--pine-dark);
+      font: inherit;
+      font-weight: 700;
+    }
+    .amount-custom input:focus { border-color: var(--leaf); }
+
     .bank-details { margin: 22px 0 0; }
     .bank-row {
       display: grid;
@@ -506,10 +653,156 @@
       font-size: 13px;
       text-align: center;
     }
+    .tax-note {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      border: 1px dashed var(--leaf);
+      background: var(--mint);
+      color: var(--pine-dark);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .tax-note strong { color: var(--pine); }
     .support-note {
       margin: 30px 0 0;
       color: #bdd1c0;
       font-size: 13px;
+    }
+
+    /* Patenschafts-Stufen */
+    .patenschaft {
+      color: #fff;
+      background: var(--moss);
+    }
+    .patenschaft h2 { color: #fff; }
+    .patenschaft .section-label { color: var(--sage); }
+    .patenschaft .intro { color: #d8e8da; }
+    .patenschaft-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+    .pate-card {
+      padding: 26px 24px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.05);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 14px;
+    }
+    .pate-card.is-featured {
+      border-color: var(--sun);
+      background: rgba(245, 201, 91, .08);
+    }
+    .pate-amount {
+      color: var(--sun);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .pate-amount small {
+      display: block;
+      margin-top: 6px;
+      color: #d8e8da;
+      font-family: Inter, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .pate-card h3 {
+      color: #fff;
+      font-size: 23px;
+    }
+    .pate-card p {
+      margin: 0;
+      color: #d8e8da;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .pate-tag {
+      display: inline-block;
+      padding: 4px 9px;
+      background: var(--sun);
+      color: var(--pine-dark);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .pate-button {
+      display: inline-flex;
+      justify-content: center;
+      padding: 12px 16px;
+      border: 1px solid rgba(255,255,255,.55);
+      color: #fff;
+      background: transparent;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .15s ease;
+    }
+    .pate-button:hover { background: rgba(255,255,255,.12); }
+    .pate-card.is-featured .pate-button {
+      background: var(--sun);
+      border-color: var(--sun);
+      color: var(--pine-dark);
+    }
+    .patenschaft-foot {
+      margin: 28px 0 0;
+      padding: 18px 22px;
+      border-left: 4px solid var(--sun);
+      background: rgba(13, 44, 36, .35);
+      color: #d8e8da;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .patenschaft-foot a { color: var(--sun); font-weight: 700; }
+
+    /* Social proof */
+    .proof {
+      background: var(--paper);
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+    .proof-item {
+      padding: 26px 24px;
+      border-top: 5px solid var(--leaf);
+      background: var(--cream);
+    }
+    .proof-number {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--pine);
+      line-height: 1;
+    }
+    .proof-suffix {
+      margin-left: 4px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .proof-item p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .proof-note {
+      margin: 24px 0 0;
+      padding: 14px 18px;
+      background: var(--mint);
+      color: var(--pine-dark);
+      font-size: 13px;
+      line-height: 1.45;
+      border-left: 3px solid var(--leaf);
     }
 
     .follow {
@@ -563,6 +856,32 @@
       line-height: 1.5;
     }
 
+    /* Wa(h)re Haustier(liebe) cross-link */
+    .cross-link {
+      margin-top: 36px;
+      padding: 18px 22px;
+      border: 1px solid var(--line);
+      background: var(--cream);
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .cross-link strong {
+      display: block;
+      color: var(--pine);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .cross-link a {
+      color: var(--leaf);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid var(--leaf);
+    }
+    .cross-link a:hover { color: var(--pine); border-color: var(--pine); }
+
     footer {
       padding: 56px 0 24px;
       color: #d5e5d7;
@@ -587,17 +906,41 @@
     }
     footer li + li { margin-top: 8px; }
     footer a { color: #fff; }
+    .footer-credit {
+      margin: 28px 0 0;
+      padding: 18px 22px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.04);
+      color: #c5d8c8;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .footer-credit strong { color: #fff; }
+    .footer-credit a {
+      color: var(--sun);
+      border-bottom: 1px solid rgba(245,201,91,.5);
+      text-decoration: none;
+    }
+    .footer-credit a:hover { border-bottom-color: var(--sun); }
     .footer-bottom {
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      margin-top: 38px;
+      margin-top: 28px;
       padding-top: 18px;
       border-top: 1px solid rgba(255,255,255,.18);
       color: #a9c0ad;
       font-size: 12px;
     }
 
+    @media (max-width: 1080px) {
+      .quick-facts-grid { grid-template-columns: repeat(2, 1fr); }
+      .quick-fact { border-right: 0; border-bottom: 1px solid rgba(23,63,50,.2); }
+      .quick-fact:nth-child(2n) { border-right: 0; }
+      .quick-fact:nth-last-child(-n+2) { border-bottom: 0; }
+      .patenschaft-grid { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: 1fr; }
+    }
     @media (max-width: 900px) {
       .main-nav {
         display: none;
@@ -620,6 +963,7 @@
       .family-top { display: block; }
       .family-top .intro { margin-top: 18px; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .sticky-help { right: 14px; bottom: 14px; padding: 12px 16px; font-size: 14px; }
     }
     @media (max-width: 620px) {
       .wrap { width: min(calc(100% - 30px), var(--content)); }
@@ -633,38 +977,52 @@
       .animal-notes,
       .follow-links,
       .footer-grid { grid-template-columns: 1fr; }
-      .quick-fact {
-        min-height: 92px;
-        border-right: 0;
-        border-bottom: 1px solid rgba(23,63,50,.2);
-      }
-      .quick-fact:last-child { border-bottom: 0; }
       .animal-note-wide { grid-column: auto; }
       .bank-row { grid-template-columns: 1fr; gap: 3px; }
       .donation-box { padding: 25px; }
       .footer-bottom { flex-direction: column; }
+      .amount-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .button { transition: none; }
+      .sticky-help { transition: opacity .2s ease; }
     }
   </style>
 </head>
 <body>
   <a class="skip" href="#inhalt">Zum Inhalt springen</a>
 
+  <a class="sticky-help" id="sticky-help" href="#helfen" aria-hidden="true">
+    <span class="sticky-help-dot" aria-hidden="true"></span>
+    Jetzt helfen
+  </a>
+
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#start" aria-label="Sonnenhof der Koboldtiere, Startseite">
         <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
-          <circle cx="32" cy="32" r="28" fill="#f5c95b"/>
-          <path d="M18 39c4-10 10-15 16-15s12 5 16 15" fill="none" stroke="#173f32" stroke-linecap="round" stroke-width="4"/>
-          <circle cx="21" cy="23" r="3" fill="#173f32"/>
-          <circle cx="31" cy="18" r="3" fill="#173f32"/>
-          <circle cx="40" cy="20" r="3" fill="#173f32"/>
-          <circle cx="47" cy="28" r="3" fill="#173f32"/>
-          <circle cx="24" cy="45" r="6" fill="none" stroke="#173f32" stroke-width="3"/>
-          <circle cx="42" cy="45" r="6" fill="none" stroke="#173f32" stroke-width="3"/>
+          <defs>
+            <linearGradient id="kobold-gradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4d8056"/>
+              <stop offset="100%" stop-color="#173f32"/>
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="32" r="29" fill="url(#kobold-gradient)"/>
+          <circle cx="32" cy="32" r="29" fill="none" stroke="#f5c95b" stroke-width="2"/>
+          <!-- Hund (links) -->
+          <path d="M20 41 Q18 33 22 30 Q24 28 25 31 L26 33 Q27 30 28 32 Q29 34 27 36 L26 38 Q28 39 28 41 Q28 44 25 44 Q22 44 22 41 Z" fill="#fffdf8"/>
+          <circle cx="23" cy="34" r="0.9" fill="#0d2c24"/>
+          <!-- Katze (rechts) -->
+          <path d="M37 41 Q36 33 39 30 L41 28 L42 30 L44 28 L46 30 Q49 33 48 41 Q48 44 45 44 L40 44 Q37 44 37 41 Z" fill="#fffdf8"/>
+          <path d="M41 28 L40 30 L39 30 L41 28 Z M44 28 L45 30 L46 30 L44 28 Z" fill="#fffdf8"/>
+          <circle cx="41" cy="34" r="0.9" fill="#0d2c24"/>
+          <circle cx="45" cy="34" r="0.9" fill="#0d2c24"/>
+          <path d="M41.5 37 Q42.5 37.5 43.5 37" stroke="#d97861" stroke-width="0.7" fill="none" stroke-linecap="round"/>
+          <!-- Händchen / Verbindung -->
+          <path d="M28 41 Q31 39 32 41 Q33 39 36 41" stroke="#f5c95b" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <!-- Sonnenkranz -->
+          <circle cx="32" cy="14" r="2" fill="#f5c95b"/>
         </svg>
         <span class="brand-name">Sonnenhof der Koboldtiere<small>Lebenshof in Heusweiler</small></span>
       </a>
@@ -673,6 +1031,7 @@
         <a href="#geschichte">Geschichte</a>
         <a href="#familie">Familienverbund</a>
         <a href="#tiere">Tiere</a>
+        <a href="#patenschaft">Patenschaft</a>
         <a class="nav-help" href="#helfen">Jetzt helfen</a>
       </nav>
     </div>
@@ -685,7 +1044,7 @@
       </div>
       <div class="hero-overlay"></div>
       <div class="wrap hero-inner">
-        <div class="eyebrow">Sonnenhof der Koboldtiere · Heusweiler</div>
+        <div class="eyebrow">Sonnenhof der Koboldtiere · Heusweiler · 2.000 m²</div>
         <h1 id="hero-title">Ein Zuhause, das bleibt.</h1>
         <p class="hero-lead">Auf dem Sonnenhof leben Hunde und Katzen mit Handicap im Familienverbund. Nicht am Rand. Nicht auf Zeit. Sondern mitten im Alltag.</p>
         <div class="button-row">
@@ -699,16 +1058,20 @@
     <aside class="quick-facts" aria-label="Der Sonnenhof auf einen Blick">
       <div class="wrap quick-facts-grid">
         <div class="quick-fact">
-          <span class="fact-icon">⌂</span>
-          <div><strong>Lebenshof statt Durchgangsstation</strong><span>Ein Zuhause für immer.</span></div>
+          <span class="fact-number">5</span>
+          <div><strong>Hunde mit Handicap</strong><span>Im Familienverbund, mit und ohne Rolli.</span></div>
         </div>
         <div class="quick-fact">
-          <span class="fact-icon">♡</span>
-          <div><strong>Familienverbund im Alltag</strong><span>Spielen, Gassi, kuscheln, dazugehören.</span></div>
+          <span class="fact-number">10</span>
+          <div><strong>Katzen mit Handicap</strong><span>Querschnittsgelähmt, blind, mit Rutschsack oder einfach eigen.</span></div>
         </div>
         <div class="quick-fact">
-          <span class="fact-icon">↗</span>
-          <div><strong>Hilfe über Katzenstimme grenzenlos e. V.</strong><span>Spenden, Patenschaften und praktische Hilfe.</span></div>
+          <span class="fact-number">+</span>
+          <div><strong>Hasen seit Mitte 2026</strong><span>Auch Kaninchen finden hier ein Zuhause.</span></div>
+        </div>
+        <div class="quick-fact">
+          <span class="fact-icon" aria-hidden="true">⌂</span>
+          <div><strong>Seit 2024 im eigenen Zuhause</strong><span>Behindertengerechtes Wohnhaus mit eingezäuntem 2.000 m² Grundstück.</span></div>
         </div>
       </div>
     </aside>
@@ -719,10 +1082,11 @@
           <div class="section-label">Die Geschichte</div>
           <h2>Aus einzelnen Rettungen wurde ein sicherer Ort.</h2>
           <p class="intro">Lara Sohn begann ihre Tierschutzarbeit mit Straßenkatzen in Südkroatien. Mit jedem Tier, das besondere Pflege brauchte, wuchs auch die Verantwortung.</p>
-          <p>Njuvra kam 2015 aus Kroatien zu Lara. Nach einem Unfall als Kitten blieb sein Hinterbein verdreht. Zwei Jahre später kam Murron dazu, die erste querschnittsgelähmte Katze. Sie wurde auf einer Mülldeponie gefunden und ist heute die Oberbossin des Vereins.</p>
-          <p>Aus diesen ersten Tieren entstand der Sonnenhof der Koboldtiere. Ein Ort, an dem Hunde und Katzen in Rollis und Rutschsäcken, Tiere mit anderen Einschränkungen und gerettete Kaninchen als Familie zusammenleben.</p>
+          <p>Njuvra kam 2015 aus Kroatien zu Lara. Nach einem Unfall als Kitten blieb sein Hinterbein verdreht. Zwei Jahre später kam Murron dazu, die erste querschnittsgelähmte Katze. Sie wurde auf einer Mülldeponie gefunden und ist heute die Oberbossin des Hofes.</p>
+          <p>Aus diesen ersten Tieren entstand der Sonnenhof der Koboldtiere. Ein Ort, an dem Hunde und Katzen in Rollis und Rutschsäcken, Tiere mit anderen Einschränkungen und gerettete Hasen als Familie zusammenleben.</p>
+          <p>Seit 2024 hat der Sonnenhof ein eigenes behindertengerechtes Wohnhaus mit einem eingezäunten Grundstück von 2.000 m². Damit ist aus einer Pflegestelle endlich ein Zuhause geworden.</p>
           <blockquote class="story-quote">
-            „Die Tiere leben hier im Familienverbund, integriert wie in einem normalen Zuhause.“
+            „Die Tiere leben hier im Familienverbund, integriert wie in einem normalen Zuhause."
             <cite>Lara Sohn</cite>
           </blockquote>
         </div>
@@ -765,7 +1129,10 @@
           <div class="section-label">Die Koboldtiere</div>
           <h2>Jede Geschichte verdient Zeit.</h2>
           <p class="intro">Hinter jedem Rolli, jedem Rutschsack und jedem besonderen Handgriff steht ein Tier mit eigenem Charakter und einem festen Platz im Leben.</p>
-          <p class="intro">Auf Instagram zeigt der Sonnenhof den Alltag regelmäßig. Hier ist Raum für die Geschichte dahinter.</p>
+          <p class="intro">Aktuell leben hier <strong>5 Hunde, 10 Katzen und seit Mitte 2026 auch Hasen</strong>. Auf Instagram zeigt der Sonnenhof den Alltag regelmäßig. Hier ist Raum für die Geschichte dahinter.</p>
+          <div class="animal-count" aria-label="Aktueller Stand der Hofbewohner">
+            <strong>15+</strong> Tiere mit Handicap, eigenem Charakter und einem Zuhause für immer.
+          </div>
         </div>
         <div class="animal-notes">
           <article class="animal-note">
@@ -778,9 +1145,23 @@
             <h3>Murron</h3>
             <p>Murron wurde querschnittsgelähmt auf einer Mülldeponie gefunden. Sie liebt Abenteuer mit ihrem Hunderudel und Urlaube.</p>
           </article>
+          <article class="animal-note">
+            <span class="animal-kind">Bild folgt</span>
+            <div class="animal-note-placeholder">
+              <strong>Pavel</strong>
+              <span>Schwarz-weiße Katze · Porträt in Vorbereitung</span>
+            </div>
+          </article>
+          <article class="animal-note">
+            <span class="animal-kind">Bild folgt</span>
+            <div class="animal-note-placeholder">
+              <strong>Hunter</strong>
+              <span>Kleiner schwarzer Russischer Toy Terrier · Porträt in Vorbereitung</span>
+            </div>
+          </article>
           <article class="animal-note animal-note-wide">
             <span class="animal-kind">Ein Hof voller eigener Persönlichkeiten</span>
-            <h3>Hunde, Katzen und gerettete Kaninchen</h3>
+            <h3>Hunde, Katzen und Hasen mit Handicap</h3>
             <p>Der Sonnenhof ist kein Ort, an dem Tiere auf ihre Einschränkung reduziert werden. Sie leben zusammen, finden ihren Rhythmus und gehören zur Familie.</p>
           </article>
         </div>
@@ -792,7 +1173,7 @@
         <div class="section-heading">
           <div class="section-label">Unterstützen</div>
           <h2>Was den Alltag möglich macht, kannst du mittragen.</h2>
-          <p class="intro">Spenden finanzieren Pflege und medizinische Versorgung. Patinnen und Paten begleiten einzelne Tiere. Ehrenamtliche Helferinnen und Helfer unterstützen praktisch.</p>
+          <p class="intro">Spenden finanzieren Pflege und medizinische Versorgung. Patinnen und Paten begleiten einzelne Tiere oder den ganzen Hof. Ehrenamtliche Helferinnen und Helfer unterstützen praktisch.</p>
         </div>
 
         <div class="support-grid">
@@ -804,11 +1185,11 @@
               </article>
               <article class="support-option">
                 <span class="support-option-number">2</span>
-                <div><h3>Patenschaft anfragen</h3><p>Eine regelmäßige Unterstützung gibt dem Hof mehr Planungssicherheit. Die Anfrage läuft direkt über den Sonnenhof.</p></div>
+                <div><h3><a href="#patenschaft" style="color:#fff;border-bottom:1px solid rgba(255,255,255,.4);">Patenschaft übernehmen</a></h3><p>Eine regelmäßige Unterstützung gibt dem Hof mehr Planungssicherheit. Schon ab 5 Euro im Monat.</p></div>
               </article>
               <article class="support-option">
                 <span class="support-option-number">3</span>
-                <div><h3>Praktisch helfen</h3><p>Wer Zeit, Erfahrung oder praktische Hilfe mitbringen möchte, kann sich direkt beim Sonnenhof melden.</p></div>
+                <div><h3>Praktisch helfen</h3><p>Wer Zeit, Erfahrung oder Sachspenden mitbringen möchte, kann sich direkt beim Sonnenhof melden.</p></div>
               </article>
             </div>
             <p class="support-note">Katzenstimme grenzenlos e. V. trägt den Sonnenhof der Koboldtiere.</p>
@@ -817,19 +1198,133 @@
           <aside class="donation-box" aria-labelledby="spendenkonto">
             <h3 id="spendenkonto">Spendenkonto</h3>
             <p>Deine Spende geht an den Verein, der den Sonnenhof trägt.</p>
+
+            <p class="donation-impact" aria-live="polite">
+              <strong>Wirkung, die ankommt:</strong> <span id="impact-text">Mit 25&nbsp;€ finanzierst du zum Beispiel eine Woche Spezialfutter für ein Tier mit Handicap.</span>
+            </p>
+
+            <div class="amount-grid" role="group" aria-label="Spendenbetrag auswählen">
+              <button class="amount-button" type="button" data-amount="10" aria-pressed="false">
+                <span class="amount-button-amount">10&nbsp;€</span>
+                <span class="amount-button-label">Futterration</span>
+              </button>
+              <button class="amount-button" type="button" data-amount="25" aria-pressed="true">
+                <span class="amount-button-amount">25&nbsp;€</span>
+                <span class="amount-button-label">Eine Woche Futter</span>
+              </button>
+              <button class="amount-button" type="button" data-amount="50" aria-pressed="false">
+                <span class="amount-button-amount">50&nbsp;€</span>
+                <span class="amount-button-label">Tierarzt-Basis</span>
+              </button>
+              <button class="amount-button" type="button" data-amount="100" aria-pressed="false">
+                <span class="amount-button-amount">100&nbsp;€</span>
+                <span class="amount-button-label">Hilfsmittel</span>
+              </button>
+            </div>
+            <div class="amount-custom">
+              <label for="custom-amount">Anderer Betrag (Euro)</label>
+              <input id="custom-amount" type="number" min="1" step="1" inputmode="numeric" placeholder="z. B. 35">
+            </div>
+
             <dl class="bank-details">
               <div class="bank-row"><dt>Empfänger</dt><dd>Katzenstimme grenzenlos e. V.</dd></div>
               <div class="bank-row"><dt>IBAN</dt><dd>DE09 5919 0000 0118 0940 00</dd></div>
               <div class="bank-row"><dt>BIC</dt><dd>SABADE5SXXX</dd></div>
               <div class="bank-row"><dt>Bank</dt><dd>Bank 1 Saar eG</dd></div>
+              <div class="bank-row"><dt>Zweck</dt><dd>Sonnenhof</dd></div>
             </dl>
             <div class="donation-actions">
               <button class="button copy-button" type="button" data-copy="DE09591900000118094000">IBAN kopieren</button>
-              <a class="button button-primary" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">Mit PayPal spenden</a>
+              <a class="button button-primary" id="paypal-link" href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">Mit PayPal spenden</a>
             </div>
             <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+
+            <p class="tax-note">
+              <strong>Gemeinnützig anerkannt:</strong> Katzenstimme grenzenlos e. V. ist nach §52 Abgabenordnung als gemeinnützig anerkannt. Auf Wunsch stellen wir eine Spendenbescheinigung aus. Schreib uns dazu kurz an <a href="mailto:post@katzenstimme-grenzenlos.de" style="color:var(--pine);font-weight:700;">post@katzenstimme-grenzenlos.de</a>.
+            </p>
           </aside>
         </div>
+      </div>
+    </section>
+
+    <section class="patenschaft" id="patenschaft">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="section-label">Patenschaft</div>
+          <h2>Eine kleine Summe. Eine große Wirkung jeden Monat.</h2>
+          <p class="intro">Patinnen und Paten stehen nicht nur finanziell an der Seite eines Tieres oder des ganzen Hofes. Sie schenken Verlässlichkeit – genau das, was ein Lebenshof braucht.</p>
+        </div>
+
+        <div class="patenschaft-grid">
+          <article class="pate-card">
+            <div>
+              <div class="pate-amount">5&nbsp;€<small>im Monat</small></div>
+              <span class="pate-tag" style="background:var(--leaf);color:#fff;">Lebenshof</span>
+            </div>
+            <div>
+              <h3>Lebenshof-Patenschaft</h3>
+              <p>Du unterstützt den gesamten Hof – Futter, Tierarzt und alles, was täglich gebraucht wird. So bleibt der Alltag planbar.</p>
+            </div>
+            <a class="pate-button" href="mailto:post@katzenstimme-grenzenlos.de?subject=Patenschaft%20Lebenshof%20(5%E2%82%AC)&body=Hallo%20Lara%2C%20ich%20m%C3%B6chte%20gerne%20eine%20Lebenshof-Patenschaft%20%C3%BCbernehmen.">Patenschaft anfragen</a>
+          </article>
+
+          <article class="pate-card is-featured">
+            <div>
+              <div class="pate-amount">15&nbsp;€<small>im Monat</small></div>
+              <span class="pate-tag">Lebenshof · beliebt</span>
+            </div>
+            <div>
+              <h3>Lebenshof-Patenschaft Plus</h3>
+              <p>Mit 15 Euro deckst du einen größeren Anteil der monatlichen Versorgung. Diese Stufe hilft dem Hof am meisten.</p>
+            </div>
+            <a class="pate-button" href="mailto:post@katzenstimme-grenzenlos.de?subject=Patenschaft%20Lebenshof%20Plus%20(15%E2%82%AC)&body=Hallo%20Lara%2C%20ich%20m%C3%B6chte%20gerne%20eine%20Lebenshof-Patenschaft%20Plus%20%C3%BCbernehmen.">Patenschaft anfragen</a>
+          </article>
+
+          <article class="pate-card">
+            <div>
+              <div class="pate-amount">25&nbsp;€<small>im Monat</small></div>
+              <span class="pate-tag" style="background:var(--coral);color:#fff;">Tier-Pate</span>
+            </div>
+            <div>
+              <h3>Tier-Patenschaft</h3>
+              <p>Du begleitest ein bestimmtes Tier – mit Foto-Updates und persönlicher Verbindung. Die Stufe ist möglich, wenn du magst.</p>
+            </div>
+            <a class="pate-button" href="mailto:post@katzenstimme-grenzenlos.de?subject=Tier-Patenschaft%20(25%E2%82%AC)&body=Hallo%20Lara%2C%20ich%20m%C3%B6chte%20gerne%20eine%20Tier-Patenschaft%20%C3%BCbernehmen%20und%20bitte%20um%20das%20Patenschaftsformular.">Patenschaft anfragen</a>
+          </article>
+        </div>
+
+        <div class="patenschaft-foot">
+          <strong>So läuft eine Patenschaft:</strong> Schreib uns eine kurze Mail mit dem Betreff „Patenschaft". Wir schicken dir das Patenschaftsformular als PDF, das du unterschrieben zurückmailst oder fotografierst – ganz wie es dir passt. Auf Wunsch melden wir uns regelmäßig mit kleinen Updates aus dem Hof.
+        </div>
+      </div>
+    </section>
+
+    <section class="proof">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="section-label">Was bisher möglich wurde</div>
+          <h2>Jeder Euro bleibt auf dem Hof.</h2>
+          <p class="intro">Der Sonnenhof wird ausschließlich über Spenden, Patenschaften und praktische Hilfe getragen. Hier ein Blick auf das, was eure Unterstützung bereits bewegt hat.</p>
+        </div>
+
+        <div class="proof-grid">
+          <div class="proof-item">
+            <span class="proof-number">15+<span class="proof-suffix">Tiere</span></span>
+            <p>leben aktuell auf dem Sonnenhof – darunter Hunde und Katzen mit Handicap und seit Mitte 2026 auch Hasen.</p>
+          </div>
+          <div class="proof-item">
+            <span class="proof-number">2.000<span class="proof-suffix">m²</span></span>
+            <p>eingezäuntes Grundstück mit behindertengerechtem Wohnhaus seit 2024. Endlich Platz für alle.</p>
+          </div>
+          <div class="proof-item">
+            <span class="proof-number">§52<span class="proof-suffix">AO</span></span>
+            <p>Katzenstimme grenzenlos e. V. ist als gemeinnützig anerkannt. Spendenbescheinigungen stellen wir gerne aus.</p>
+          </div>
+        </div>
+
+        <p class="proof-note">
+          <strong>Was ihr hier gerade seht, sind Platzhalter.</strong> Sobald wir echte Spenderzahlen und Patenschaftsstände aus dem Verein haben, ersetzen wir sie durch die konkreten Werte – das macht den nächsten Schritt sichtbar und motiviert neue Patinnen und Paten, mitzumachen.
+        </p>
       </div>
     </section>
 
@@ -849,6 +1344,11 @@
               <span>@katzenstimme_grenzenlos</span>
             </a>
           </div>
+
+          <aside class="cross-link" aria-label="Hinweis auf das Projekt Wa(h)re Haustier(liebe)">
+            <strong>Wa(h)re Haustier(liebe)</strong>
+            Wer sich für artgerechte Haltung, verantwortungsvolle Tiervermittlung und das Wissen rund um Haustiere interessiert, findet im Projekt <a href="https://wahre-haustierliebe.de" target="_blank" rel="noopener noreferrer">Wa(h)re Haustier(liebe)</a> ein wachsendes Wiki mit Ratgebern, Checklisten und Erfahrungswerten – getragen von Erik und Annemarie Andersen.
+          </aside>
         </div>
         <aside class="closing">
           Ein Zuhause wird aus vielen Tagen. Und aus vielen Menschen, die es mittragen.
@@ -862,7 +1362,7 @@
     <div class="wrap footer-grid">
       <div>
         <div class="footer-name">Sonnenhof der Koboldtiere</div>
-        <p>Lebenshof in Heusweiler für Hunde und Katzen mit Handicap, getragen von Katzenstimme grenzenlos e. V.</p>
+        <p>Lebenshof in Heusweiler für 5 Hunde, 10 Katzen und seit Mitte 2026 auch Hasen mit Handicap. Getragen von Katzenstimme grenzenlos e. V.</p>
       </div>
       <div>
         <strong>Entdecken</strong>
@@ -870,6 +1370,7 @@
           <li><a href="#geschichte">Die Geschichte</a></li>
           <li><a href="#familie">Familienverbund</a></li>
           <li><a href="#tiere">Die Koboldtiere</a></li>
+          <li><a href="#patenschaft">Patenschaft</a></li>
         </ul>
       </div>
       <div>
@@ -878,9 +1379,18 @@
           <li><a href="#helfen">Spendenkonto</a></li>
           <li><a href="https://www.paypal.me/katzenstimme" target="_blank" rel="noopener noreferrer">PayPal</a></li>
           <li><a href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="mailto:post@katzenstimme-grenzenlos.de">Kontakt</a></li>
         </ul>
       </div>
     </div>
+
+    <div class="wrap">
+      <p class="footer-credit">
+        <strong>Diese Website wurde gespendet im Rahmen von <a href="https://kostenlose-tierschutz-website.de" target="_blank" rel="noopener noreferrer">kostenlose-tierschutz-website.de</a>.</strong><br>
+        Gestaltung, Inhaltsredaktion und technische Umsetzung: <a href="https://andersen-webworks.de" target="_blank" rel="noopener noreferrer">Andersen Webworks</a> und <a href="https://annemarie-andersen.de" target="_blank" rel="noopener noreferrer">Annemarie Andersen</a>.
+      </p>
+    </div>
+
     <div class="wrap footer-bottom">
       <span>Katzenstimme grenzenlos e. V. · Vereinsregister VR 5799 · Amtsgericht Saarbrücken</span>
       <span><a href="sonnenhof-impressum.html">Impressum</a> · <a href="sonnenhof-datenschutz.html">Datenschutz</a></span>
@@ -906,6 +1416,72 @@
         copyStatus.textContent = 'Bitte die IBAN direkt aus dem Spendenkonto übernehmen.';
       }
     });
+
+    // Suggested amount picker
+    const amountButtons = document.querySelectorAll('.amount-button');
+    const customInput = document.querySelector('#custom-amount');
+    const paypalLink = document.querySelector('#paypal-link');
+    const impactText = document.querySelector('#impact-text');
+    const impactMap = {
+      '10': 'Mit 10 € deckst du zum Beispiel eine Futterration für eine Katze mit Handicap.',
+      '25': 'Mit 25 € finanzierst du zum Beispiel eine Woche Spezialfutter für ein Tier mit Handicap.',
+      '50': 'Mit 50 € hast du zum Beispiel eine Tierarzt-Basisuntersuchung mit abgedeckt.',
+      '100': 'Mit 100 € unterstützt du den Hof zum Beispiel bei Rollis, Geschirren oder anderen Hilfsmitteln.'
+    };
+
+    function setPaypalAmount(amount) {
+      const base = 'https://www.paypal.me/katzenstimme';
+      if (amount && Number(amount) > 0) {
+        paypalLink.href = base + '/' + amount;
+      } else {
+        paypalLink.href = base;
+      }
+    }
+
+    amountButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        amountButtons.forEach((b) => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+        const amount = btn.dataset.amount;
+        customInput.value = '';
+        setPaypalAmount(amount);
+        impactText.textContent = impactMap[amount] || 'Jeder Beitrag hilft direkt auf dem Hof.';
+      });
+    });
+
+    customInput.addEventListener('input', () => {
+      amountButtons.forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      const v = customInput.value.replace(/[^0-9]/g, '');
+      customInput.value = v;
+      setPaypalAmount(v);
+      if (v) {
+        const n = Number(v);
+        if (n <= 10) {
+          impactText.textContent = impactMap['10'];
+        } else if (n <= 25) {
+          impactText.textContent = impactMap['25'];
+        } else if (n <= 50) {
+          impactText.textContent = impactMap['50'];
+        } else {
+          impactText.textContent = impactMap['100'];
+        }
+      } else {
+        impactText.textContent = 'Wähle einen Betrag oder gib einen eigenen ein.';
+      }
+    });
+
+    // Sticky-Hilfe-Button erst nach Hero einblenden
+    const sticky = document.querySelector('#sticky-help');
+    const heroSection = document.querySelector('.hero');
+    function updateSticky() {
+      const rect = heroSection.getBoundingClientRect();
+      const belowHero = rect.bottom < 80;
+      sticky.classList.toggle('is-visible', belowHero);
+      sticky.setAttribute('aria-hidden', belowHero ? 'false' : 'true');
+    }
+    window.addEventListener('scroll', updateSticky, { passive: true });
+    window.addEventListener('resize', updateSticky);
+    updateSticky();
   </script>
 </body>
 </html>
