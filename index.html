@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Sonnenhof der Koboldtiere in Heusweiler: Lebenshof für 5 Hunde, 10 Katzen und seit Mitte 2026 auch Hasen mit Handicap. Getragen von Katzenstimme grenzenlos e. V.">
   <meta name="theme-color" content="#173f32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta name="robots" content="index, follow">
   <title>Sonnenhof der Koboldtiere | Ein Zuhause, das bleibt</title>
   <script type="application/ld+json">
@@ -91,7 +92,7 @@
       min-width: 0;
       text-decoration: none;
     }
-    .brand-mark { width: 46px; height: 46px; flex: 0 0 46px; }
+    .brand-mark { width: 48px; height: 48px; flex: 0 0 48px; }
     .brand-name {
       display: grid;
       color: #fff;
@@ -124,6 +125,7 @@
     }
     .menu-button {
       display: none;
+      margin-left: auto;
       min-width: 44px;
       min-height: 44px;
       border: 1px solid rgba(255,255,255,.45);
@@ -894,6 +896,8 @@
       font-family: Georgia, "Times New Roman", serif;
       font-size: 26px;
     }
+    .footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .footer-brand-mark { width: 42px; height: 42px; flex: 0 0 42px; }
     footer p,
     footer li { color: #c5d8c8; font-size: 14px; }
     footer ul {
@@ -965,7 +969,10 @@
     @media (max-width: 620px) {
       .wrap { width: min(calc(100% - 30px), var(--content)); }
       section { padding: 76px 0; }
-      .brand-name { font-size: 17px; }
+      .brand { gap: 9px; }
+      .brand-mark { width: 42px; height: 42px; flex-basis: 42px; }
+      .brand-name { font-size: 16px; }
+      .brand-name small { font-size: 11px; }
       .hero { min-height: 700px; }
       .hero-inner { padding: 83px 0 66px; }
       .hero-overlay { background: linear-gradient(90deg, rgba(7,31,25,.91), rgba(7,31,25,.42)); }
@@ -999,29 +1006,7 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#start" aria-label="Sonnenhof der Koboldtiere, Startseite">
-        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
-          <defs>
-            <linearGradient id="kobold-gradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#4d8056"/>
-              <stop offset="100%" stop-color="#173f32"/>
-            </linearGradient>
-          </defs>
-          <circle cx="32" cy="32" r="29" fill="url(#kobold-gradient)"/>
-          <circle cx="32" cy="32" r="29" fill="none" stroke="#f5c95b" stroke-width="2"/>
-          <!-- Hund (links) -->
-          <path d="M20 41 Q18 33 22 30 Q24 28 25 31 L26 33 Q27 30 28 32 Q29 34 27 36 L26 38 Q28 39 28 41 Q28 44 25 44 Q22 44 22 41 Z" fill="#fffdf8"/>
-          <circle cx="23" cy="34" r="0.9" fill="#0d2c24"/>
-          <!-- Katze (rechts) -->
-          <path d="M37 41 Q36 33 39 30 L41 28 L42 30 L44 28 L46 30 Q49 33 48 41 Q48 44 45 44 L40 44 Q37 44 37 41 Z" fill="#fffdf8"/>
-          <path d="M41 28 L40 30 L39 30 L41 28 Z M44 28 L45 30 L46 30 L44 28 Z" fill="#fffdf8"/>
-          <circle cx="41" cy="34" r="0.9" fill="#0d2c24"/>
-          <circle cx="45" cy="34" r="0.9" fill="#0d2c24"/>
-          <path d="M41.5 37 Q42.5 37.5 43.5 37" stroke="#d97861" stroke-width="0.7" fill="none" stroke-linecap="round"/>
-          <!-- Händchen / Verbindung -->
-          <path d="M28 41 Q31 39 32 41 Q33 39 36 41" stroke="#f5c95b" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-          <!-- Sonnenkranz -->
-          <circle cx="32" cy="14" r="2" fill="#f5c95b"/>
-        </svg>
+        <img class="brand-mark" src="assets/img/sonnenhof-mark.svg" alt="">
         <span class="brand-name">Sonnenhof der Koboldtiere<small>Lebenshof in Heusweiler</small></span>
       </a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="hauptnavigation">Menü</button>
@@ -1353,7 +1338,10 @@
   <footer>
     <div class="wrap footer-grid">
       <div>
-        <div class="footer-name">Sonnenhof der Koboldtiere</div>
+        <div class="footer-brand">
+          <img class="footer-brand-mark" src="assets/img/sonnenhof-mark.svg" alt="">
+          <div class="footer-name">Sonnenhof der Koboldtiere</div>
+        </div>
         <p>Lebenshof in Heusweiler für 5 Hunde, 10 Katzen und seit Mitte 2026 auch Hasen mit Handicap. Getragen von Katzenstimme grenzenlos e. V.</p>
       </div>
       <div>
