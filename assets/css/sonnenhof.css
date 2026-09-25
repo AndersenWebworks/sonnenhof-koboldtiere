@@ -526,6 +526,10 @@ p { margin: 0 0 1rem; }
   display: inline-block;
 }
 
+@media (max-width: 360px) {
+  .section h1 { font-size: 1.5rem; }
+}
+
 /* ----- Inline lists with icon dot ----- */
 .dot-list { list-style: none; padding-left: 0; }
 .dot-list li {
