@@ -5,11 +5,11 @@
 ------------------------------------------------------------------ */
 
 :root {
-  --sonnenhof-green-900: #21392a;
-  --sonnenhof-green-700: #325b3f;
-  --sonnenhof-green-500: #4a7c59;
-  --sonnenhof-green-300: #88b09c;
-  --sonnenhof-green-100: #d8e6dc;
+  --sonnenhof-green-900: #234332;
+  --sonnenhof-green-700: #3a6847;
+  --sonnenhof-green-500: #5c8c69;
+  --sonnenhof-green-300: #9abda5;
+  --sonnenhof-green-100: #e3eee5;
   --sonnenhof-sand-100: #f7f1e3;
   --sonnenhof-sand-300: #ead7b1;
   --sonnenhof-sand-500: #c8a96a;
@@ -17,8 +17,8 @@
   --sonnenhof-cream: #faf6ec;
   --sonnenhof-ink: #1f2b22;
   --sonnenhof-ink-soft: #46594b;
-  --sonnenhof-shadow: 0 8px 24px rgba(33, 57, 42, 0.08);
-  --sonnenhof-shadow-strong: 0 16px 40px rgba(33, 57, 42, 0.14);
+  --sonnenhof-shadow: 0 8px 24px rgba(35, 67, 50, 0.08);
+  --sonnenhof-shadow-strong: 0 16px 40px rgba(35, 67, 50, 0.14);
   --sonnenhof-radius: 18px;
   --sonnenhof-radius-sm: 10px;
 }
