@@ -1,23 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 190" role="img" aria-labelledby="title desc">
   <title id="title">Sonnenhof der Koboldtiere</title>
   <desc id="desc">Bildmarke mit Hund, Katze und Hase vor der Sonne, über dem Schriftzug Sonnenhof der Koboldtiere.</desc>
-  <g transform="translate(70 3) scale(1)">
-    <circle cx="40" cy="40" r="37" fill="#173f32"/>
-    <circle cx="40" cy="40" r="36" fill="none" stroke="#f5c95b" stroke-width="2"/>
-    <circle cx="40" cy="20" r="8" fill="#f5c95b"/>
-    <path d="M13 35c-4-4-5-8-2-10 4-2 7 3 8 8 2-3 4-4 7-2v13c0 7-4 11-9 11-6 0-9-4-9-9 0-4 2-8 5-11z" fill="#fffdf8"/>
-    <circle cx="14.5" cy="42" r="1.2" fill="#173f32"/>
-    <circle cx="21.5" cy="42" r="1.2" fill="#173f32"/>
-    <path d="M16.5 46c.5-.8 2.5-.8 3 0L18 47.5zM18 47.5v2m0 0c-1 1-1.7 1-2.5 0m2.5 0c1 1 1.7 1 2.5 0" fill="none" stroke="#173f32" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="m34 38-1-9 6 5h2l6-5-1 10c3 4 3 10 0 14-4 5-11 5-15 0-3-4-2-11 3-15z" fill="#fffdf8"/>
-    <circle cx="35.5" cy="43" r="1.2" fill="#173f32"/>
-    <circle cx="44.5" cy="43" r="1.2" fill="#173f32"/>
-    <path d="m39 46 1 1 1-1m-1 1v1.5m0 0c-.8.8-1.4.8-2.1 0m2.1 0c.8.8 1.4.8 2.1 0" fill="none" stroke="#a85f3e" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M59 38c-3-10-3-20 0-21 4-1 5 10 5 19 2-13 5-19 7-17 3 1 0 11-3 16 4 3 4 10 1 14-4 5-10 5-14 1-4-4-4-12 4-16z" fill="#fffdf8"/>
-    <circle cx="58.5" cy="44" r="1.2" fill="#173f32"/>
-    <circle cx="66" cy="44" r="1.2" fill="#173f32"/>
-    <path d="m61 47 1 1 1-1m-1 1v1.5m0 0c-.8.8-1.4.8-2.1 0m2.1 0c.8.8 1.4.8 2.1 0" fill="none" stroke="#173f32" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round"/>
-  </g>
+  <image href="sonnenhof-mark.svg" x="73" y="3" width="74" height="74"/>
   <text x="110" y="118" text-anchor="middle" fill="#315c43" font-family="Georgia, 'Times New Roman', serif" font-size="20">Sonnenhof der</text>
   <text x="110" y="153" text-anchor="middle" fill="#173f32" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700">Koboldtiere</text>
 </svg>
