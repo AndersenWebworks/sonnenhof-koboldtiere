@@ -1024,7 +1024,7 @@
   <main id="inhalt">
     <section class="hero" id="start" aria-labelledby="hero-title">
       <div class="hero-image">
-        <img src="assets/img/sonnenhof/seelenheil-rollstuhl-im-schnee.jpg" alt="Ein Hund des Sonnenhofs sitzt mit seinem Rollstuhl im Schnee.">
+        <img src="assets/img/sonnenhof/seelenheil-rollstuhl-im-schnee.jpg" alt="Ein Hund sitzt mit einem Rollstuhl im Schnee.">
       </div>
       <div class="hero-overlay"></div>
       <div class="wrap hero-inner">
@@ -1075,8 +1075,8 @@
           </blockquote>
         </div>
         <figure class="story-figure">
-          <img src="assets/img/sonnenhof/seelenheil-hund-im-schnee.jpg" alt="Ein Hund des Sonnenhofs läuft im Schneefall auf die Kamera zu.">
-          <figcaption>Ein Leben mit Handicap ist kein Leben auf Abstand. Foto: Seelenheil Photographie</figcaption>
+          <img src="assets/img/sonnenhof/seelenheil-hund-im-schnee.jpg" alt="Ein Hund läuft im Schneefall auf die Kamera zu.">
+          <figcaption>Foto: Seelenheil Photographie</figcaption>
         </figure>
       </div>
     </section>
@@ -1210,7 +1210,7 @@
             <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
 
             <p class="tax-note">
-              <strong>Gemeinnützig anerkannt:</strong> Katzenstimme grenzenlos e. V. ist nach §52 Abgabenordnung als gemeinnützig anerkannt. Auf Wunsch stellen wir eine Spendenbescheinigung aus. Schreib uns dazu kurz an <a href="mailto:post@katzenstimme-grenzenlos.de" style="color:var(--pine);font-weight:700;">post@katzenstimme-grenzenlos.de</a>.
+              Fragen zu einer Spende oder Patenschaft? Schreib an <a href="mailto:post@katzenstimme-grenzenlos.de" style="color:var(--pine);font-weight:700;">post@katzenstimme-grenzenlos.de</a>.
             </p>
           </aside>
         </div>
@@ -1221,8 +1221,8 @@
       <div class="wrap">
         <div class="section-heading">
           <div class="section-label">Patenschaft</div>
-          <h2>Eine kleine Summe. Eine große Wirkung jeden Monat.</h2>
-          <p class="intro">Patinnen und Paten stehen nicht nur finanziell an der Seite eines Tieres oder des ganzen Hofes. Sie schenken Verlässlichkeit – genau das, was ein Lebenshof braucht.</p>
+          <h2>Monatliche Patenschaften machen laufende Hilfe planbarer.</h2>
+          <p class="intro">Mit einem regelmäßigen Beitrag unterstützt du die Versorgung eines Tieres oder des ganzen Hofes. Welche Patenschaft zu dir passt, kannst du direkt mit dem Verein besprechen.</p>
         </div>
 
         <div class="patenschaft-grid">
@@ -1257,14 +1257,14 @@
             </div>
             <div>
               <h3>Tier-Patenschaft</h3>
-              <p>Du begleitest ein bestimmtes Tier – mit Foto-Updates und persönlicher Verbindung. Die Stufe ist möglich, wenn du magst.</p>
+              <p>Du fragst eine Patenschaft für ein bestimmtes Tier an. Welche Einblicke möglich sind, klärst du direkt mit dem Verein.</p>
             </div>
-            <a class="pate-button" href="mailto:post@katzenstimme-grenzenlos.de?subject=Tier-Patenschaft%20(25%E2%82%AC)&body=Hallo%20Lara%2C%20ich%20m%C3%B6chte%20gerne%20eine%20Tier-Patenschaft%20%C3%BCbernehmen%20und%20bitte%20um%20das%20Patenschaftsformular.">Patenschaft anfragen</a>
+            <a class="pate-button" href="mailto:post@katzenstimme-grenzenlos.de?subject=Tier-Patenschaft%20(25%E2%82%AC)&body=Hallo%20Lara%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Tier-Patenschaft.%20Kannst%20du%20mir%20bitte%20Beitrag%20und%20Ablauf%20erl%C3%A4utern%3F">Patenschaft anfragen</a>
           </article>
         </div>
 
         <div class="patenschaft-foot">
-          <strong>So läuft eine Patenschaft:</strong> Schreib uns eine kurze Mail mit dem Betreff „Patenschaft". Wir schicken dir das Patenschaftsformular als PDF, das du unterschrieben zurückmailst oder fotografierst – ganz wie es dir passt. Auf Wunsch melden wir uns regelmäßig mit kleinen Updates aus dem Hof.
+          <strong>Der nächste Schritt:</strong> Schreib dem Verein mit dem Betreff „Patenschaft". Beitrag, Ablauf und mögliche Einblicke werden direkt abgestimmt.
         </div>
       </div>
     </section>
@@ -1384,6 +1384,12 @@
     menuButton.addEventListener('click', () => {
       const isOpen = navigation.classList.toggle('is-open');
       menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+    navigation.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navigation.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
     });
 
     const copyButton = document.querySelector('[data-copy]');
