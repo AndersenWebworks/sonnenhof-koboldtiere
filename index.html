@@ -178,28 +178,25 @@
       align-items: end;
       overflow: hidden;
       color: #fff;
-      background: var(--moss);
+      background: var(--pine-dark);
     }
-    .hero-image {
-      position: absolute;
-      top: 50%;
-      right: clamp(24px, 7vw, 100px);
-      z-index: 0;
-      width: clamp(250px, 28vw, 360px);
-      transform: translateY(-50%);
-    }
+    .hero-image,
+    .hero-overlay { position: absolute; inset: 0; }
     .hero-image img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: 63% 48%;
     }
-    .hero-overlay { position: absolute; inset: 0; }
     .hero-overlay {
-      background: linear-gradient(90deg, rgba(18, 59, 45, .18), transparent 72%);
+      background:
+        linear-gradient(90deg, rgba(12, 43, 33, .9) 0%, rgba(12, 43, 33, .64) 43%, rgba(12, 43, 33, .17) 100%),
+        linear-gradient(0deg, rgba(12, 43, 33, .45), transparent 48%);
     }
     .hero-inner {
       position: relative;
       z-index: 1;
-      padding: 112px min(32vw, 410px) 78px 0;
+      padding: 112px 0 78px;
     }
     .eyebrow,
     .section-label {
@@ -256,6 +253,16 @@
       background: rgba(18, 59, 45, .2);
     }
     .button-outline:hover { background: rgba(18, 59, 45, .54); }
+    .photo-credit {
+      position: absolute;
+      right: 18px;
+      bottom: 14px;
+      z-index: 1;
+      padding: 5px 8px;
+      color: #fff;
+      background: rgba(12, 43, 33, .7);
+      font-size: 11px;
+    }
     .quick-facts {
       color: var(--pine-dark);
       background: var(--sun);
@@ -325,7 +332,7 @@
     }
     .story-grid {
       display: grid;
-      grid-template-columns: 1fr .72fr;
+      grid-template-columns: 1fr .86fr;
       gap: 82px;
       align-items: center;
     }
@@ -349,14 +356,28 @@
       font-size: 13px;
       font-style: normal;
     }
-    .story-mark {
-      display: grid;
-      min-height: 420px;
-      place-items: center;
+    .story-figure {
+      position: relative;
+      min-height: 570px;
+      margin: 0;
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
-    .story-mark img {
-      width: min(300px, 72%);
-      height: auto;
+    .story-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 48%;
+    }
+    .story-figure figcaption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 13px 17px;
+      color: #fff;
+      background: rgba(18, 59, 45, .86);
+      font-size: 12px;
     }
 
     .family {
@@ -451,7 +472,7 @@
       margin: 12px 0 0;
       color: var(--muted);
     }
-    .animal-note figure { margin: 0 0 20px; }
+    .animal-note figure { margin: 0 0 20px; overflow: hidden; }
     .animal-note figure img {
       display: block;
       width: 100%;
@@ -459,6 +480,8 @@
       object-fit: cover;
       object-position: center;
     }
+    .animal-note .njuvra-photo { object-position: center 18%; }
+    .animal-note .murron-photo { object-position: center 82%; transform: scale(1.55); }
     .animal-note figcaption {
       margin-top: 8px;
       color: var(--muted);
@@ -906,7 +929,6 @@
     }
 
     @media (max-width: 1260px) {
-      .hero-image { display: none; }
       .hero-inner { padding-right: 0; }
     }
     @media (max-width: 1080px) {
@@ -935,7 +957,7 @@
       .animal-layout,
       .support-grid,
       .follow-grid { grid-template-columns: 1fr; gap: 40px; }
-      .story-mark { min-height: 250px; }
+      .story-figure { min-height: 450px; }
       .family-top { display: block; }
       .family-top .intro { margin-top: 18px; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -950,7 +972,12 @@
       .brand-name small { font-size: 11px; }
       .hero { min-height: 700px; }
       .hero-inner { padding: 83px 0 66px; }
-      .hero-overlay { background: transparent; }
+      .hero-image img { object-position: 68% 50%; }
+      .hero-overlay {
+        background:
+          linear-gradient(90deg, rgba(12, 43, 33, .84), rgba(12, 43, 33, .38)),
+          linear-gradient(0deg, rgba(12, 43, 33, .55), transparent 72%);
+      }
       .quick-facts-grid,
       .family-grid,
       .animal-notes,
@@ -998,7 +1025,7 @@
   <main id="inhalt">
     <section class="hero" id="start" aria-labelledby="hero-title">
       <div class="hero-image">
-        <img src="assets/img/sonnenhof-logo.png" alt="">
+        <img src="assets/img/sonnenhof/seelenheil-rollstuhl-im-schnee.jpg" alt="Ein Hund sitzt mit einem Rollstuhl im Schnee." fetchpriority="high">
       </div>
       <div class="hero-overlay"></div>
       <div class="wrap hero-inner">
@@ -1010,6 +1037,7 @@
           <a class="button button-outline" href="#geschichte">Die Geschichte kennenlernen</a>
         </div>
       </div>
+      <div class="photo-credit">Foto: Seelenheil Photographie</div>
     </section>
 
     <aside class="quick-facts" aria-label="Der Sonnenhof auf einen Blick">
@@ -1047,9 +1075,10 @@
             <cite>Lara Sohn</cite>
           </blockquote>
         </div>
-        <div class="story-mark" aria-hidden="true">
-          <img src="assets/img/sonnenhof-logo.png" alt="">
-        </div>
+        <figure class="story-figure">
+          <img src="assets/img/sonnenhof/seelenheil-hund-im-schnee.jpg" alt="Ein Hund steht im Schnee und schaut in die Kamera." loading="lazy">
+          <figcaption>Foto: Seelenheil Photographie</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -1093,11 +1122,13 @@
         <div class="animal-notes">
           <article class="animal-note">
             <span class="animal-kind">Seit 2015 auf dem Hof</span>
+            <figure><img class="njuvra-photo" src="assets/img/sonnenhof/njuvra-portraet.jpg" alt="Njuvra, eine weiß-schwarz gezeichnete Katze." loading="lazy"></figure>
             <h3>Njuvra</h3>
             <p>Geboren am 14. Februar 2015, seit Oktober 2015 auf dem Hof. Ein Unfall als Kitten hinterließ ein verdrehtes Hinterbein. Njuvra stammt aus Kroatien.</p>
           </article>
           <article class="animal-note">
             <span class="animal-kind">Seit 2017 auf dem Hof</span>
+            <figure><img class="murron-photo" src="assets/img/sonnenhof/murron-am-meer.jpg" alt="Murron im Rollstuhl am Meer." loading="lazy"></figure>
             <h3>Murron</h3>
             <p>Geboren am 13. Juni 2017, seit Juli 2017 auf dem Hof. Murron wurde als Kitten querschnittsgelähmt ausgesetzt. Heute ist sie die Oberbossin des Vereins und liebt Abenteuer mit ihrem Hunderudel und Urlaube.</p>
           </article>
