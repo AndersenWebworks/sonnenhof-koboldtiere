@@ -1,7 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
-  <circle cx="40" cy="40" r="37" fill="#173f32"/>
-  <circle cx="40" cy="38" r="20" fill="#f5c95b"/>
-  <path d="M12 42c-4-3-6-7-4-10 2-3 5-1 8 4 1-5 4-7 7-5l3 5c2 4 2 10 0 15-2 4-6 6-11 5-6-1-9-5-9-10 0-2 2-4 6-4z" fill="#fffdf8"/>
-  <path d="m32 40-1-10c0-1 1-1.5 2-.7l6 5c1-.2 2-.2 3 0l6-5c1-.8 2-.3 2 .7l-1 10c3 3 3 7 2 12-2 5-6 7-11 7s-9-3-10-8c-1-4 0-8 2-11z" fill="#fffdf8" transform="translate(6 0) scale(.85 1)"/>
-  <path d="M58 41c-2-7-2-17 1-18 3-1 4 7 4 17 1-12 4-17 7-15 2 2 0 10-3 15 4 3 5 7 3 13-2 5-7 8-12 7-3-1-5-5-5-9 0-5 2-8 5-10z" fill="#fffdf8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="title">
+  <title id="title">Sonnenhof der Koboldtiere</title>
+  <circle cx="40" cy="40" r="38" fill="#073b29"/>
+  <circle cx="40" cy="32" r="24" fill="#f4b834"/>
+  <g fill="#fff9eb">
+    <path d="M8 37c-3-7-2-14 2-16 4-2 7 3 8 9 3-2 7-2 10 0 1-5 4-9 7-7 4 2 3 8 0 14 2 3 3 7 3 11 0 10-7 17-17 17S7 58 7 49c0-5 0-9 1-12Z"/>
+    <path d="m29 39 2-15 9 7 9-7 2 15c3 4 4 9 2 15-2 7-7 11-13 11s-11-4-13-11c-2-6-1-11 2-15Z"/>
+    <path d="M56 38c-4-12-3-24 1-25 5-1 7 13 7 25 2-15 6-23 10-21 4 2 1 14-3 23 4 3 5 7 5 12 0 9-6 17-14 17s-14-8-14-17c0-5 3-10 8-14Z"/>
+  </g>
+  <g fill="#073b29">
+    <circle cx="14" cy="45" r="1.8"/><circle cx="24" cy="45" r="1.8"/>
+    <path d="M17 50c1-2 4-2 5 0l-2.5 2Z"/><path d="M19.5 52v4m0 0c-2 2-4 2-5 0m5 0c2 2 4 2 5 0" fill="none" stroke="#073b29" stroke-linecap="round" stroke-width="1.5"/>
+    <circle cx="36" cy="46" r="1.8"/><circle cx="44" cy="46" r="1.8"/>
+    <path d="m38 51 2 1.8 2-1.8-2-1.2Z"/><path d="M40 52.5v3m0 0c-2 1.5-3.5 1.5-4.5 0m4.5 0c2 1.5 3.5 1.5 4.5 0" fill="none" stroke="#073b29" stroke-linecap="round" stroke-width="1.4"/>
+    <circle cx="60" cy="46" r="1.8"/><circle cx="70" cy="46" r="1.8"/>
+    <path d="m63 51 2 1.8 2-1.8-2-1.2Z"/><path d="M65 52.5v3m0 0c-2 1.5-3.5 1.5-4.5 0m4.5 0c2 1.5 3.5 1.5 4.5 0" fill="none" stroke="#073b29" stroke-linecap="round" stroke-width="1.4"/>
+  </g>
 </svg>
