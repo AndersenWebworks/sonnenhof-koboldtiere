@@ -178,25 +178,28 @@
       align-items: end;
       overflow: hidden;
       color: #fff;
-      background: var(--pine-dark);
+      background: var(--moss);
     }
-    .hero-image,
-    .hero-overlay { position: absolute; inset: 0; }
+    .hero-image {
+      position: absolute;
+      top: 50%;
+      right: clamp(24px, 7vw, 100px);
+      z-index: 0;
+      width: clamp(250px, 28vw, 360px);
+      transform: translateY(-50%);
+    }
     .hero-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 63% 48%;
+      height: auto;
     }
+    .hero-overlay { position: absolute; inset: 0; }
     .hero-overlay {
-      background:
-        linear-gradient(90deg, rgba(12, 43, 33, .9) 0%, rgba(12, 43, 33, .64) 43%, rgba(12, 43, 33, .17) 100%),
-        linear-gradient(0deg, rgba(12, 43, 33, .45), transparent 48%);
+      background: linear-gradient(90deg, rgba(18, 59, 45, .18), transparent 72%);
     }
     .hero-inner {
       position: relative;
       z-index: 1;
-      padding: 112px 0 78px;
+      padding: 112px min(32vw, 410px) 78px 0;
     }
     .eyebrow,
     .section-label {
@@ -253,17 +256,6 @@
       background: rgba(18, 59, 45, .2);
     }
     .button-outline:hover { background: rgba(18, 59, 45, .54); }
-    .photo-credit {
-      position: absolute;
-      right: 18px;
-      bottom: 14px;
-      z-index: 1;
-      padding: 5px 8px;
-      color: #fff;
-      background: rgba(12, 43, 33, .65);
-      font-size: 11px;
-    }
-
     .quick-facts {
       color: var(--pine-dark);
       background: var(--sun);
@@ -333,7 +325,7 @@
     }
     .story-grid {
       display: grid;
-      grid-template-columns: 1fr .86fr;
+      grid-template-columns: 1fr .72fr;
       gap: 82px;
       align-items: center;
     }
@@ -357,28 +349,14 @@
       font-size: 13px;
       font-style: normal;
     }
-    .story-figure {
-      position: relative;
-      min-height: 570px;
-      margin: 0;
-      overflow: hidden;
-      box-shadow: var(--shadow);
+    .story-mark {
+      display: grid;
+      min-height: 420px;
+      place-items: center;
     }
-    .story-figure img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 48%;
-    }
-    .story-figure figcaption {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      padding: 13px 17px;
-      color: #fff;
-      background: rgba(18, 59, 45, .86);
-      font-size: 12px;
+    .story-mark img {
+      width: min(300px, 72%);
+      height: auto;
     }
 
     .family {
@@ -674,7 +652,8 @@
     .patenschaft .intro { color: #e0ebdd; }
     .patenschaft-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: minmax(0, 540px);
+      justify-content: center;
       gap: 18px;
       margin-top: 40px;
     }
@@ -685,10 +664,6 @@
       display: grid;
       grid-template-rows: auto 1fr auto;
       gap: 14px;
-    }
-    .pate-card.is-featured {
-      border-color: var(--sun);
-      background: rgba(245, 201, 91, .08);
     }
     .pate-amount {
       color: var(--sun);
@@ -739,11 +714,6 @@
       transition: background .15s ease;
     }
     .pate-button:hover { background: rgba(255,255,255,.12); }
-    .pate-card.is-featured .pate-button {
-      background: var(--sun);
-      border-color: var(--sun);
-      color: var(--pine-dark);
-    }
     .patenschaft-foot {
       margin: 28px 0 0;
       padding: 18px 22px;
@@ -935,6 +905,10 @@
       font-size: 12px;
     }
 
+    @media (max-width: 1260px) {
+      .hero-image { display: none; }
+      .hero-inner { padding-right: 0; }
+    }
     @media (max-width: 1080px) {
       .quick-facts-grid { grid-template-columns: repeat(2, 1fr); }
       .quick-fact { border-right: 0; border-bottom: 1px solid rgba(23,63,50,.2); }
@@ -961,7 +935,7 @@
       .animal-layout,
       .support-grid,
       .follow-grid { grid-template-columns: 1fr; gap: 40px; }
-      .story-figure { min-height: 450px; }
+      .story-mark { min-height: 250px; }
       .family-top { display: block; }
       .family-top .intro { margin-top: 18px; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -976,7 +950,7 @@
       .brand-name small { font-size: 11px; }
       .hero { min-height: 700px; }
       .hero-inner { padding: 83px 0 66px; }
-      .hero-overlay { background: linear-gradient(90deg, rgba(12,43,33,.91), rgba(12,43,33,.42)); }
+      .hero-overlay { background: transparent; }
       .quick-facts-grid,
       .family-grid,
       .animal-notes,
@@ -1024,7 +998,7 @@
   <main id="inhalt">
     <section class="hero" id="start" aria-labelledby="hero-title">
       <div class="hero-image">
-        <img src="assets/img/sonnenhof/seelenheil-rollstuhl-im-schnee.jpg" alt="Ein Hund sitzt mit einem Rollstuhl im Schnee.">
+        <img src="assets/img/sonnenhof-mark.svg" alt="">
       </div>
       <div class="hero-overlay"></div>
       <div class="wrap hero-inner">
@@ -1036,7 +1010,6 @@
           <a class="button button-outline" href="#geschichte">Die Geschichte kennenlernen</a>
         </div>
       </div>
-      <div class="photo-credit">Foto: Seelenheil Photographie</div>
     </section>
 
     <aside class="quick-facts" aria-label="Der Sonnenhof auf einen Blick">
@@ -1074,10 +1047,9 @@
             <cite>Lara Sohn</cite>
           </blockquote>
         </div>
-        <figure class="story-figure">
-          <img src="assets/img/sonnenhof/seelenheil-hund-im-schnee.jpg" alt="Ein Hund läuft im Schneefall auf die Kamera zu.">
-          <figcaption>Foto: Seelenheil Photographie</figcaption>
-        </figure>
+        <div class="story-mark" aria-hidden="true">
+          <img src="assets/img/sonnenhof-mark.svg" alt="">
+        </div>
       </div>
     </section>
 
@@ -1228,38 +1200,14 @@
         <div class="patenschaft-grid">
           <article class="pate-card">
             <div>
-              <div class="pate-amount">5&nbsp;€<small>im Monat</small></div>
-              <span class="pate-tag" style="background:var(--leaf-text);color:#fff;">Lebenshof</span>
+              <div class="pate-amount">Ab 5&nbsp;€<small>im Monat</small></div>
+              <span class="pate-tag" style="background:var(--leaf-text);color:#fff;">Patenschaft</span>
             </div>
             <div>
-              <h3>Lebenshof-Patenschaft</h3>
-              <p>Du unterstützt den gesamten Hof – Futter, Tierarzt und alles, was täglich gebraucht wird. So bleibt der Alltag planbar.</p>
+              <h3>Regelmäßig unterstützen</h3>
+              <p>Mit einem regelmäßigen Beitrag hilfst du, die Versorgung des Hofes mitzuplanen. Welche Patenschaft zu dir passt, besprichst du direkt mit dem Verein.</p>
             </div>
-            <a class="pate-button" href="mailto:post@katzenstimme-grenzenlos.de?subject=Patenschaft%20Lebenshof%20(5%E2%82%AC)&body=Hallo%20Lara%2C%20ich%20m%C3%B6chte%20gerne%20eine%20Lebenshof-Patenschaft%20%C3%BCbernehmen.">Patenschaft anfragen</a>
-          </article>
-
-          <article class="pate-card is-featured">
-            <div>
-              <div class="pate-amount">15&nbsp;€<small>im Monat</small></div>
-              <span class="pate-tag">Lebenshof</span>
-            </div>
-            <div>
-              <h3>Lebenshof-Patenschaft Plus</h3>
-              <p>Du unterstützt die regelmäßige Versorgung des gesamten Hofes mit einem monatlichen Beitrag.</p>
-            </div>
-            <a class="pate-button" href="mailto:post@katzenstimme-grenzenlos.de?subject=Patenschaft%20Lebenshof%20Plus%20(15%E2%82%AC)&body=Hallo%20Lara%2C%20ich%20m%C3%B6chte%20gerne%20eine%20Lebenshof-Patenschaft%20Plus%20%C3%BCbernehmen.">Patenschaft anfragen</a>
-          </article>
-
-          <article class="pate-card">
-            <div>
-              <div class="pate-amount">25&nbsp;€<small>im Monat</small></div>
-              <span class="pate-tag" style="background:var(--coral);color:#fff;">Tier-Pate</span>
-            </div>
-            <div>
-              <h3>Tier-Patenschaft</h3>
-              <p>Du fragst eine Patenschaft für ein bestimmtes Tier an. Welche Einblicke möglich sind, klärst du direkt mit dem Verein.</p>
-            </div>
-            <a class="pate-button" href="mailto:post@katzenstimme-grenzenlos.de?subject=Tier-Patenschaft%20(25%E2%82%AC)&body=Hallo%20Lara%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Tier-Patenschaft.%20Kannst%20du%20mir%20bitte%20Beitrag%20und%20Ablauf%20erl%C3%A4utern%3F">Patenschaft anfragen</a>
+            <a class="pate-button" href="mailto:post@katzenstimme-grenzenlos.de?subject=Patenschaft&body=Hallo%2C%20ich%20m%C3%B6chte%20gerne%20mehr%20%C3%BCber%20eine%20Patenschaft%20erfahren.">Patenschaft anfragen</a>
           </article>
         </div>
 
