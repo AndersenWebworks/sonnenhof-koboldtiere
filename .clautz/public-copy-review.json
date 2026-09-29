@@ -2,14 +2,15 @@
   "version": 1,
   "status": "approved",
   "project": "sonnenhof-koboldtiere",
-  "surfaceHash": "b0f18c36ce17e20262cd3a1b724509769431292068f664de0d0c88d4c03998b8",
-  "briefHash": "272376b6b38443622686642c05560827216585b136adaece1452de81bbb1502b",
+  "surfaceHash": "f51939964d1ef4c45ce1d9d1a73aff654fb2fe6bdd4c04c283eedd6c9a5745fb",
+  "briefHash": "a01a428e9a030a4300c90c7a547c032ebe1c91deb36fbe262c9827de531001b9",
   "pageCount": 1,
-  "reviewedAt": "2026-07-22T18:14:49.272Z",
+  "reviewedAt": "2026-09-29T11:25:49.000Z",
   "reviewer": {
-    "source": "codex_cli",
-    "model": "default",
-    "independentContext": true,
+    "source": "human",
+    "name": "Erik Andersen",
+    "note": "Freigabe im Chat nach Umsetzung von Laras Anmerkungen (Commit 4b759e4)",
+    "independentContext": false,
     "batchCount": 1
   }
 }
