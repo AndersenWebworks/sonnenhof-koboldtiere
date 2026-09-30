@@ -1,19 +1,44 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { execFileSync } = require('node:child_process');
 const { pathToFileURL, fileURLToPath } = require('node:url');
 const { chromium } = require('playwright');
 const { Resvg } = require('@resvg/resvg-js');
 const sharp = require('sharp');
-const { favicon16, pixelTemplate, palette } = require('./build-logo-set.cjs');
+const { favicon16, faviconVariants, selectedVariant, pixelTemplate, palette } = require('./build-logo-set.cjs');
 
 const root = path.resolve(__dirname, '..');
-const out = path.join(__dirname, 'vorschau', 'favicon-v2');
+const out = path.join(__dirname, 'vorschau', 'favicon-v3');
 const pages = ['index.html', 'sonnenhof-impressum.html', 'sonnenhof-datenschutz.html'];
 const svgs = ['sonnenhof-bildmarke.svg', 'sonnenhof-bildmarke-klein.svg',
   'sonnenhof-logo-quer.svg', 'sonnenhof-logo-quer-hell.svg', 'sonnenhof-logo-hoch.svg'];
 const colors = ['#173f32', '#f5c95b', '#fffdf8', 'none'];
 const evidence = { checks: [], pages: [], images: [], screenshots: [] };
+
+async function comparison(filename, items) {
+  const width = 704, rowHeight = 340;
+  const layers = [];
+  for (const [row, item] of items.entries()) {
+    const top = row * rowHeight;
+    const label = new Resvg('<svg xmlns="http://www.w3.org/2000/svg" width="704" height="340">' +
+      '<rect width="704" height="340" fill="#ffffff"/>' +
+      '<text x="24" y="27" font-family="Arial" font-size="18" fill="#173f32">' + item.name + '</text>' +
+      '<text x="24" y="327" font-family="Arial" font-size="14" fill="#173f32">Hell</text>' +
+      '<text x="360" y="327" font-family="Arial" font-size="14" fill="#173f32">Dunkel</text></svg>').render().asPng();
+    layers.push({ input: label, left: 0, top });
+    for (const [column, background] of ['#fffdf8', '#202124'].entries()) {
+      const input = await sharp(item.frame).resize(256, 256, { kernel: 'nearest' })
+        .flatten({ background }).png().toBuffer();
+      layers.push({ input, left: 24 + column * 336, top: top + 40 });
+      const native = await sharp(item.frame).flatten({ background }).png().toBuffer();
+      layers.push({ input: native, left: 296 + column * 336, top: top + 160 });
+    }
+  }
+  await sharp({ create: { width, height: items.length * rowHeight, channels: 4, background: '#ffffff' } })
+    .composite(layers).png().toFile(path.join(out, filename));
+  evidence.screenshots.push(filename);
+}
 
 function pass(check) {
   evidence.checks.push(check);
@@ -64,6 +89,22 @@ async function maskPreview(relative, shape) {
 
 async function main() {
   fs.mkdirSync(out, { recursive: true });
+  const temp = path.join(out, 'tmp');
+  fs.mkdirSync(temp, { recursive: true });
+  // Auch Playwrights Profil, Cache und temporäre Dateien bleiben im Projektordner.
+  process.env.TEMP = process.env.TMP = temp;
+  const protectedFiles = [...pages, 'site.webmanifest', 'apple-touch-icon.png',
+    'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
+    ...fs.readdirSync(path.join(root, 'assets/img/logo')).map(name => 'assets/img/logo/' + name)];
+  for (const relative of protectedFiles) {
+    const before = execFileSync('git', ['show', 'dac893e:' + relative], { cwd: root, windowsHide: true });
+    const current = fs.readFileSync(path.join(root, relative));
+    if (/\.(html|webmanifest|svg)$/.test(relative)) {
+      assert(current.toString('utf8').replace(/\r\n/g, '\n') === before.toString('utf8'),
+        relative + ' muss bis auf Git-Zeilenenden unverändert bleiben');
+    } else assert(current.equals(before), relative + ' muss bytegleich bleiben');
+  }
+  pass('Seitentexte, Manifest und sämtliche Logos unverändert; Apple-Touch- und App-Icons bytegleich zu dac893e');
   const master = await inspectRaster('assets/img/logo/sonnenhof-bildmarke-512.png', 512, 512);
   await inspectRaster('assets/img/logo/sonnenhof-bildmarke-192.png', 192, 192);
   await inspectRaster('assets/img/logo/sonnenhof-bildmarke-96.png', 96, 96);
@@ -113,23 +154,72 @@ async function main() {
     assert.equal(metadata.width, size);
     assert.equal(metadata.height, size);
     const pixels = await sharp(frame).ensureAlpha().raw().toBuffer();
-    const allowed = new Set(Object.values(palette).map(color => color.join(',')));
-    for (let p = 0; p < pixels.length; p += 4) {
-      assert(allowed.has([...pixels.subarray(p, p + 4)].join(',')), size + ' px: Zwischenfarbe oder Teiltransparenz');
+    if (size === 16) {
+      const allowed = new Set(Object.values(palette).map(color => color.join(',')));
+      for (let p = 0; p < pixels.length; p += 4) {
+        assert(allowed.has([...pixels.subarray(p, p + 4)].join(',')), '16 px: unerlaubte Farbe oder Teiltransparenz');
+      }
+      assert.deepEqual(pixels, pixelTemplate(favicon16), '16er ICO entspricht der gewählten Pixelvorlage');
+    } else {
+      const source = fs.readFileSync(path.join(root, 'favicon.svg'), 'utf8');
+      const expected = await sharp(new Resvg(source, { fitTo: { mode: 'width', value: size } }).render().asPng())
+        .ensureAlpha().raw().toBuffer();
+      assert.deepEqual(pixels, expected, size + ' px direkt aus SVG, ohne Quantisierung oder Hochskalierung');
+      const scaled16 = await sharp(frames.get(16)).resize(size, size, { kernel: 'nearest' })
+        .ensureAlpha().raw().toBuffer();
+      assert.notDeepEqual(pixels, scaled16, size + ' px darf kein vergrößertes 16er Raster sein');
+      for (const [x, y] of [[5, 19], [9, 19], [15, 19], [19, 19], [23, 19], [27, 19]]) {
+        const p = (Math.floor(y * size / 32) * size + Math.floor(x * size / 32)) * 4;
+        const eye = [...pixels.subarray(p, p + 3)];
+        assert(eye.every((value, c) => Math.abs(value - palette.g[c]) < 80), size + ' px: dunkles Auge fehlt');
+      }
     }
-    if (size === 16) assert.deepEqual(pixels, pixelTemplate(favicon16), '16er ICO entspricht der Pixelvorlage');
   }
   assert.equal(nextOffset, ico.length, 'Keine ungenutzten ICO-Daten');
-  // Unabhängige Formprüfung: Ohrenlängen und getrennte Köpfe im 16er Raster.
-  assert.equal(favicon16[8].slice(2, 6), 'wwww', 'Hundekrone');
-  assert.equal(favicon16[9][1] + favicon16[11][1] + favicon16[9][6] + favicon16[11][6], 'wwww', 'Hängende Hundeohren');
-  assert.equal(favicon16[10].slice(1, 7), 'wgwwgw', 'Grüne Einschnitte zwischen Kopf und Schlappohren');
-  assert.equal(favicon16[7].slice(8, 11), 'wsw', 'Zwei getrennte Katzenohrspitzen');
-  for (let y = 5; y <= 8; y++) assert.equal(favicon16[y].slice(12, 15), 'wgw', 'Senkrechte Hasenohren');
-  for (let y = 9; y <= 11; y++) assert.equal(favicon16[y][7] + favicon16[y][11], 'gg', 'Getrennte Köpfe');
-  pass('ICO 16/32/48: decodierbar, ganze Pixel, Markenfarben; 16 px eigenes geprüftes Ohrenraster');
-  assert.equal(fs.readFileSync(path.join(root, 'favicon.svg'), 'utf8'),
-    fs.readFileSync(path.join(root, 'assets/img/logo/sonnenhof-bildmarke-klein.svg'), 'utf8'));
+  assert(faviconVariants.length >= 3, 'Mindestens drei eigenständige Varianten');
+  const variants = [];
+  for (const variant of faviconVariants) {
+    const data = pixelTemplate(variant.rows);
+    const eyes = variant.id === 'a' ? [[2, 10], [4, 10], [8, 10], [10, 10], [12, 10], [14, 10]]
+      : [[2, 10], [4, 10], [8, 8], [10, 8], [12, 11], [14, 11]];
+    for (const [x, y] of eyes) assert.equal(variant.rows[y][x], 'g', variant.name + ': sechs Augenpixel');
+    const frame = await sharp(data, { raw: { width: 16, height: 16, channels: 4 } }).png().toBuffer();
+    fs.writeFileSync(path.join(out, 'variante-' + variant.id + '-16.png'), frame);
+    variants.push({ name: variant.name, frame });
+  }
+  await comparison('vergleich-16-varianten.png', variants);
+  // Formmerkmale der gewählten Zeichnung unabhängig vom ICO-Vergleich prüfen.
+  assert.equal(favicon16[8].slice(1, 6), 'gwwws', 'Abgeschrägte Hundekrone vor der Sonne');
+  assert.equal(favicon16[12].slice(1, 6), 'gwwwg', 'Abgeschrägtes Hundekinn');
+  for (let y = 9; y <= 11; y++) assert.equal(favicon16[y][0] + favicon16[y][6], 'ee', 'Abgesetzte Schlappohren');
+  assert.equal(favicon16[5].slice(7, 11), 'wssw', 'Zwei Katzenohrspitzen vor der Sonne');
+  assert.equal(favicon16[6].slice(7, 11), 'wwww', 'Dreiecksohren verbreitern sich nach unten');
+  assert.equal(favicon16[10].slice(7, 11), 'gwww', 'Verjüngtes Katzenkinn');
+  for (let y = 4; y <= 8; y++) assert.equal(favicon16[y].slice(12, 15), 'wgw', 'Lange, getrennte Hasenohren');
+  assert.equal(favicon16[9].slice(12, 15), 'gwg', 'Abgeschrägte Hasenkrone');
+  assert.equal(favicon16[12].slice(11, 16), 'gwww.', 'Verjüngtes Hasenkinn');
+  for (const [animal, eyes, y] of [['Hund', [2, 4], 10], ['Katze', [8, 10], 8], ['Hase', [12, 14], 11]]) {
+    for (const x of eyes) {
+      assert.equal(favicon16[y][x], 'g', animal + ': dunkelgrünes Augenpixel');
+      assert.equal(favicon16[y - 1][x], 'w', animal + ': Gesicht über dem Auge');
+      assert.equal(favicon16[y + 1][x], 'w', animal + ': Gesicht unter dem Auge');
+      assert.equal(favicon16[y][x + 1], 'w', animal + ': Gesicht rechts vom Auge');
+      assert('we'.includes(favicon16[y][x - 1]), animal + ': Gesicht oder Kante links vom Auge');
+    }
+  }
+  pass('ICO 16/32/48: 16 px mit sechs Augenpixeln, runden Köpfen und Ohren; 32/48 exakt aus Vektorquelle');
+  assert.equal(fs.readFileSync(path.join(root, 'favicon.svg'), 'utf8').replace(/\r\n/g, '\n'),
+    execFileSync('git', ['show', 'f2065d7:assets/img/logo/sonnenhof-bildmarke-klein.svg'],
+      { cwd: root, encoding: 'utf8', windowsHide: true }), 'Browser-SVG entspricht der früheren kleinen SVG');
+  evidence.selectedVariant = selectedVariant;
+  evidence.visualReview = {
+    selection: 'B: Die versetzten Gesichter lassen sechs vollständig eingefasste Augenpixel zu. ' +
+      'Der Hund hat einen breiten, abgerundeten Kopf und abgesetzte Schlappohren; ' +
+      'Katze und Hase unterscheiden sich durch kurze Spitzen und lange, getrennte Ohren. ' +
+      'A verliert die äußeren Hasenaugen im Hintergrund; zusätzliche Nasen in C zerlegen die kleinen Gesichter.',
+    svg16: 'Die Vektor-SVG ist in Chromium bei 16 px weicher und weniger deutlich als Pixelraster B. ' +
+      'Sie bleibt für Browser erhalten; 32 und 48 px zeigen die ursprünglichen Augen und Nasen klar.',
+  };
   const manifest = JSON.parse(fs.readFileSync(path.join(root, 'site.webmanifest'), 'utf8'));
   assert.equal(manifest.name, 'Sonnenhof der Koboldtiere');
   assert.equal(manifest.short_name, 'Sonnenhof');
@@ -174,12 +264,13 @@ async function main() {
       context.drawImage(image, 0, 0, 16, 16);
       return Array.from(context.getImageData(0, 0, 16, 16).data);
     }, faviconSource);
-    const svgColors = new Set(Object.values(palette).map(color => color.join(',')));
-    for (let p = 0; p < svgPixels.length; p += 4) {
-      assert(svgColors.has(svgPixels.slice(p, p + 4).join(',')), 'SVG in Chromium bei 16 px ohne Matschkanten');
-    }
+    assert(svgPixels.some((value, i) => i % 4 === 3 && value > 0), 'Browser-SVG darf nicht leer sein');
     svg16Frame = await sharp(Buffer.from(svgPixels), { raw: { width: 16, height: 16, channels: 4 } }).png().toBuffer();
-    pass('SVG in Chromium bei 16 px: nur Markenfarben und binäre Transparenz');
+    await comparison('vergleich-raster-svg-16.png', [
+      { name: 'Gewähltes Pixelraster ' + selectedVariant.toUpperCase() + ' (16 px)', frame: frames.get(16) },
+      { name: 'favicon.svg in Chromium (16 px)', frame: svg16Frame },
+    ]);
+    pass('SVG in Chromium bei echten 16 px gerendert und dem ICO-Raster auf hell/dunkel gegenübergestellt');
     for (const name of [...svgs, '../../../favicon.svg']) {
       const source = fs.readFileSync(path.join(root, 'assets/img/logo', name), 'utf8');
       const svg = await tab.evaluate(source => {
@@ -311,8 +402,9 @@ async function main() {
   }
   for (const [size, frame] of frames) {
     for (const [label, background] of [['hell', '#fffdf8'], ['dunkel', '#202124']]) {
-      const filename = 'favicon-' + size + '-' + label + '-256.png';
-      await sharp(frame).resize(256, 256, { kernel: 'nearest' }).flatten({ background })
+      const zoom = size === 48 ? 288 : 256;
+      const filename = 'favicon-' + size + '-' + label + '-' + zoom + '.png';
+      await sharp(frame).resize(zoom, zoom, { kernel: 'nearest' }).flatten({ background })
         .png().toFile(path.join(out, filename));
       evidence.screenshots.push(filename);
     }
@@ -326,7 +418,7 @@ async function main() {
   await maskPreview('apple-touch-icon.png', 'ios');
   await maskPreview('icon-512-maskable.png', 'kreis');
   await maskPreview('icon-512-maskable.png', 'squircle');
-  pass('Vorschauen: ICO 16/32/48 hell/dunkel in 256 px, SVG auf beiden Tabgründen, iOS und Maskable-Masken');
+  pass('Vorschauen: drei 16er Varianten und Browser-SVG im Vergleich; ICO ganzzahlig vergrößert auf hell/dunkel');
   fs.writeFileSync(path.join(out, 'pruefung.json'), JSON.stringify(evidence, null, 2) + '\n');
   console.log('Ergebnis: ' + evidence.checks.length + ' Prüfgruppen bestanden; ' + evidence.screenshots.length + ' PNG-Vorschauen.');
 }

@@ -12,27 +12,66 @@ let font;
 const green = '#173f32';
 const cream = '#fffdf8';
 const palette = { '.': [0, 0, 0, 0], g: [23, 63, 50, 255],
-  s: [245, 201, 91, 255], w: [255, 253, 248, 255] };
-// Eigenständige 16×16-Zeichnung: links Schlappohren, mittig Spitzen, rechts lange Ohren.
-// Jeder Buchstabe ist genau ein Pixel. Keine Vektorskalierung und keine Zwischenfarben.
-const favicon16 = [
-  '.....gggggg.....',
-  '...gggggggggg...',
-  '..gggggggggggg..',
-  '.gggggssssggggg.',
-  '.ggggssssssgggg.',
-  'gggggssssssgwgwg',
-  'gggggssssssgwgwg',
-  'gggggssswswgwgwg',
-  'ggwwwwgswswgwgwg',
-  'gwwwwwwgwwwgwwwg',
-  'gwgwwgwgwwwgwwwg',
-  'gwgwwgwgwwwgwwwg',
-  '.ggwwggggwgggwg.',
-  '..gggggggggggg..',
-  '...gggggggggg...',
-  '.....gggggg.....',
+  s: [245, 201, 91, 255], w: [255, 253, 248, 255], e: [174, 194, 177, 255] };
+// Je ein Zeichen pro Pixel. Die gedeckte Kantenfarbe trennt Hundeohren vom Gesicht.
+const faviconVariants = [
+  { id: 'a', name: 'A: Runde Köpfe', rows: [
+    '.....gggggg.....',
+    '...gggggggggg...',
+    '..gggggggggggg..',
+    '.gggggssssggggg.',
+    '.ggggssssssgggg.',
+    'gggggssssssgwgwg',
+    'gggggssssssgwgwg',
+    'gggggsswsswgwgwg',
+    'ggwwwggwwwwgwgwg',
+    'ewwwwwewwwwgwwwg',
+    'ewgwgwewgwgggwgg',
+    'ewwwwwewwwwgwwwg',
+    '.gwwwgggwwgggwg.',
+    '..gggggggggggg..',
+    '...gggggggggg...',
+    '.....gggggg.....',
+  ] },
+  { id: 'b', name: 'B: Versetzte Gesichter', rows: [
+    '.....gggggg.....',
+    '...gggggggggg...',
+    '..gggggggggggg..',
+    '.gggggssssggggg.',
+    '.ggggssssssgwgw.',
+    'gggggsswsswgwgwg',
+    'gggggsswwwwgwgwg',
+    'gggggsswwwwwwgwg',
+    'ggwwwsswgwgwwgwg',
+    'ewwwwwewwwwwgwgg',
+    'ewgwgwegwwwewwww',
+    'ewwwwweggggegwgw',
+    '.gwwwgggggggwww.',
+    '..gggggggggggg..',
+    '...gggggggggg...',
+    '.....gggggg.....',
+  ] },
+  { id: 'c', name: 'C: Schnauzen und Ohrkanten', rows: [
+    '.....gggggg.....',
+    '...gggggggggg...',
+    '..gggggggggggg..',
+    '.gggggssssggggg.',
+    '.ggggssssssgwgw.',
+    'gggggsswsswgwgwg',
+    'gggggsswwwwgwgwg',
+    'gggggsswwwwwwgwg',
+    'ggwwwsswgwgwwgwg',
+    'ewwwwwewwgwwgwgg',
+    'ewgwgwegwwwewwww',
+    'ewwgwweggggegwgw',
+    '.gwwwgggggggwgw.',
+    '..gggggggggggg..',
+    '...gggggggggg...',
+    '.....gggggg.....',
+  ] },
 ];
+const selectedVariant = 'b';
+const favicon16 = faviconVariants.find(variant => variant.id === selectedVariant).rows;
 const svgOptions = {
   plugins: [{ name: 'preset-default', params: { overrides: { cleanupIds: false } } }],
 };
@@ -85,24 +124,11 @@ function pixelTemplate(rows) {
 }
 
 async function faviconFrame(small, size) {
-  const gridSize = size === 16 ? 16 : 32;
-  let data;
-  if (size === 16) data = pixelTemplate(favicon16);
-  else {
-    data = await sharp(raster(small, gridSize)).ensureAlpha().raw().toBuffer();
-    // 32/48 px auf Markenfarben und binäre Transparenz rastern, ohne Matschkanten.
-    const opaqueColors = [palette.g, palette.s, palette.w];
-    for (let i = 0; i < data.length; i += 4) {
-      const distance = value => value.slice(0, 3).reduce((sum, channel, c) => sum + (channel - data[i + c]) ** 2, 0);
-      const color = data[i + 3] < 128 ? palette['.'] : opaqueColors.reduce((best, candidate) =>
-        distance(candidate) < distance(best) ? candidate : best);
-      data.set(color, i);
-    }
-  }
-  // 48 px nutzt Nearest-Neighbour aus dem scharfen 32er Raster, keine Halb-Pixel-Kanten.
-  return optimizePng(await sharp(data, { raw: { width: gridSize, height: gridSize, channels: 4 } })
-    .resize(size, size, { kernel: 'nearest' })
-    .png({ compressionLevel: 9 }).toBuffer());
+  const image = size === 16
+    ? sharp(pixelTemplate(favicon16), { raw: { width: 16, height: 16, channels: 4 } })
+    : sharp(raster(small, size));
+  // 32 und 48 px direkt aus den Vektorpfaden, mit Augen, Nasen und Kantenglättung.
+  return optimizePng(await image.png({ compressionLevel: 9 }).toBuffer());
 }
 
 function appIcon(master, size, inset) {
@@ -115,7 +141,7 @@ function appIcon(master, size, inset) {
     ') translate(-627 -627)">' + body + '</g>');
 }
 
-async function buildFavicons(master, small) {
+async function buildFavicons(master, small, browserOnly = false) {
   fs.writeFileSync(path.join(root, 'favicon.svg'), small + '\n');
   const frames = [];
   for (const size of [16, 32, 48]) frames.push({ size, frame: await faviconFrame(small, size) });
@@ -135,6 +161,7 @@ async function buildFavicons(master, small) {
     offset += frame.length;
   });
   fs.writeFileSync(path.join(root, 'favicon.ico'), Buffer.concat([header, ...frames.map(f => f.frame)]));
+  if (browserOnly) return;
   await png(path.join(root, 'apple-touch-icon.png'), appIcon(master, 180, .125), 180, green);
   for (const size of [192, 512]) await png(path.join(root, 'icon-' + size + '.png'), master, size);
   // Der Prüfer kontrolliert alle nichtgrünen Pixel gegen den mittleren 80-%-Kreis.
@@ -148,12 +175,13 @@ async function buildFavicons(master, small) {
 
 async function main() {
   const masterFile = path.join(logoDir, 'sonnenhof-bildmarke.svg');
-  const smallFile = path.join(logoDir, 'sonnenhof-bildmarke-klein.svg');
   const master = fs.readFileSync(masterFile, 'utf8').trim();
-  const small = saveSvg(smallFile, fs.readFileSync(smallFile, 'utf8'));
-  await buildFavicons(master, small);
-  if (process.argv.includes('--favicons-only')) {
-    console.log('Favicon-Set erzeugt: Pixel-ICO 16/32/48, SVG, Apple und drei Manifest-Icons; PNGs mit oxipng.');
+  // Eigenständige Browserquelle: kleine SVG aus f2065d7, ohne die Logo-Datei umzuschreiben.
+  const small = fs.readFileSync(path.join(root, 'favicon.svg'), 'utf8').trim();
+  const browserOnly = process.argv.includes('--favicons-only');
+  await buildFavicons(master, small, browserOnly);
+  if (browserOnly) {
+    console.log('Nur Browser-Favicons erzeugt: ICO mit Pixelraster 16 px und SVG-Rendering 32/48 px.');
     return;
   }
   const fontBytes = fs.readFileSync(process.env.SONNENHOF_FONT || 'C:/Windows/Fonts/georgia.ttf');
@@ -182,5 +210,5 @@ async function main() {
   console.log('Logo-Set einschließlich vollständigem Favicon-Set erzeugt.');
 }
 
-module.exports = { favicon16, pixelTemplate, palette };
+module.exports = { favicon16, faviconVariants, selectedVariant, pixelTemplate, palette };
 if (require.main === module) main().catch(error => { console.error(error); process.exitCode = 1; });
