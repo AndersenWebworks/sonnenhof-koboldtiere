@@ -1,6 +1,9 @@
 {
   "name": "Sonnenhof der Koboldtiere",
   "short_name": "Sonnenhof",
+  "id": "./",
+  "scope": "./",
+  "description": "Lebenshof in Heusweiler für Tiere mit Handicap.",
   "lang": "de",
   "start_url": "./",
   "display": "standalone",
@@ -8,16 +11,22 @@
   "background_color": "#f8f4eb",
   "icons": [
     {
-      "src": "assets/img/logo/sonnenhof-bildmarke-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "assets/img/logo/sonnenhof-bildmarke-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
