@@ -8,7 +8,7 @@ const sharp = require('sharp');
 const { favicon16, pixelTemplate, palette } = require('./build-logo-set.cjs');
 
 const root = path.resolve(__dirname, '..');
-const out = 'C:/Users/mail/.clautz-worktrees/_inputs/codex-tools/runs/sonnenhof-previews/favicon-v2';
+const out = path.join(__dirname, 'vorschau', 'favicon-v2');
 const pages = ['index.html', 'sonnenhof-impressum.html', 'sonnenhof-datenschutz.html'];
 const svgs = ['sonnenhof-bildmarke.svg', 'sonnenhof-bildmarke-klein.svg',
   'sonnenhof-logo-quer.svg', 'sonnenhof-logo-quer-hell.svg', 'sonnenhof-logo-hoch.svg'];
