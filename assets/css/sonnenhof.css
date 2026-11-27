@@ -1204,8 +1204,6 @@ footer a { color: #fff; }
 .press-card-title { margin-top: 8px; color: var(--pine-dark); font-family: var(--serif); font-size: 26px; line-height: 1.2; }
 .press-card-text { margin-top: 8px; color: var(--muted); font-size: 16px; }
 .press-card .press-go { padding-top: 16px; color: var(--pine); }
-.press-all { margin: 30px 0 0; text-align: center; }
-.press-all a { color: var(--pine); font-weight: 700; }
 @media (max-width: 900px) {
   .press-feature { grid-template-columns: 1fr; }
   .press-feature-image { min-height: 0; height: 56vw; max-height: 380px; }
@@ -1516,3 +1514,26 @@ footer a { color: #fff; }
   .closing { padding: 26px 22px 24px; font-size: 22px; }
   .follow-card { grid-template-columns: auto 1fr; grid-template-areas: "avatar id" "button button"; }
 }
+
+/* Weitere Berichte unter den Pressekarten */
+.press-more { max-width: 820px; margin: 44px auto 0; }
+.press-more h3 { color: var(--pine); font-size: 24px; text-align: center; }
+.press-more ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 18px 0 0; padding: 0; list-style: none; }
+.press-more li a {
+  display: block;
+  height: 100%;
+  padding: 14px 18px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.45;
+  text-decoration: none;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.press-more li a:hover { border-color: var(--leaf); transform: translateY(-2px); }
+.press-more li span { display: block; margin-bottom: 3px; color: var(--coral); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.press-contact { margin: 22px 0 0; color: var(--muted); font-size: 15px; text-align: center; }
+.press-contact a { color: var(--leaf-text); font-weight: 600; }
+@media (max-width: 620px) { .press-more ul { grid-template-columns: 1fr; } }
