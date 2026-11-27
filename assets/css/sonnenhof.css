@@ -652,23 +652,6 @@ h2 {
   margin-top: 48px;
   align-items: start;
 }
-.support-options { display: grid; gap: 0; }
-.support-option {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 14px;
-  padding: 24px 0;
-  border-top: 1px solid rgba(255,255,255,.25);
-}
-.support-option:last-child { border-bottom: 1px solid rgba(255,255,255,.25); }
-.support-option-number {
-  color: var(--honey);
-  font-family: var(--serif);
-  font-size: 34px;
-  line-height: 1;
-}
-.support-option h3 { font-size: 26px; }
-.support-option p { margin: 6px 0 0; color: #dfeadb; }
 
 .donation-box {
   padding: 32px;
@@ -906,26 +889,6 @@ h2 {
   gap: 72px;
   align-items: start;
 }
-.follow-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 32px;
-}
-.follow-link {
-  padding: 0 0 14px;
-  border-bottom: 1px solid var(--leaf);
-  text-decoration: none;
-}
-.follow-link:hover { border-bottom-width: 2px; padding-bottom: 13px; }
-.follow-link strong {
-  display: block;
-  color: var(--pine);
-  font-family: var(--serif);
-  font-size: 24px;
-  font-weight: 500;
-}
-.follow-link span { display: block; margin-top: 4px; color: var(--muted); font-size: 15px; }
 .closing {
   margin-top: 8px;
   padding: 0 0 0 26px;
@@ -1044,7 +1007,7 @@ footer a { color: #fff; }
   .brand-name small { font-size: 11px; }
   .hero-inner { padding: 30px 15px 38px; }
   .family-grid,
-  .follow-links,
+  .follow-cards,
   .footer-grid { grid-template-columns: 1fr; }
   .proof-item { padding: 22px 16px 20px; }
   .proof-icon { width: 56px; height: 56px; margin-bottom: 14px; }
@@ -1336,13 +1299,6 @@ footer a { color: #fff; }
 .costs-list dt { color: var(--coral); font-family: var(--serif); font-size: 21px; }
 .costs-list dd { margin: 0; color: var(--muted); }
 
-.support-option-main {
-  margin: 0 -18px;
-  padding: 24px 18px;
-  background: rgba(255,255,255,.07);
-  border-top-color: transparent;
-  border-radius: 6px;
-}
 .support-tag {
   display: inline-block;
   margin-bottom: 6px;
@@ -1354,12 +1310,6 @@ footer a { color: #fff; }
   font-weight: 700;
   letter-spacing: .02em;
 }
-.support-link {
-  color: #fff;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,.4);
-}
-.support-link:hover { border-bottom-color: #fff; }
 .donation-box .amount-grid { margin-top: 18px; }
 .bank-intro {
   margin: 26px 0 0;
@@ -1425,5 +1375,144 @@ footer a { color: #fff; }
   .costs-list > div { grid-template-columns: 1fr; gap: 2px; }
   .pate-side { position: static; }
   .pate-side .pate-figure { max-width: 420px; }
-  .support-option-main { margin: 0 -12px; padding: 22px 12px; }
+}
+
+/* Unterstützen: vier Wege als Karten mit Logo-Medaillons */
+.help-cards { display: grid; gap: 14px; }
+.help-card {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 18px;
+  align-items: start;
+  padding: 22px 22px 22px 20px;
+  color: #fff;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.help-card:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); border-color: rgba(245,201,91,.55); }
+.help-card:focus-visible { outline: 3px solid var(--honey); outline-offset: 3px; }
+.help-icon { width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 6px 16px rgba(0,0,0,.22); }
+.help-text { display: block; }
+.help-card h3 { color: #fff; font-size: 24px; }
+.help-desc { display: block; margin-top: 6px; color: #dfeadb; font-size: 16px; line-height: 1.55; }
+.help-card-main {
+  padding: 26px 24px 24px 22px;
+  background: linear-gradient(135deg, rgba(245,201,91,.2), rgba(255,143,98,.12));
+  border-color: rgba(245,201,91,.6);
+}
+.help-card-main h3 { font-size: 28px; }
+.help-more {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 7px 16px;
+  color: var(--pine-dark);
+  background: var(--honey);
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.help-card-main:hover .help-more { background: #ffd877; }
+
+.donation-box {
+  border-radius: 10px;
+  border-top: 0;
+  box-shadow: 0 24px 60px rgba(0,0,0,.3);
+  overflow: hidden;
+  position: relative;
+}
+.donation-box::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: linear-gradient(90deg, var(--honey), var(--peach));
+}
+.donation-kicker {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--coral);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Verbunden bleiben: Abschluss, der zu Instagram führt */
+.follow {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(221,42,123,.1), transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(245,201,91,.2), transparent 45%),
+    var(--cream);
+}
+.follow-grid { align-items: center; }
+.follow-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+.follow-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "avatar id button";
+  gap: 16px;
+  align-items: center;
+  padding: 20px;
+  color: #262626;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(18,59,45,.06), 0 14px 34px rgba(18,59,45,.1);
+  font-family: var(--sans);
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.follow-card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(18,59,45,.08), 0 20px 40px rgba(18,59,45,.14); }
+.follow-avatar { grid-area: avatar; }
+.follow-avatar img { width: 58px; height: 58px; }
+.follow-glyph {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  color: var(--pine);
+  background: var(--mint);
+  border: 3px solid #fff;
+  border-radius: 50%;
+}
+.follow-glyph .ig-glyph { width: 26px; height: 26px; }
+.follow-id { grid-area: id; display: grid; gap: 2px; min-width: 0; }
+.follow-id strong { font-size: 16px; font-weight: 600; overflow-wrap: anywhere; }
+.follow-id span { color: #737373; font-size: 14px; }
+.follow-button {
+  grid-area: button;
+  padding: 9px 22px;
+  color: #fff;
+  background: linear-gradient(90deg, #f58529, #dd2a7b 45%, #8134af 80%, #515bd4);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+.closing {
+  position: relative;
+  margin-top: 0;
+  padding: 34px 34px 30px;
+  background: var(--paper);
+  border-left: 0;
+  border-top: 6px solid var(--honey);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(18,59,45,.06), 0 14px 34px rgba(18,59,45,.1);
+}
+.closing small { padding-top: 16px; border-top: 1px dotted var(--leaf); }
+
+@media (max-width: 620px) {
+  .help-card { grid-template-columns: 48px 1fr; gap: 14px; padding: 18px 16px; }
+  .help-icon { width: 48px; height: 48px; }
+  .help-card h3 { font-size: 21px; }
+  .help-card-main h3 { font-size: 24px; }
+  .closing { padding: 26px 22px 24px; font-size: 22px; }
+  .follow-card { grid-template-columns: auto 1fr; grid-template-areas: "avatar id" "button button"; }
 }
