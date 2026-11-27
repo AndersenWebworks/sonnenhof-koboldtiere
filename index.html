@@ -397,30 +397,29 @@
         <div class="support-grid">
           <div>
             <div class="help-cards">
-              <a class="help-card help-card-main" href="#patenschaft">
+              <a class="help-card help-card-main is-active" href="#patenschaft" data-help="pate" aria-controls="hilfe-pate">
                 <svg class="help-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#f5c95b"/><circle cx="47" cy="16" r="7" fill="#fffdf8"/><path fill="#0f5740" d="M32 50 18 36.8C11.8 30.9 14.7 21 22.8 21c4.1 0 7.1 2.5 9.2 5.4 2.1-2.9 5.1-5.4 9.2-5.4 8.1 0 11 9.9 4.8 15.8z"/></svg>
                 <span class="help-text">
                   <span class="support-tag">Hilft beim Planen am meisten</span>
                   <h3>Patenschaft übernehmen</h3>
                   <span class="help-desc">Ab 5&nbsp;Euro im Monat, für den ganzen Hof oder für ein bestimmtes Tier. Den Betrag bestimmst du selbst und kannst ihn jederzeit anpassen.</span>
-                  <span class="help-more">Zum Antrag <span aria-hidden="true">→</span></span>
                 </span>
               </a>
-              <a class="help-card" href="#spenden">
+              <a class="help-card" href="#spenden" data-help="spenden" aria-controls="spenden">
                 <svg class="help-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#fffdf8"/><circle cx="47" cy="16" r="7" fill="#f5c95b"/><circle cx="31" cy="35" r="15" fill="none" stroke="#0f5740" stroke-width="3.5"/><path fill="none" stroke="#0f5740" stroke-width="3.2" stroke-linecap="round" d="M37 28.5a8 8 0 1 0 0 13M22.5 33h11M22.5 37.5h11"/></svg>
                 <span class="help-text">
                   <h3>Einmalig spenden</h3>
                   <span class="help-desc">Per Überweisung oder PayPal. Jede Spende hilft bei Futter, Medikamenten, Windeln, Hilfsmitteln und Tierarztkosten.</span>
                 </span>
               </a>
-              <a class="help-card" href="https://www.amazon.de/hz/wishlist/ls/34C3XM2DW4QZP" target="_blank" rel="noopener noreferrer">
+              <a class="help-card" href="https://www.amazon.de/hz/wishlist/ls/34C3XM2DW4QZP" target="_blank" rel="noopener noreferrer" data-help="wunsch" aria-controls="hilfe-wunsch">
                 <svg class="help-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#fffdf8"/><circle cx="47" cy="16" r="7" fill="#f5c95b"/><g fill="none" stroke="#0f5740" stroke-width="3.5" stroke-linejoin="round"><rect x="17" y="29" width="28" height="20" rx="2"/><path d="M14 23h34v6H14zM31 23v26"/><path stroke-linecap="round" d="M31 23c-3-6-11-7-11-2s8 2 11 2c3 0 11 3 11-2s-8-4-11 2"/></g></svg>
                 <span class="help-text">
                   <h3>Von der Wunschliste schenken</h3>
                   <span class="help-desc">Auf unserer Amazon-Wunschliste steht, was die Tiere gerade brauchen.</span>
                 </span>
               </a>
-              <a class="help-card" href="mailto:katzenstimme_grenzenlos@gmx.de?subject=Helfen">
+              <a class="help-card" href="mailto:katzenstimme_grenzenlos@gmx.de?subject=Helfen" data-help="helfen" aria-controls="hilfe-helfen">
                 <svg class="help-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#fffdf8"/><circle cx="47" cy="16" r="7" fill="#f5c95b"/><path fill="#0f5740" d="M31 19 13 34h5v15h9V40h8v9h9V34h5z"/></svg>
                 <span class="help-text">
                   <h3>Praktisch helfen</h3>
@@ -431,7 +430,25 @@
             <p class="support-note">Mein Verein Katzenstimme grenzenlos e.&nbsp;V. trägt den Sonnenhof der Koboldtiere. Jede Spende und jede Patenschaft geht an den Verein.</p>
           </div>
 
-          <aside class="donation-box" id="spenden" aria-labelledby="spendenkonto">
+          <div class="help-panels">
+          <div class="help-panel donation-box pate-panel" id="hilfe-pate" data-panel="pate">
+            <span class="donation-kicker">Monatlich helfen</span>
+            <h3>Patenschaft übernehmen</h3>
+            <p>Du entscheidest, ob deine Patenschaft dem ganzen Hof gilt oder einem bestimmten Tier, und bestimmst den Betrag selbst, ab 5&nbsp;Euro im Monat. Anpassen oder beenden kannst du sie jederzeit.</p>
+            <p class="panel-sub">Für ein bestimmtes Tier:</p>
+            <div class="pate-chips">
+              <a href="#patenschaft" data-pate="Njuvra">Njuvra</a>
+              <a href="#patenschaft" data-pate="Murron">Murron</a>
+              <a href="#patenschaft" data-pate="Little Bee">Little Bee</a>
+              <a href="#patenschaft" data-pate="Pavel">Pavel</a>
+              <a href="#patenschaft" data-pate="Hunter">Hunter</a>
+            </div>
+            <div class="donation-actions">
+              <a class="button button-primary" href="#patenschaft" data-pate="">Zum Patenschaftsantrag</a>
+            </div>
+          </div>
+
+          <aside class="help-panel donation-box" id="spenden" data-panel="spenden" aria-labelledby="spendenkonto">
             <span class="donation-kicker">Direkt spenden</span>
             <h3 id="spendenkonto">Spendenkonto</h3>
             <p>Deine Spende geht an den Verein, der den Sonnenhof trägt: Katzenstimme grenzenlos e.&nbsp;V.</p>
@@ -475,6 +492,27 @@
               Fragen zu einer Spende oder Patenschaft? Schreib an <a href="mailto:katzenstimme_grenzenlos@gmx.de">katzenstimme_grenzenlos@gmx.de</a>.
             </p>
           </aside>
+
+          <div class="help-panel donation-box" id="hilfe-wunsch" data-panel="wunsch">
+            <span class="donation-kicker">Sachspende</span>
+            <h3>Von der Wunschliste schenken</h3>
+            <p>Auf unserer Amazon-Wunschliste steht, was die Tiere gerade brauchen. Du suchst etwas aus, bezahlst es bei Amazon, und es wird direkt an uns geliefert.</p>
+            <div class="donation-actions">
+              <a class="button button-primary" href="https://www.amazon.de/hz/wishlist/ls/34C3XM2DW4QZP" target="_blank" rel="noopener noreferrer">Zur Wunschliste</a>
+            </div>
+          </div>
+
+          <div class="help-panel donation-box" id="hilfe-helfen" data-panel="helfen">
+            <span class="donation-kicker">Mit anpacken</span>
+            <h3>Praktisch helfen</h3>
+            <p>Du hast Zeit, Erfahrung oder Sachspenden, die du mitbringen möchtest? Schreib mir vorher, dann schauen wir, was gerade passt.</p>
+            <p>Sachspenden bitte nicht ohne Rücksprache am Hof abstellen.</p>
+            <div class="donation-actions">
+              <a class="button button-primary" href="mailto:katzenstimme_grenzenlos@gmx.de?subject=Helfen">E-Mail schreiben</a>
+            </div>
+            <p class="tax-note">katzenstimme_grenzenlos@gmx.de</p>
+          </div>
+          </div>
         </div>
       </div>
     </section>
@@ -600,7 +638,7 @@
               <span class="follow-button">Folgen</span>
             </a>
             <a class="follow-card" href="https://www.instagram.com/katzenstimme_grenzenlos/" target="_blank" rel="noopener noreferrer">
-              <span class="ig-avatar follow-avatar"><span class="follow-glyph"><svg class="ig-glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></span></span>
+              <span class="ig-avatar follow-avatar"><img src="assets/img/logo/katzenstimme-logo-192.png" alt="" width="64" height="64" loading="lazy"></span>
               <span class="follow-id"><strong>@katzenstimme_grenzenlos</strong><span>Der Verein hinter dem Hof</span></span>
               <span class="follow-button">Folgen</span>
             </a>
@@ -688,6 +726,33 @@
         copyStatus.textContent = 'Bitte die IBAN direkt aus dem Spendenkonto übernehmen.';
       }
     });
+
+    // Unterstützen: Karte links wählt den Inhalt rechts
+    const helpCards = document.querySelectorAll('[data-help]');
+    const helpPanels = document.querySelectorAll('[data-panel]');
+    const helpPanelsBox = document.querySelector('.help-panels');
+    function showHelp(key, scroll) {
+      helpCards.forEach((card) => {
+        const active = card.dataset.help === key;
+        card.classList.toggle('is-active', active);
+        card.setAttribute('aria-current', active ? 'true' : 'false');
+      });
+      helpPanels.forEach((panel) => { panel.hidden = panel.dataset.panel !== key; });
+      if (scroll && window.innerWidth < 900) helpPanelsBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    helpPanelsBox.classList.add('is-tabbed');
+    helpCards.forEach((card) => {
+      card.addEventListener('click', (event) => {
+        event.preventDefault();
+        showHelp(card.dataset.help, true);
+      });
+    });
+    function helpFromHash() {
+      if (location.hash === '#spenden') showHelp('spenden', false);
+    }
+    document.querySelectorAll('a[href="#spenden"]:not([data-help])').forEach((link) => link.addEventListener('click', () => showHelp('spenden', false)));
+    showHelp(location.hash === '#spenden' ? 'spenden' : 'pate', false);
+    window.addEventListener('hashchange', helpFromHash);
 
     // Betragsauswahl für den PayPal-Link
     const amountButtons = document.querySelectorAll('.amount-button');

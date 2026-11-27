@@ -1396,10 +1396,22 @@ footer a { color: #fff; }
 .help-text { display: block; }
 .help-card h3 { color: #fff; font-size: 24px; }
 .help-desc { display: block; margin-top: 6px; color: #dfeadb; font-size: 16px; line-height: 1.55; }
-.help-card-main {
-  padding: 26px 24px 24px 22px;
-  background: linear-gradient(135deg, rgba(245,201,91,.2), rgba(255,143,98,.12));
-  border-color: rgba(245,201,91,.6);
+.help-card.is-active {
+  position: relative;
+  background: linear-gradient(135deg, rgba(245,201,91,.24), rgba(255,143,98,.14));
+  border-color: var(--honey);
+  box-shadow: 0 0 0 1px var(--honey);
+}
+.help-card.is-active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -9px;
+  width: 16px;
+  height: 16px;
+  background: var(--honey);
+  transform: translateY(-50%) rotate(45deg);
+  border-radius: 2px;
 }
 .help-card-main h3 { font-size: 28px; }
 .help-more {
@@ -1470,17 +1482,6 @@ footer a { color: #fff; }
 .follow-card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(18,59,45,.08), 0 20px 40px rgba(18,59,45,.14); }
 .follow-avatar { grid-area: avatar; }
 .follow-avatar img { width: 58px; height: 58px; }
-.follow-glyph {
-  display: grid;
-  place-items: center;
-  width: 58px;
-  height: 58px;
-  color: var(--pine);
-  background: var(--mint);
-  border: 3px solid #fff;
-  border-radius: 50%;
-}
-.follow-glyph .ig-glyph { width: 26px; height: 26px; }
 .follow-id { grid-area: id; display: grid; gap: 2px; min-width: 0; }
 .follow-id strong { font-size: 16px; font-weight: 600; overflow-wrap: anywhere; }
 .follow-id span { color: #737373; font-size: 14px; }
@@ -1537,3 +1538,24 @@ footer a { color: #fff; }
 .press-contact { margin: 22px 0 0; color: var(--muted); font-size: 15px; text-align: center; }
 .press-contact a { color: var(--leaf-text); font-weight: 600; }
 @media (max-width: 620px) { .press-more ul { grid-template-columns: 1fr; } }
+
+/* Unterstützen: rechte Seite wechselt mit der gewählten Karte */
+.help-card { cursor: pointer; }
+.help-panels.is-tabbed .help-panel[hidden] { display: none; }
+.help-panels { display: grid; gap: 18px; }
+.help-panel h3 { color: var(--pine); font-size: 32px; }
+.help-panel > p { color: var(--muted); }
+.panel-sub { margin: 18px 0 8px; color: var(--pine-dark) !important; font-weight: 700; font-size: 15px; }
+.pate-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.pate-chips a {
+  padding: 6px 14px;
+  color: var(--pine-dark);
+  background: var(--mint);
+  border: 1px solid var(--sage);
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.pate-chips a:hover { background: var(--sage); }
+@media (max-width: 900px) { .help-card.is-active::after { display: none; } }
