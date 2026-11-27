@@ -321,6 +321,63 @@
       line-height: 1.4;
     }
 
+    /* Instagram: Hauptkanal des Hofs, direkt nach dem Überblick */
+    .insta { background: var(--pine-dark); color: #eef4ea; }
+    .insta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .insta .section-label { color: var(--sage); }
+    .insta h2 { color: #fff; }
+    .insta .intro { color: #d4e2cf; }
+    .insta .button-row { margin-top: 28px; }
+    .insta .button-primary { color: var(--pine-dark); background: var(--paper); border-color: var(--paper); font-size: 17px; }
+    .insta .button-primary:hover { background: #fff; }
+    .insta .button-outline { min-height: 48px; padding: 10px 22px; border: 1px solid rgba(255,255,255,.7); border-radius: 2px; color: #fff; }
+    .insta .button-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+    .insta-stories h3 { color: #fff; font-size: 22px; }
+    .insta-stories > p { margin: 8px 0 0; color: #e3ecdf; font-size: 16px; }
+    .insta-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px 14px;
+      margin: 26px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .insta-list a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      color: #eef4ea;
+      font-size: 15px;
+      text-align: center;
+      text-decoration: none;
+    }
+    .insta-list img {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      object-fit: cover;
+      padding: 4px;
+      background: linear-gradient(45deg, #f9ce34, #ee2a7b 55%, #6228d7);
+      transition: transform .16s ease;
+    }
+    .insta-list a:hover img,
+    .insta-list a:focus-visible img { transform: scale(1.06); }
+    .insta-list a:hover span { text-decoration: underline; }
+    .insta-more { margin-top: 26px; font-size: 17px; }
+    .insta-more a { color: var(--honey); font-weight: 600; }
+    @media (max-width: 900px) {
+      .insta-grid { grid-template-columns: 1fr; gap: 44px; }
+    }
+    @media (max-width: 420px) {
+      .insta-list img { width: 76px; height: 76px; }
+    }
+
     section { padding: 96px 0; }
     .section-heading { max-width: 700px; }
     h2 {
@@ -907,6 +964,7 @@
       </a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="hauptnavigation">Menü</button>
       <nav class="main-nav" id="hauptnavigation" aria-label="Hauptnavigation">
+        <a href="#instagram">Instagram</a>
         <a href="#geschichte">Geschichte</a>
         <a href="#familie">Familienverbund</a>
         <a href="#tiere">Tiere</a>
@@ -955,6 +1013,36 @@
         </div>
       </div>
     </aside>
+
+    <section class="insta" id="instagram" aria-labelledby="insta-title">
+      <div class="wrap insta-grid">
+        <div>
+          <div class="section-label">Auf Instagram</div>
+          <h2 id="insta-title">Der Alltag auf dem Hof passiert auf Instagram.</h2>
+          <p class="intro">Dort zeige ich regelmäßig, wie es den Tieren geht: kleine Fortschritte, Tierarzttermine, neue Rollis und ganz gewöhnliche Hofmomente. Über 30.000 Menschen begleiten uns dort schon.</p>
+          <div class="button-row">
+            <a class="button button-primary" href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">@sonnenhof_der_koboldtiere folgen</a>
+            <a class="button button-outline" href="https://www.instagram.com/katzenstimme_grenzenlos/" target="_blank" rel="noopener noreferrer">Verein: @katzenstimme_grenzenlos</a>
+          </div>
+        </div>
+        <div class="insta-stories">
+          <h3>Geschichten zum Nachschauen</h3>
+          <p>Einige Tiere haben auf Instagram eine eigene Sammlung. Hier ein paar davon; das Neueste steht immer in meinem Profil.</p>
+          <ul class="insta-list">
+              <li><a href="https://www.instagram.com/stories/highlights/17904817912550159/" target="_blank" rel="noopener noreferrer"><img src="assets/img/sonnenhof/instagram/murron.jpg" alt="" width="92" height="92" loading="lazy"><span>Murron</span></a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/17871183943763670/" target="_blank" rel="noopener noreferrer"><img src="assets/img/sonnenhof/instagram/felinchen.jpg" alt="" width="92" height="92" loading="lazy"><span>Felinchen</span></a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/17919131416909393/" target="_blank" rel="noopener noreferrer"><img src="assets/img/sonnenhof/instagram/mercy.jpg" alt="" width="92" height="92" loading="lazy"><span>Mercy</span></a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/18149816296005332/" target="_blank" rel="noopener noreferrer"><img src="assets/img/sonnenhof/instagram/lenilou.jpg" alt="" width="92" height="92" loading="lazy"><span>Lenilou</span></a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/17866006132578667/" target="_blank" rel="noopener noreferrer"><img src="assets/img/sonnenhof/instagram/njuvra.jpg" alt="" width="92" height="92" loading="lazy"><span>Njuvra</span></a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/17907754822400363/" target="_blank" rel="noopener noreferrer"><img src="assets/img/sonnenhof/instagram/klein-my.jpg" alt="" width="92" height="92" loading="lazy"><span>Klein My</span></a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/17893263847769217/" target="_blank" rel="noopener noreferrer"><img src="assets/img/sonnenhof/instagram/pepe.jpg" alt="" width="92" height="92" loading="lazy"><span>Rollihund Pepe</span></a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/17898153634431873/" target="_blank" rel="noopener noreferrer"><img src="assets/img/sonnenhof/instagram/poldi.jpg" alt="" width="92" height="92" loading="lazy"><span>Poldi</span></a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/17901282364335546/" target="_blank" rel="noopener noreferrer"><img src="assets/img/sonnenhof/instagram/handicats.jpg" alt="" width="92" height="92" loading="lazy"><span>Handicats</span></a></li>
+          </ul>
+          <p class="insta-more"><a href="https://www.instagram.com/sonnenhof_der_koboldtiere/" target="_blank" rel="noopener noreferrer">Alle Beiträge und Geschichten auf Instagram ansehen →</a></p>
+        </div>
+      </div>
+    </section>
 
     <section class="story" id="geschichte">
       <div class="wrap story-grid">
